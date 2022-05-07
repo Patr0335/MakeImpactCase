@@ -4,6 +4,8 @@ import { useNavigation } from '@react-navigation/native';
 import { StackParamList } from "../typings/navigations";
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import BigBox from '../components/BigBox';
+import { useDispatch } from 'react-redux';
+import { logout } from '../src/store/actions/user.actions';
 
 type ScreenNavigationType = NativeStackNavigationProp<
     StackParamList,
@@ -12,6 +14,7 @@ type ScreenNavigationType = NativeStackNavigationProp<
 
 export default function HomePage() {
   const navigation = useNavigation<ScreenNavigationType>();
+  const dispatch = useDispatch();
   return (
     <View style={styles.container}>
       <View style={styles.buttonContainer}>
@@ -25,6 +28,7 @@ export default function HomePage() {
       </TouchableOpacity>
       </View>
       <View> 
+      <Button title="Logout" onPress={() => dispatch(logout())} />
         <Text style={styles.title}>
         </Text>
       </View>
