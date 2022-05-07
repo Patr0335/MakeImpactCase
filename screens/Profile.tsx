@@ -12,7 +12,7 @@ export default function Profile() {
     return (
         <View style={styles.container}>
             <Text>Profile Screen</Text>
-            {/* <Button title="Edit profile" onPress={() => navigation.navigate("EditProfile")} /> */}
+            <Button title="Edit profile" onPress={() => navigation.navigate("EditProfile")} />
         </View>
     );
 }

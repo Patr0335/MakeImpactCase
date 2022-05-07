@@ -64,11 +64,11 @@ function TournamentStackNavigator() {
 
 
 export default function Navigation() {
-  // const user = useSelector((state: RootState) => state.user.loggedInUser);
+  const user = useSelector((state: RootState) => state.user.loggedInUser);
   
   return (
      <NavigationContainer>
-       {/* {user !== null ? ( // if user is logged in. (not null) */}
+       {user !== null ? ( // if user is logged in. (not null)
       <Tab.Navigator screenOptions={{ headerShown: false }}>
         <Tab.Screen
           name="home"
@@ -112,11 +112,11 @@ export default function Navigation() {
           }}
         />
       </Tab.Navigator>
-      {/*  ) : ( */}
-        {/* <Stack.Navigator>
+        ) : ( 
+         <Stack.Navigator>
           <Stack.Screen name="LoginScreen" component={LoginScreen} />
-        </Stack.Navigator> */}
-      {/* )} */}
+        </Stack.Navigator> 
+       )} 
      </NavigationContainer>
   );
 }
