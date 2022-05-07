@@ -20,7 +20,7 @@ export const logout = () => {
 }
 
 export const login = (email : string, password : string) => {
-    const APIKEY = "AIzaSyA6XSf9jSzsuraq2v8_vmlhZaz2cGp3GJA"
+    const APIKEY = "AIzaSyARVBYF9aJs_TJeEv7aXAvcn37PBVlN8tM"
     const url = "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=" + APIKEY
      // laver en const som jeg kalder i min fetch forneden
      return async (dispatch: (arg0: { type: string; payload: any; }) => void) => {
