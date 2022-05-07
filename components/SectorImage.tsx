@@ -9,6 +9,7 @@ import {
   Text,
   Button,
   View,
+  ScrollView,
 } from "react-native";
 
 
@@ -16,6 +17,7 @@ type ScreenNavigationType = NativeStackNavigationProp<StackParamList, "BigBox">;
 
 export default function BigBox() {
   return (
+    <ScrollView showsVerticalScrollIndicator={false}>
     <SafeAreaView style={{ flex: 1 }}>
       <View style={styles.container}>
         <View style={styles.ImageBG} >
@@ -29,7 +31,7 @@ export default function BigBox() {
             ></TouchableOpacity>
           </ImageBackground>
         </View>
-        <Text style={styles.ImageText}>Financial Services 🏦</Text>
+        <Text style={styles.ImageText}>Snyd 🎲</Text>
 
         <View style={styles.ImageBG}>
           <ImageBackground
@@ -42,7 +44,7 @@ export default function BigBox() {
             ></TouchableOpacity>
           </ImageBackground>
         </View>
-        <Text style={styles.ImageText}>Electricity ⚡</Text>
+        <Text style={styles.ImageText}>Mejer 🎲</Text>
 
         <View style={styles.ImageBG}>
           <ImageBackground
@@ -55,7 +57,7 @@ export default function BigBox() {
             ></TouchableOpacity>
           </ImageBackground>
         </View>
-        <Text style={styles.ImageText}>General Retailers 🏪</Text>
+        <Text style={styles.ImageText}>Yatzy 🎲</Text>
 
         <View style={styles.ImageBG}>
           <ImageBackground
@@ -68,7 +70,7 @@ export default function BigBox() {
             ></TouchableOpacity>
           </ImageBackground>
         </View>
-        <Text style={styles.ImageText}>Forestry & Paper 🍁</Text>
+        <Text style={styles.ImageText}>10.000 🎲</Text>
 
         <View style={styles.ImageBG}>
           <ImageBackground
@@ -81,7 +83,7 @@ export default function BigBox() {
             ></TouchableOpacity>
           </ImageBackground>
         </View>
-        <Text style={styles.ImageText}>Food & Drug Retailers 💊</Text>
+        <Text style={styles.ImageText}>Bunco 🎲</Text>
 
         <View style={styles.ImageBG}>
           <ImageBackground
@@ -94,7 +96,7 @@ export default function BigBox() {
             ></TouchableOpacity>
           </ImageBackground>
         </View>
-        <Text style={styles.ImageText}>Support Services 👩‍💻</Text>
+        <Text style={styles.ImageText}>Shut the Box 🎲</Text>
 
         <View style={styles.ImageBG}>
           <ImageBackground
@@ -107,7 +109,7 @@ export default function BigBox() {
             ></TouchableOpacity>
           </ImageBackground>
         </View>
-        <Text style={styles.ImageText}>Personal Goods 🛍️</Text>
+        <Text style={styles.ImageText}>Beat That 🎲</Text>
 
         <View style={styles.ImageBG}>
           <ImageBackground
@@ -120,9 +122,10 @@ export default function BigBox() {
             ></TouchableOpacity>
           </ImageBackground>
         </View>
-        <Text style={styles.ImageText}>Aerospace & Defense ✈️</Text>
+        <Text style={styles.ImageText}>Hygge terninger 18+⚠️ </Text>
       </View>
     </SafeAreaView>
+    </ScrollView>
   );
 }
 

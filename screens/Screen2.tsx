@@ -3,6 +3,8 @@ import { StyleSheet, Text, View, TextInput, Button, Alert, FlatList, ScrollView,
 import { useNavigation } from '@react-navigation/native';
 import { StackParamList } from "../typings/navigations";
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import ReactDice from 'react-dice-complete';
+import 'react-dice-complete/dist/react-dice-complete.css'
 
 type ScreenNavigationType = NativeStackNavigationProp<
     StackParamList,
@@ -10,13 +12,29 @@ type ScreenNavigationType = NativeStackNavigationProp<
 >
 
 
-export default function Screen2() {
-     const navigation = useNavigation<ScreenNavigationType>();
-  return (
-    <View style={styles.container}>
-      <Text>Screen2</Text>
-    </View>
-  );
+class Dice extends React.Component {
+  reactDice: any;
+  
+  render() {
+    
+    return (
+      <div>
+        <ReactDice
+          numDice={2}
+          rollDone={this.rollDoneCallback}
+          ref={(dice: any) => this.reactDice = dice}
+        />
+      </div>
+    )
+  }
+ 
+  rollAll() {
+    this.reactDice.rollAll()
+  }
+ 
+  rollDoneCallback(num: Number) {
+    console.log(`You rolled a ${num}`)
+  }
 }
 const styles = StyleSheet.create({
     container: {
@@ -29,3 +47,4 @@ const styles = StyleSheet.create({
         fontSize: 42,
       },
 })
+

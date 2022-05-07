@@ -1,3 +1,4 @@
+
 import React from "react";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { StackParamList } from "../typings/navigations";
@@ -21,4 +22,3 @@ export default function Invest() {
     const styles = StyleSheet.create({
  
     });
-

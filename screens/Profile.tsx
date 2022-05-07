@@ -6,10 +6,10 @@ import { View, Text, StyleSheet } from "react-native"
 
 type ScreenNavigationType = NativeStackNavigationProp<
   StackParamList,
-  "Academy"
+  "Profile"
 >;
 
-export default function Academy() {
+export default function Profile() {
 
     return (
         <View>
@@ -21,4 +21,3 @@ export default function Academy() {
     const styles = StyleSheet.create({
  
     });
-

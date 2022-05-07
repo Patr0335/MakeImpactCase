@@ -26,15 +26,19 @@ export default function Screen1() {
         style={styles.nonClickableButton}
       >
         <Text style={styles.explore}
-        >Explore</Text>
+        >Explore button test</Text>
       </TouchableOpacity>
 
       <TouchableOpacity
         style={styles.clickableButton}
-        onPress={() => navigation.navigate('Screen3')}
+        onPress={() => navigation.navigate('DiceGames')}
       >
-        <Text>Sectors</Text>
+        <Text>Dice Games</Text>
       </TouchableOpacity>
+      </View>
+      <View> 
+        <Text style={styles.title}>
+        </Text>
       </View>
       <BigBox/>
     </View>
@@ -48,6 +52,7 @@ const styles = StyleSheet.create({
       backgroundColor: '#fff',
       alignItems: 'center',
       justifyContent: 'center',
+      
     },
     buttonContainer: {
       backgroundColor: "#f2f2f4",
@@ -55,6 +60,7 @@ const styles = StyleSheet.create({
       justifyContent: 'center',
       flexDirection: "row",
       borderRadius: 20,
+      marginTop: 20,
     },
     text: {
         fontSize: 42,
@@ -75,4 +81,8 @@ const styles = StyleSheet.create({
       explore: {
         color: 'white'
       },
+      title: {
+        fontSize: 30,
+        alignContent: "center"
+      }
 })

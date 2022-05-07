@@ -4,32 +4,24 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Screen1 from "../screens/Screen1";
-import Screen2 from "../screens/Screen2";
-import Screen3 from "../screens/Screen3";
+import DiceGames from "../screens/DiceGames";
 import Invest from "../screens/Invest";
-import News from "../screens/News";
-import MClub from "../screens/MClub";
-import Academy from "../screens/Academy";
+import Profile from "../screens/Profile";
 import { StackParamList } from "../typings/navigations";
 import { Entypo } from "@expo/vector-icons";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
 import { FontAwesome } from "@expo/vector-icons";
+import { AntDesign } from '@expo/vector-icons'; 
+
 
 
 
 const Stack = createNativeStackNavigator<StackParamList>();
 const Tab = createBottomTabNavigator();
 
-// function LogoTitle() {
-//   return (
-//     <Image
-//       style={{ width: 50, height: 50 }}
-//       source={require('../assets/background.jpg')}
-//     />
-//   );
-// }
+
 
 
 export default function ScreenStackNavigator() {
@@ -40,26 +32,16 @@ export default function ScreenStackNavigator() {
         name="Screen1"
         component={Navigation}
         options={{
-          title: "Hi Malte! Let's make an impact",
-
-            
-          // headerLeft:  (
-          //   props // App Logo
-          // ) => (
-          //   <Image
-          //     style={{ width: 30, height: 30, borderRadius: 60, margin: 20}}
-          //     source={require("../assets/VandMichael.png")}
-          //     />
-          //     ),
+          title: `You Only Dice Twice`,
         }}
       />
-      <Stack.Screen options={{headerShown: false}}
+      {/* <Stack.Screen options={{headerShown: false}}
       name="Screen2" 
       component={Screen2}
-      />
+      /> */}
       <Stack.Screen options={{headerShown: false}} 
-      name="Screen3" 
-      component={Screen3} 
+      name="DiceGames" 
+      component={DiceGames} 
       
       />
     </Stack.Navigator>
@@ -72,53 +54,43 @@ export default function ScreenStackNavigator() {
     // <NavigationContainer>
       <Tab.Navigator screenOptions={{ headerShown: false }}>
         <Tab.Screen
-          name="matches"
+          name="home"
           component={Screen1}
           options={{
-            tabBarLabel: "Matches",
+            tabBarLabel: "Home",
             tabBarIcon: ({ color, size }) => (
-              <FontAwesome name="heartbeat" color={color} size={size} />
+              <Entypo name="home" color={color} size={size} />
               ),
               
           }}
         />
         <Tab.Screen
-          name="News"
-          component={News}
+          name="Dice Games"
+          component={DiceGames}
           options={{
-            tabBarLabel: "News",
+            tabBarLabel: "Dice Games",
             tabBarIcon: ({ color, size }) => (
-              <Entypo name="news" color={color} size={size} />
+              <FontAwesome5 name="dice" color={color} size={size} />
             ),
           }}
         />
         <Tab.Screen
-          name="Invest"
+          name="Ved ikke endnu"
           component={Invest}
           options={{
-            tabBarLabel: "Invest",
+            tabBarLabel: "Ved ikke endnu",
             tabBarIcon: ({ color, size }) => (
               <FontAwesome5 name="money-bill" color={color} size={size} />
             ),
           }}
         />
         <Tab.Screen
-          name="Academy"
-          component={Academy}
+          name="Profile"
+          component={Profile}
           options={{
-            tabBarLabel: "Academy",
+            tabBarLabel: "Profile",
             tabBarIcon: ({ color, size }) => (
-              <MaterialIcons name="menu-book" color={color} size={size} />
-            ),
-          }}
-        />
-        <Tab.Screen
-          name="MClub"
-          component={MClub}
-          options={{
-            tabBarLabel: "M!Club",
-            tabBarIcon: ({ color, size }) => (
-              <Entypo name="chat" color={color} size={25} />
+              <AntDesign name="profile" color={color} size={25} />
             ),
           }}
         />
