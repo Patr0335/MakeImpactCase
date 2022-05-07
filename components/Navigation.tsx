@@ -7,6 +7,7 @@ import Screen1 from "../screens/Screen1";
 import DiceGames from "../screens/DiceGames";
 import Invest from "../screens/Invest";
 import Profile from "../screens/Profile";
+import EditProfile from "../screens/EditProfile";
 import { StackParamList } from "../typings/navigations";
 import { Entypo } from "@expo/vector-icons";
 import { FontAwesome5 } from "@expo/vector-icons";

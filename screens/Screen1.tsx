@@ -15,7 +15,7 @@ export default function Screen1() {
   return (
     <View style={styles.container}>
       <View style={styles.buttonContainer}>
-      <TouchableOpacity
+      {/* <TouchableOpacity
         style={styles.clickableButton}
         onPress={() => navigation.navigate('Screen2')}
       >
@@ -27,7 +27,7 @@ export default function Screen1() {
       >
         <Text style={styles.explore}
         >Explore button test</Text>
-      </TouchableOpacity>
+      </TouchableOpacity> */}
 
       <TouchableOpacity
         style={styles.clickableButton}

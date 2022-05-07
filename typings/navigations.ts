@@ -5,4 +5,5 @@ export type StackParamList = {
     Invest: undefined;
     BigBox: undefined;
     Profile: undefined;
+    EditProfile: undefined;
 }
