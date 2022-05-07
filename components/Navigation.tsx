@@ -3,11 +3,12 @@ import { StyleSheet } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import Screen1 from "../screens/Screen1";
+import HomePage from "../screens/HomePage";
 import DiceGames from "../screens/DiceGames";
 import Invest from "../screens/Invest";
 import Profile from "../screens/Profile";
 import EditProfile from "../screens/EditProfile";
+import LoginScreen from "../screens/LoginScreen";
 import { StackParamList } from "../typings/navigations";
 import { Entypo } from "@expo/vector-icons";
 import { FontAwesome5 } from "@expo/vector-icons";
@@ -15,6 +16,8 @@ import { MaterialIcons } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
 import { FontAwesome } from "@expo/vector-icons";
 import { AntDesign } from '@expo/vector-icons'; 
+import { useSelector } from "react-redux";
+import { RootState } from "../App";
 
 
 
@@ -23,40 +26,53 @@ const Stack = createNativeStackNavigator<StackParamList>();
 const Tab = createBottomTabNavigator();
 
 
-
-
-export default function ScreenStackNavigator() {
+function HomePageStackNavigator() {
   return (
-    <NavigationContainer>
     <Stack.Navigator>
-      <Stack.Screen
-        name="Screen1"
-        component={Navigation}
-        options={{
-          title: `You Only Dice Twice`,
-        }}
-      />
-      {/* <Stack.Screen options={{headerShown: false}}
-      name="Screen2" 
-      component={Screen2}
-      /> */}
-      <Stack.Screen options={{headerShown: false}} 
-      name="DiceGames" 
-      component={DiceGames} 
-      
-      />
+      <Stack.Screen name="HomePage" component={HomePage} />
     </Stack.Navigator>
-    </NavigationContainer>
+  )
+}
+
+
+function ProfileStackNavigator() {
+  return (
+      <Stack.Navigator>
+          <Stack.Screen name="Profile" component={Profile} />
+          <Stack.Screen name="EditProfile" component={EditProfile} />
+      </Stack.Navigator>
+  )
+}
+
+function DiceGamesStackNavigator() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name="DiceGames" component={DiceGames} />
+    </Stack.Navigator>
+  )
+}
+
+function TournamentStackNavigator() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name="Invest" component={Invest} />
+    </Stack.Navigator>
   );
 }
 
- function Navigation() {
+
+
+
+export default function Navigation() {
+  // const user = useSelector((state: RootState) => state.user.loggedInUser);
+  
   return (
-    // <NavigationContainer>
+     <NavigationContainer>
+       {/* {user !== null ? ( // if user is logged in. (not null) */}
       <Tab.Navigator screenOptions={{ headerShown: false }}>
         <Tab.Screen
           name="home"
-          component={Screen1}
+          component={HomePageStackNavigator}
           options={{
             tabBarLabel: "Home",
             tabBarIcon: ({ color, size }) => (
@@ -67,7 +83,7 @@ export default function ScreenStackNavigator() {
         />
         <Tab.Screen
           name="Dice Games"
-          component={DiceGames}
+          component={DiceGamesStackNavigator}
           options={{
             tabBarLabel: "Dice Games",
             tabBarIcon: ({ color, size }) => (
@@ -77,7 +93,7 @@ export default function ScreenStackNavigator() {
         />
         <Tab.Screen
           name="Ved ikke endnu"
-          component={Invest}
+          component={TournamentStackNavigator}
           options={{
             tabBarLabel: "Ved ikke endnu",
             tabBarIcon: ({ color, size }) => (
@@ -85,9 +101,9 @@ export default function ScreenStackNavigator() {
             ),
           }}
         />
-        <Tab.Screen
-          name="Profile"
-          component={Profile}
+        <Tab.Screen 
+          name="user"
+          component={ProfileStackNavigator}
           options={{
             tabBarLabel: "Profile",
             tabBarIcon: ({ color, size }) => (
@@ -96,7 +112,12 @@ export default function ScreenStackNavigator() {
           }}
         />
       </Tab.Navigator>
-    // </NavigationContainer>
+      {/*  ) : ( */}
+        {/* <Stack.Navigator>
+          <Stack.Screen name="LoginScreen" component={LoginScreen} />
+        </Stack.Navigator> */}
+      {/* )} */}
+     </NavigationContainer>
   );
 }
 
@@ -108,3 +129,32 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
 });
+
+
+
+
+
+// function ScreenStackNavigator() {
+//   return (
+//     <NavigationContainer>
+//     <Stack.Navigator>
+//       <Stack.Screen 
+//         name="Screen1"
+//         component={Navigation}
+//         options={{
+//           title: `You Only Dice Twice`,
+//         }}
+//       />
+//       {/* <Stack.Screen options={{headerShown: false}}
+//       name="Screen2" 
+//       component={Screen2}
+//       /> */}
+//       <Stack.Screen options={{headerShown: false}} 
+//       name="DiceGames" 
+//       component={DiceGames} 
+      
+//       />
+//     </Stack.Navigator>
+//     </NavigationContainer>
+//   );
+// }

@@ -7,27 +7,15 @@ import BigBox from '../components/BigBox';
 
 type ScreenNavigationType = NativeStackNavigationProp<
     StackParamList,
-    "Screen1"
+    "HomePage"
 >
 
-export default function Screen1() {
+export default function HomePage() {
   const navigation = useNavigation<ScreenNavigationType>();
   return (
     <View style={styles.container}>
       <View style={styles.buttonContainer}>
-      {/* <TouchableOpacity
-        style={styles.clickableButton}
-        onPress={() => navigation.navigate('Screen2')}
-      >
-        <Text>Matches</Text>
-      </TouchableOpacity>
-
-      <TouchableOpacity
-        style={styles.nonClickableButton}
-      >
-        <Text style={styles.explore}
-        >Explore button test</Text>
-      </TouchableOpacity> */}
+      
 
       <TouchableOpacity
         style={styles.clickableButton}

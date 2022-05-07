@@ -1,9 +1,10 @@
 export type StackParamList = {
-    Screen1: undefined;
+    HomePage: undefined;
     Screen2: undefined;
     DiceGames: undefined;
     Invest: undefined;
     BigBox: undefined;
     Profile: undefined;
     EditProfile: undefined;
+    LoginScreen: undefined;
 }
