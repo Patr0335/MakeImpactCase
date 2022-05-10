@@ -3,18 +3,12 @@ import {
   StyleSheet,
   Text,
   View,
-  TextInput,
-  Button,
-  Alert,
-  FlatList,
-  ScrollView,
-  TouchableOpacity,
-  SafeAreaView,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { StackParamList } from "../typings/navigations";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import SectorImage from "../components/SectorImage";
+
 
 type ScreenNavigationType = NativeStackNavigationProp<
   StackParamList,
@@ -26,7 +20,7 @@ export default function DiceGames() {
   const navigation = useNavigation<ScreenNavigationType>();
   return (
       <View style={styles.container}>
-        <Text style={styles.text}>Dice Games</Text>
+        {/* <Text style={styles.text}>Dice Games</Text> */}
         <SectorImage />
       </View> 
   );
@@ -38,13 +32,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-  text: {
-    fontSize: 30,
-    color: "#0a0a14",
-    alignItems: "center",
-    fontWeight: "bold",
-    margin: 30,
-  },
+  
   appButtonContainer: {
     color: "#0a0a14",
   },

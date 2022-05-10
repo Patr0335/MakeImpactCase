@@ -13,18 +13,24 @@ import {
   Image
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
+import Constants from 'expo-constants'
+import { useNavigation } from "@react-navigation/native";
 
 type ScreenNavigationType = NativeStackNavigationProp<StackParamList, "BigBox">;
 
 export default function BigBox() {
+  const navigation = useNavigation<ScreenNavigationType>();
   return (
-    <View style={{height: '100%', width: '100%', flex: 1}}>
+    
+    <View style={{height: '100%', width: '100%'}}>
       <ImageBackground
-        source={require("../assets/forestry_paper.jpeg")}
-        style={{}}>
+        source={require("../assets/dicebackground.jpg")}
+        style={{ }}>
+      
+      
     <ScrollView showsVerticalScrollIndicator={false}>
       <SafeAreaView style={{ flex: 1 }}>
-      
+      <Text style={styles.header}>Dice Games</Text>
         
         <View style={styles.container}>
           
@@ -57,7 +63,8 @@ export default function BigBox() {
                 start={{ x: 1, y: 1 }}
                 end={{ x: 1, y: 0.5 }}
               >
-                <TouchableOpacity style={styles.tOpacity}>
+                <TouchableOpacity style={styles.tOpacity}
+                onPress={() => navigation.navigate("Meyer")}>
                   <Text style={styles.buttonTextStyle}>Meyer 🎲</Text>
                 </TouchableOpacity>
               </LinearGradient>
@@ -190,13 +197,26 @@ export default function BigBox() {
 }
 
 const styles = StyleSheet.create({
+  header: {
+    color: "#fff", 
+    zIndex:10, 
+    marginTop: Constants.statusBarHeight + 20,
+    marginBottom: 0,
+    textAlign: "center",
+    fontSize: 35,
+    fontWeight: "600",
+
+  },
+  
   container: {
     flex: 1,
     margin: 10,
+    marginTop:0,
+    paddingTop:0,
     padding: 20,
     flexWrap: "wrap",
     justifyContent: "space-around",
-    alignContent: "space-between",
+    alignContent: "center",
   },
   ImageText: {
     textAlign: "left",
@@ -206,7 +226,7 @@ const styles = StyleSheet.create({
   imageBG: {
     borderRadius: 10,
     overflow: "hidden",
-    width: '80%',
+    width: 300,
     height: 150,
   },
   linearGradient: {
@@ -229,7 +249,7 @@ const styles = StyleSheet.create({
   imageBox: {
     borderRadius: 6,
     overflow: "hidden",
-    width: '80%',
+    width: 300,
     height: 150,
     marginTop: 10,
     marginBottom: 10,

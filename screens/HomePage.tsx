@@ -10,13 +10,18 @@ import {
   ScrollView,
   TouchableOpacity,
   useWindowDimensions,
+  SafeAreaView,
+  ImageBackground,
+  Dimensions,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { StackParamList } from "../typings/navigations";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import BigBox from "../components/BigBox";
+import SmallBox from "../components/SmallBox";
 import { useDispatch } from "react-redux";
 import { logout } from "../src/store/actions/user.actions";
+import Constants from "expo-constants";
 
 type ScreenNavigationType = NativeStackNavigationProp<
   StackParamList,
@@ -27,22 +32,25 @@ export default function HomePage() {
   const navigation = useNavigation<ScreenNavigationType>();
   const dispatch = useDispatch();
   return (
-    <View style={styles.container}>
-      <View style={styles.buttonContainer}>
-        <TouchableOpacity
-          style={styles.clickableButton}
-          onPress={() => navigation.navigate("DiceGames")}
-        >
-          <Text>See all Dice Games ➜</Text>
-        </TouchableOpacity>
+    <SafeAreaView style={styles.safeArea}>
+      <View style={styles.container}>
+        <Text style={styles.header}>Welcome to YouOnlyDiceTwice</Text>
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity
+            style={styles.clickableButton}
+            onPress={() => navigation.navigate("DiceGames")}>
+            <Text>See all Dice Games ➜</Text>
+          </TouchableOpacity>
+        </View>
+        <View>
+          <Text style={styles.title}></Text>
+        </View>
+        <Text style={styles.BigBoxHeadline}> Our Popular Games</Text>
+        <BigBox />
+        <SmallBox />
+        <Button title="Logout" onPress={() => dispatch(logout())} />
       </View>
-      <View>
-        <Text style={styles.title}></Text>
-      </View>
-      <Text style={styles.BigBoxHeadline}> Our Popular Games</Text>
-      <BigBox />
-      <Button title="Logout" onPress={() => dispatch(logout())} />
-    </View>
+    </SafeAreaView>
   );
 }
 
@@ -51,7 +59,21 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#fff",
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "space-between",
+    height: Dimensions.get("window").height,
+  },
+  safeArea: {
+    flex: 1,
+    backgroundColor: "black",
+  },
+  header: {
+    color: "black",
+    zIndex: 10,
+    marginTop: Constants.statusBarHeight + 20,
+    marginBottom: 0,
+    textAlign: "center",
+    fontSize: 35,
+    fontWeight: "600",
   },
   buttonContainer: {
     backgroundColor: "#f2f2f4",
@@ -69,7 +91,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#f2f2f4",
     padding: 10,
     borderRadius: 20,
-    
   },
   nonClickableButton: {
     alignItems: "center",
@@ -90,4 +111,5 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     justifyContent: "center",
   },
+  smallBoxPos: {},
 });

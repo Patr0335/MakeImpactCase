@@ -12,22 +12,23 @@ import {
   View,
   Image,
   ScrollView,
+  Dimensions
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { useNavigation } from "@react-navigation/native";
-
+import Constants from "expo-constants";
 type ScreenNavigationType = NativeStackNavigationProp<StackParamList, "BigBox">;
 
 export default function BigBox() {
+  const navigation = useNavigation<ScreenNavigationType>();
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      {/* <Text style={styles.bigHeadline}>Our Popular Dice Games</Text> */}
-      <View style={styles.container}>
-        <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-          <View style={styles.ImageBG}>
+      <View style={[styles.container, styles.slideBox]}>
+        <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} >
+          <View style={[styles.ImageBG, styles.shadow]}>
             <ImageBackground
               source={require("../assets/10000.jpg")}
-              style={{ width: 250 }}
+              style={{  }}
             >
               <LinearGradient
                 colors={["rgba(0,0,0,0.9)", "transparent"]}
@@ -41,10 +42,10 @@ export default function BigBox() {
               </LinearGradient>
             </ImageBackground>
           </View>
-          <View style={styles.ImageBG}>
+          <View style={[styles.ImageBG, styles.shadow]}>
             <ImageBackground
               source={require("../assets/Liar_dice.jpg")}
-              style={{ width: 250 }}
+              style={{  }}
             >
               <LinearGradient
                 colors={["rgba(0,0,0,0.9)", "transparent"]}
@@ -58,10 +59,10 @@ export default function BigBox() {
               </LinearGradient>
             </ImageBackground>
           </View>
-          <View style={styles.ImageBG}>
+          <View style={[styles.ImageBG, styles.shadow]}>
             <ImageBackground
               source={require("../assets/meyer.jpg")}
-              style={{ width: 250 }}
+              style={{  }}
             >
               <LinearGradient
                 colors={["rgba(0,0,0,0.9)", "transparent"]}
@@ -69,7 +70,8 @@ export default function BigBox() {
                 end={{ x: 1, y: 0 }}
               >
                 <TouchableOpacity
-                  style={styles.bigBoxContainer}>
+                  style={styles.bigBoxContainer}
+                  onPress={() => navigation.navigate("Meyer")}>
                   <Text style={styles.buttonTextStyle}>Meyer 🎲</Text>
                 </TouchableOpacity>
               </LinearGradient>
@@ -79,25 +81,10 @@ export default function BigBox() {
       </View>
 
       {/* <Text style={styles.bigHeadline}>Trending Companies</Text> */}
-      <View style={styles.container}>
-        <View style={[styles.iconBox, styles.shadow]}>
-          <Image
-            source={require("../assets/PVH-Corp-logo-1080x745.jpeg")}
-            style={styles.iconBoxStyle}
-          ></Image>
-          <Text style={styles.iconBoxHead}>PVH Corp.</Text>
-          <Text style={styles.iconBoxPrice}>82,69€</Text>
-        </View>
+     
 
-        <View style={[styles.iconBox, styles.shadow]}>
-          <Image
-            source={require("../assets/axa-logo-2-768x768.png")}
-            style={styles.iconBoxStyle}
-          ></Image>
-          <Text style={styles.iconBoxHead}>AXA</Text>
-          <Text style={styles.iconBoxPrice}>26,23€</Text>
-        </View>
-      </View>
+        
+      
     </SafeAreaView>
   );
 }
@@ -105,24 +92,29 @@ export default function BigBox() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    margin: 10,
-    padding: 20,
     flexWrap: "wrap",
-    justifyContent: "space-around",
-    alignContent: "space-between",
+    // justifyContent: "space-around",
+    alignContent: "center",
     flexDirection: "row",
+    position: "absolute",
+    right: -210,
+    width: Dimensions.get('window').width,
+    marginRight: 2,
+    marginLeft: 2,
+
+
   },
   bigBoxContainer: {
     height: 150,
   },
 
   ImageBG: {
-    borderRadius: 6,
+    borderRadius: 10,
     overflow: "hidden",
-    width: 250,
-    height: 130,
-    marginLeft: 10,
-    marginRight: 10,
+    width: 300,
+    height: 150,
+    marginLeft: 10
+    
   },
   iconBox: {
     width: 180,
@@ -150,8 +142,6 @@ const styles = StyleSheet.create({
     bottom: 20,
     left: 10,
   },
-
-  //Text styling
   iconBoxHead: {
     fontSize: 20,
     fontWeight: "bold",
@@ -172,7 +162,7 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     position: "absolute",
     left: 5,
-    bottom: 20,
+    bottom: 10,
     fontWeight: "600",
     fontSize: 22,
   },
@@ -203,7 +193,16 @@ const styles = StyleSheet.create({
   },
 
   shadow: {
-    elevation: 20,
-    shadowColor: "#171717",
+    elevation: 15,
+    shadowColor: "#52006A",
+    marginBottom:10,
+    borderRadius:10,
+    overflow: "hidden"
+    
   },
+
+  slideBox:{
+    borderRadius:10, 
+    overflow: "hidden"
+  }
 });
