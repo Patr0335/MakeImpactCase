@@ -47,7 +47,10 @@ function ProfileStackNavigator() {
 function DiceGamesStackNavigator() {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="DiceGames" component={DiceGames} />
+      <Stack.Screen 
+      name="DiceGames" 
+      component={DiceGames}
+      options={{ headerShown: false }} />
     </Stack.Navigator>
   )
 }
