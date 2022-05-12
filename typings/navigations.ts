@@ -7,4 +7,7 @@ export type StackParamList = {
     Profile: undefined;
     EditProfile: undefined;
     LoginScreen: undefined;
+    SmallBox: undefined;
+    SectorImage: undefined;
+    Meyer: undefined;
 }

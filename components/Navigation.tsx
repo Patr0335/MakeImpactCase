@@ -9,6 +9,7 @@ import Invest from "../screens/Invest";
 import Profile from "../screens/Profile";
 import EditProfile from "../screens/EditProfile";
 import LoginScreen from "../screens/LoginScreen";
+import Screen2 from "../screens/Screen2";
 import { StackParamList } from "../typings/navigations";
 import { Entypo } from "@expo/vector-icons";
 import { FontAwesome5 } from "@expo/vector-icons";
@@ -18,6 +19,7 @@ import { FontAwesome } from "@expo/vector-icons";
 import { AntDesign } from '@expo/vector-icons'; 
 import { useSelector } from "react-redux";
 import { RootState } from "../App";
+import Meyer from "../screens/Meyer";
 
 
 
@@ -29,8 +31,16 @@ const Tab = createBottomTabNavigator();
 function HomePageStackNavigator() {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="HomePage" component={HomePage} />
+      <Stack.Screen 
+      name="HomePage" 
+      component={HomePage}
+      options={{ headerShown: false }}
+      />
+
+      
+      
     </Stack.Navigator>
+    
   )
 }
 
@@ -47,7 +57,11 @@ function ProfileStackNavigator() {
 function DiceGamesStackNavigator() {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="DiceGames" component={DiceGames} />
+      <Stack.Screen 
+      name="DiceGames" 
+      component={DiceGames}
+      options={{ headerShown: false }} />
+      <Stack.Screen name="Meyer" component={Meyer} />
     </Stack.Navigator>
   )
 }
@@ -60,6 +74,13 @@ function TournamentStackNavigator() {
   );
 }
 
+function MeyerStackNavigator() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name="Meyer" component={Meyer}/>
+    </Stack.Navigator>
+  );
+}
 
 
 

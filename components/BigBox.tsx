@@ -11,93 +11,80 @@ import {
   Button,
   View,
   Image,
+  ScrollView,
+  Dimensions
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { useNavigation } from "@react-navigation/native";
-
+import Constants from "expo-constants";
 type ScreenNavigationType = NativeStackNavigationProp<StackParamList, "BigBox">;
 
 export default function BigBox() {
+  const navigation = useNavigation<ScreenNavigationType>();
   return (
-    <SafeAreaView style={{ flex: 1, alignSelf: 'baseline'}}>
-      <Text style={styles.bigHeadline}>Trending Companies</Text>
-      <View style={styles.container}>
-        <View style={styles.ImageBG}>
-          <ImageBackground
-            source={require("../assets/forestry_paper.jpeg")}
-            style={{ width: 250 }} >
-
-            <LinearGradient
-              colors={["rgba(0,0,0,0.9)", "transparent"]}
-              start={{ x: 1, y: 1 }}
-              end={{ x: 1, y: 0 }} >
-
-              <TouchableOpacity
-                style={styles.bigBoxContainer}
-                activeOpacity={0.5} >
-
-                <Image
-                  source={require("../assets/svenska-cellulosa-aktiebolaget-sca-logo-vector.png")}
-                  style={styles.iconStyle} />
-
-                <Text style={styles.buttonTextStyle}>SCA Svenska</Text>
-                <Text style={styles.smallText}>Forestry & paper 🍁</Text>
-                <Text style={styles.price}>17,46€</Text>
-
-              </TouchableOpacity>
-            </LinearGradient>
-          </ImageBackground>
-        </View>
-        <View style={styles.ImageBG}>
-          <ImageBackground
-            source={require("../assets/financial_service.jpeg")}
-            style={{ width: 130 }}
-          >
-            <LinearGradient
-              colors={["rgba(0,0,0,0.9)", "transparent"]}
-              start={{ x: 1, y: 1 }}
-              end={{ x: 1, y: 0 }}
+    <SafeAreaView style={{ flex: 1 }}>
+      <View style={[styles.container, styles.slideBox]}>
+        <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} >
+          <View style={[styles.ImageBG, styles.shadow]}>
+            <ImageBackground
+              source={require("../assets/10000.jpg")}
+              style={{  }}
             >
-              <TouchableOpacity
-                style={styles.bigBoxContainer}
-                activeOpacity={0.5}
+              <LinearGradient
+                colors={["rgba(0,0,0,0.9)", "transparent"]}
+                start={{ x: 1, y: 1 }}
+                end={{ x: 1, y: 0 }}
               >
-                <Image
-                  source={require("../assets/axa-logo-2-768x768.png")}
-                  style={styles.iconStyle}
-                />
-                <Text style={styles.buttonTextStyle}>AXA</Text>
-                <Text style={styles.smallText}>Financial Services 🏦</Text>
-                <Text style={styles.price}></Text>
-              </TouchableOpacity>
-            </LinearGradient>
-          </ImageBackground>
-        </View>
+                <TouchableOpacity
+                  style={styles.bigBoxContainer}>
+                  <Text style={styles.buttonTextStyle}>10.000 🎲</Text>
+                </TouchableOpacity>
+              </LinearGradient>
+            </ImageBackground>
+          </View>
+          <View style={[styles.ImageBG, styles.shadow]}>
+            <ImageBackground
+              source={require("../assets/Liar_dice.jpg")}
+              style={{  }}
+            >
+              <LinearGradient
+                colors={["rgba(0,0,0,0.9)", "transparent"]}
+                start={{ x: 1, y: 1 }}
+                end={{ x: 1, y: 0 }}
+              >
+                <TouchableOpacity
+                  style={styles.bigBoxContainer}>
+                  <Text style={styles.buttonTextStyle}>Liar's Dice 🎲</Text>
+                </TouchableOpacity>
+              </LinearGradient>
+            </ImageBackground>
+          </View>
+          <View style={[styles.ImageBG, styles.shadow]}>
+            <ImageBackground
+              source={require("../assets/meyer.jpg")}
+              style={{  }}
+            >
+              <LinearGradient
+                colors={["rgba(0,0,0,0.9)", "transparent"]}
+                start={{ x: 1, y: 1 }}
+                end={{ x: 1, y: 0 }}
+              >
+                <TouchableOpacity
+                  style={styles.bigBoxContainer}
+                  onPress={() => navigation.navigate("Meyer")}>
+                  <Text style={styles.buttonTextStyle}>Meyer 🎲</Text>
+                </TouchableOpacity>
+              </LinearGradient>
+            </ImageBackground>
+          </View>
+        </ScrollView>
       </View>
 
-      <Text style={styles.bigHeadline}>Trending Companies</Text>
-      <View style={styles.container}>
-        <View style={[styles.iconBox, styles.shadow]}>
-          <Image
-          source={require("../assets/PVH-Corp-logo-1080x745.jpeg")}
-          style={styles.iconBoxStyle}>
-            
-          </Image>
-          <Text style={styles.iconBoxHead}>PVH Corp.</Text>
-          <Text style={styles.iconBoxPrice}>82,69€</Text> 
-        </View>
+      {/* <Text style={styles.bigHeadline}>Trending Companies</Text> */}
+     
 
-        <View style={[styles.iconBox, styles.shadow]}>
-          <Image
-          source={require("../assets/axa-logo-2-768x768.png")}
-          style={styles.iconBoxStyle}>
-            
-          </Image>
-          <Text style={styles.iconBoxHead}>AXA</Text>
-          <Text style={styles.iconBoxPrice}>26,23€</Text> 
-        </View>
-
-      </View>
+        
+      
     </SafeAreaView>
   );
 }
@@ -105,31 +92,38 @@ export default function BigBox() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    width: 250,
-    height: 130,
-    flexDirection: 'row',
-    
+    flexWrap: "wrap",
+    // justifyContent: "space-around",
+    alignContent: "center",
+    flexDirection: "row",
+    position: "absolute",
+    right: -210,
+    width: Dimensions.get('window').width,
+    marginRight: 2,
+    marginLeft: 2,
+
+
   },
   bigBoxContainer: {
-    height: 130,
+    height: 150,
   },
 
   ImageBG: {
-    borderRadius: 6,
+    borderRadius: 10,
     overflow: "hidden",
-    width: 250,
-    height: 130,
-    marginLeft: 10,
-    marginRight: 10,
+    width: 300,
+    height: 150,
+    marginLeft: 10
+    
   },
   iconBox: {
     width: 180,
-    height: 'auto',
+    height: "auto",
     margin: 8,
     borderRadius: 4,
-    backgroundColor: '#fff',
-    alignSelf: 'baseline',
-    padding: 2
+    backgroundColor: "#fff",
+    alignSelf: "baseline",
+    padding: 2,
   },
 
   iconStyle: {
@@ -148,33 +142,29 @@ const styles = StyleSheet.create({
     bottom: 20,
     left: 10,
   },
-
-  //Text styling
   iconBoxHead: {
     fontSize: 20,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     position: "absolute",
     left: 60,
-    bottom:35
-
+    bottom: 35,
   },
   iconBoxPrice: {
     fontSize: 12,
-    color: '#646467',
+    color: "#646467",
     position: "absolute",
     left: 60,
-    bottom: 20
-
+    bottom: 20,
   },
   buttonTextStyle: {
     color: "#fff",
     marginBottom: 4,
     marginLeft: 10,
     position: "absolute",
-    left: 30,
-    bottom: 20,
-    fontWeight: "bold",
-    fontSize: 18,
+    left: 5,
+    bottom: 10,
+    fontWeight: "600",
+    fontSize: 22,
   },
   smallText: {
     fontSize: 12,
@@ -196,15 +186,23 @@ const styles = StyleSheet.create({
     right: 20,
   },
   bigHeadline: {
-    fontSize:20,
-    fontWeight: 'bold',
+    fontSize: 20,
+    fontWeight: "bold",
     padding: 10,
-
+    justifyContent: "center",
   },
 
   shadow: {
-    elevation: 20,
-    shadowColor: '#171717',
+    elevation: 15,
+    shadowColor: "#52006A",
+    marginBottom:10,
+    borderRadius:10,
+    overflow: "hidden"
+    
   },
 
+  slideBox:{
+    borderRadius:10, 
+    overflow: "hidden"
+  }
 });

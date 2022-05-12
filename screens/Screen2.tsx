@@ -4,7 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 import { StackParamList } from "../typings/navigations";
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import ReactDice from 'react-dice-complete';
-import 'react-dice-complete/dist/react-dice-complete.css'
+
 
 type ScreenNavigationType = NativeStackNavigationProp<
     StackParamList,
@@ -12,7 +12,7 @@ type ScreenNavigationType = NativeStackNavigationProp<
 >
 
 
-class Dice extends React.Component {
+export default class Dice extends React.Component {
   reactDice: any;
   
   render() {
