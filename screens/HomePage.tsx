@@ -33,31 +33,32 @@ export default function HomePage() {
   const dispatch = useDispatch();
   return (
     <SafeAreaView style={styles.safeArea}>
-      <View style={styles.container}>
-        <Text style={styles.header}>Welcome to YouOnlyDiceTwice</Text>
-        <View style={styles.buttonContainer}>
-          <TouchableOpacity
-            style={styles.clickableButton}
-            onPress={() => navigation.navigate("DiceGames")}>
-            <Text>See all Dice Games ➜</Text>
-          </TouchableOpacity>
+        <View style={styles.container}>
+          <Text style={styles.header}>Welcome to YouOnlyDiceTwice</Text>
+          <View style={styles.buttonContainer}>
+            <Button title="Logout" onPress={() => dispatch(logout())} />
+            <TouchableOpacity
+              style={styles.clickableButton}
+              onPress={() => navigation.navigate("DiceGames")}
+            >
+              <Text>See all Dice Games ➜</Text>
+            </TouchableOpacity>
+          </View>
+          <View>
+            <Text style={styles.title}></Text>
+          </View>
+          <Text style={styles.BigBoxHeadline}> Our Popular Games</Text>
+          <BigBox/>
+          <SmallBox />
         </View>
-        <View>
-          <Text style={styles.title}></Text>
-        </View>
-        <Text style={styles.BigBoxHeadline}> Our Popular Games</Text>
-        <BigBox />
-        <SmallBox />
-        <Button title="Logout" onPress={() => dispatch(logout())} />
-      </View>
-    </SafeAreaView>
+      </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "#F0F0F0",
     alignItems: "center",
     justifyContent: "space-between",
     height: Dimensions.get("window").height,

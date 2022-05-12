@@ -8,6 +8,8 @@ import { User } from '../entities/User';
 export default function EditProfile() {
     const user: User = useSelector((state: RootState) => state.user.loggedInUser);
     const [textEmail, setTextEmail] = useState(user.email)
+    const [textDisplayname, settextDisplayname] = useState(user.displayname)
+    const [textphotoUrl, setphotoUrl] = useState(user.photoUrl)
     // console.log(user.email);
 
     const onSave = () => {

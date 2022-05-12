@@ -25,7 +25,7 @@ export default function BigBox() {
     <View style={{height: '100%', width: '100%'}}>
       <ImageBackground
         source={require("../assets/dicebackground.jpg")}
-        style={{ }}>
+        style={{}}>
       
       
     <ScrollView showsVerticalScrollIndicator={false}>

@@ -7,15 +7,31 @@ import {
   TextInput,
   Button,
   ImageBackground,
-  Dimensions
+  Dimensions,
+  Pressable,
+  SafeAreaView,
+  TouchableOpacity
 } from "react-native";
+import { CheckBox } from "@rneui/themed";
 import { useDispatch } from "react-redux";
+import { useNavigation } from "@react-navigation/native";
 import { rehydrateUser, signup, login } from "../src/store/actions/user.actions";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { StackParamList } from "../typings/navigations";
 
-export default function LoginScreen() {
+type ScreenNavigationType = NativeStackNavigationProp<
+  StackParamList,
+  "SignupScreen"
+>;
+type CheckboxComponentProps = {};
+
+export default function SignupScreen() {
   const [email, setEmail] = useState("");
   const [passwordStr, setPasswordStr] = useState("");
+  const navigation = useNavigation<ScreenNavigationType>();
   const dispatch = useDispatch(); // hook to get
+  const [check1, setCheck1] = useState(false);
+
 
   async function readPersistedUserInfo() {
     const token = await SecureStore.getItemAsync("idToken");
@@ -40,6 +56,7 @@ export default function LoginScreen() {
   }, []);
 
   return (
+    <SafeAreaView style={{ flex: 1 }}>
     <ImageBackground
       style={styles.background}
       source={require("../assets/background.jpg")}
@@ -49,8 +66,8 @@ export default function LoginScreen() {
         <TextInput 
         value={email} 
         placeholder="email" 
-        onChangeText={setEmail}
-        style={styles.textInput} 
+        onChangeText={setEmail} 
+        style={styles.textInput}
         />
 
         <TextInput
@@ -60,11 +77,31 @@ export default function LoginScreen() {
           onChangeText={setPasswordStr}
           style={styles.textInput}
         />
-
-        <Button title="Login"  
-        onPress={() => dispatch(handleLogin)} /> 
+        <View style={{flex: 1, flexDirection: "row", alignItems: "center"}}>
+        <CheckBox
+            containerStyle={{backgroundColor: "none", flexDirection: "row", margin: 0}}
+            checked={check1}
+            onPress={() => setCheck1(!check1)}
+            title="Click here to agree to"
+        />
+        <Text style={{flexDirection: "row", marginLeft: -25, fontWeight: "bold", color: "blue"}}>Terms & Conditions</Text>
+        </View>
+        <View > 
+        <TouchableOpacity
+          
+          onPress={() => dispatch(signup(email, passwordStr))}
+          disabled={check1 !== false && email && passwordStr ? ( false ) : ( true ) }
+          style={styles.signup}
+        >
+        
+        <Text>Sign up</Text>
+        </TouchableOpacity>
+        </View>
+        <Text style={styles.loginText}>Already got a login? <Text style={{color: 'blue'}} onPress={() => navigation.navigate("LoginScreen")}>Click here to login</Text></Text>
+        
       </View>
     </ImageBackground>
+    </SafeAreaView>
   );
 }
 const styles = StyleSheet.create({
@@ -77,12 +114,13 @@ const styles = StyleSheet.create({
     fontSize: 42,
   },
   textInput: {
-    fontSize: 16,
-    width: Dimensions.get('window').width - 150,
-    height: 40,
+    fontSize: 25,
+    width: Dimensions.get('window').width - 100,
+    height: 75,
     margin: 12,
     borderWidth: 1,
     padding: 10,
+    backgroundColor: "#CFD5EA"
     
   },
   background: {
@@ -91,5 +129,18 @@ const styles = StyleSheet.create({
     alignItems: "center",
     width: Dimensions.get('window').width,
     height: Dimensions.get('window').height,
+
   },
+
+  loginText: {
+    margin: "10%"
+  },
+
+  signup:{
+    width:200,
+    height: 40,
+    fontSize:100,
+    backgroundColor: "blue"
+  }
+  
 });
