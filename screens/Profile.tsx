@@ -1,13 +1,14 @@
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import Constants from "expo-constants";
-import React from "react";
+import React, { useState } from "react";
 import {
   Button,
   Dimensions,
   Pressable,
   SafeAreaView,
   StyleSheet,
+  Switch,
   Text,
   View,
 } from "react-native";
@@ -22,9 +23,11 @@ type ScreenNavigationType = NativeStackNavigationProp<
 >;
 
 export default function Profile() {
+  const [isEnabled, setIsEnabled] = useState(false);
+  const toggleSwitch = () =>
+    setIsEnabled((previousState: any) => !previousState);
   const navigation = useNavigation<ScreenNavigationType>();
   const dispatch = useDispatch();
-
   return (
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.container}>
@@ -38,12 +41,34 @@ export default function Profile() {
           </Pressable>
         </View>
       </View>
-      <View style={styles.lineStyle} />
-      <View style={styles.container}>
-        <Text style={styles.titleText}>Notifications</Text>
-        {/* <Button title="Logout" onPress={() => dispatch(logout())} /> */}
-        <Pressable style={styles.logoutButton} onPress={() => dispatch(logout())}>
-          <Text style={styles.editText}>Logout</Text>
+      <View
+        style={{
+          flexDirection: "row",
+          alignItems: "center",
+          paddingTop: 1,
+          margin: 20,
+        }}
+      >
+        <View style={{ flex: 1, height: 1, backgroundColor: "black" }} />
+      </View>
+      <View style={styles.container1}>
+        <Text style={styles.titleText}>NOTIFICATIONS</Text>
+        <View style={styles.container2}>
+          <Text>Test</Text>
+          <Switch
+            style={styles.switch}
+            trackColor={{ false: "#B8B8B8", true: "#B8B8B8" }}
+            thumbColor={isEnabled ? "#003399" : "#f4f3f4"}
+            // ios_backgroundColor="#3e3e3e"
+            onValueChange={toggleSwitch}
+            value={isEnabled}
+          />
+        </View>
+        <Pressable
+          style={styles.logoutButton}
+          onPress={() => dispatch(logout())}
+        >
+          <Text style={styles.logoutText}>LOG OUT</Text>
         </Pressable>
       </View>
     </SafeAreaView>
@@ -57,21 +82,48 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
     height: Dimensions.get("window").height,
+    margin: 20,
+  },
+  container1: {
+    flex: 0.5,
+    backgroundColor: "#F0F0F0",
+    justifyContent: "space-between",
+    height: Dimensions.get("window").height,
+    margin: 20,
+  },
+  container2: {
+    // alignItems: "center",
+    // justifyContent: "center",
+    paddingVertical: 12,
+    paddingHorizontal: 130,
+    // borderRadius: 4,
+    elevation: 3,
+    backgroundColor: "white",
   },
   safeArea: {
     flex: 1,
+    alignItems: "center",
+  },
+  switch: {
+    alignContent: "flex-end",
   },
   editButton: {
     alignItems: "center",
     justifyContent: "center",
     paddingVertical: 12,
-    paddingHorizontal: 110,
+    paddingHorizontal: 130,
     borderRadius: 4,
     elevation: 3,
     backgroundColor: "#003399",
   },
   logoutButton: {
-
+    alignItems: "center",
+    justifyContent: "center",
+    paddingVertical: 25,
+    paddingHorizontal: 130,
+    borderRadius: 4,
+    elevation: 3,
+    backgroundColor: "white",
   },
   editText: {
     fontSize: 16,
@@ -80,6 +132,13 @@ const styles = StyleSheet.create({
     letterSpacing: 0.25,
     color: "white",
   },
+  logoutText: {
+    fontSize: 20,
+    lineHeight: 21,
+    fontWeight: "bold",
+    letterSpacing: 0.25,
+    color: "#003399",
+  },
   titleText: {
     fontSize: 16,
     lineHeight: 21,
@@ -87,10 +146,5 @@ const styles = StyleSheet.create({
     letterSpacing: 0.25,
     color: "#003399",
     textAlign: "left",
-  },
-  lineStyle: {
-    borderWidth: 0.5,
-    borderColor: "black",
-    margin: 10,
   },
 });

@@ -45,6 +45,11 @@ function ProfileStackNavigator() {
         component={Profile}
         options={{ title: "My Profile",
         headerTitleAlign: 'center',
+        headerTitleStyle: {
+          color: '#003399',
+          fontWeight: 'bold',
+        },
+         
       }}
       />
       <Stack.Screen
