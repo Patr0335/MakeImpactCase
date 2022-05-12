@@ -20,12 +20,12 @@ export default function HomePage() {
       <View style={styles.buttonContainer}>
       
 
-      <TouchableOpacity
+      {/* <TouchableOpacity
         style={styles.clickableButton}
         onPress={() => navigation.navigate('DiceGames')}
       >
         <Text>Dice Games</Text>
-      </TouchableOpacity>
+      </TouchableOpacity> */}
       </View>
       <View> 
       <Button title="Logout" onPress={() => dispatch(logout())} />

@@ -3,14 +3,13 @@ import { firebaseSignupSuccess } from "../../../entities/firebaseSignupSuccess";
 import { User } from "../../../entities/User";
 
 export const SIGNUP = "SIGNUP";
-export const REHYDRATE_USER = 'REHYDRATE_USER';
 export const LOGOUT = 'LOGOUT';
 export const LOGIN = "LOGIN";
+// export const REHYDRATE_USER = 'REHYDRATE_USER';
 
-// sker der her???? 
-export const rehydrateUser = (user: User, idToken: string) => {
-    return { type: REHYDRATE_USER, payload: { user, idToken } }
-}
+// export const rehydrateUser = (user: User, idToken: string) => {
+//     return { type: REHYDRATE_USER, payload: { user, idToken } }
+// }
 
 export const logout = () => {
     SecureStore.deleteItemAsync('idToken'); 
