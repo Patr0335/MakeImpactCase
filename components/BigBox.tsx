@@ -17,12 +17,15 @@ import {
 import { LinearGradient } from "expo-linear-gradient";
 import { useNavigation } from "@react-navigation/native";
 import Constants from "expo-constants";
+
 type ScreenNavigationType = NativeStackNavigationProp<StackParamList, "BigBox">;
 
 export default function BigBox() {
   const navigation = useNavigation<ScreenNavigationType>();
   return (
+    
     <SafeAreaView style={{ flex: 1 }}>
+      
       <View style={[styles.container, styles.slideBox]}>
         <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} >
           <View style={[styles.ImageBG, styles.shadow]}>
@@ -42,7 +45,7 @@ export default function BigBox() {
               </LinearGradient>
             </ImageBackground>
           </View>
-          <View style={[styles.ImageBG, styles.shadow]}>
+          <View style={[styles.ImageBG, styles.slideBox]}>
             <ImageBackground
               source={require("../assets/Liar_dice.jpg")}
               style={{  }}
@@ -76,6 +79,7 @@ export default function BigBox() {
                 </TouchableOpacity>
               </LinearGradient>
             </ImageBackground>
+            
           </View>
         </ScrollView>
       </View>
@@ -193,16 +197,16 @@ const styles = StyleSheet.create({
   },
 
   shadow: {
-    elevation: 15,
+    elevation: 150,
     shadowColor: "#52006A",
     marginBottom:10,
     borderRadius:10,
-    overflow: "hidden"
-    
+    overflow: "hidden",
   },
 
   slideBox:{
     borderRadius:10, 
-    overflow: "hidden"
+    overflow: "hidden",
+    
   }
 });
