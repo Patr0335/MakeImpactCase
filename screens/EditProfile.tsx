@@ -12,11 +12,11 @@ export default function EditProfile() {
     const [textphotoUrl, setphotoUrl] = useState(user.photoUrl)
     // console.log(user.email);
 
-    const onSave = () => {
-        if (textEmail !== ''  /* && other inputs are not empty */) {
+    const onSave = () => { // fetch??
+        if (textEmail  /* && other inputs are not empty */) {
             // save the data to the server
         } else {
-            //Show error message
+            //Show error message  
         }
     }
 

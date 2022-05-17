@@ -1,5 +1,5 @@
 import { User } from "../../../entities/User";
-import { SIGNUP, LOGOUT, REHYDRATE_USER, LOGIN } from "../actions/user.actions";
+import { SIGNUP, LOGOUT, REHYDRATE_USER, LOGIN, CREATE_USER } from "../actions/user.actions";
 
 interface ReduxState {
     loggedInUser: User,
@@ -32,6 +32,8 @@ const userReducer = (state: ReduxState = initialState, action: any) => {
             return { ...state, loggedInUser: action.payload.user, 
                 token: action.payload.token };
 
+            case CREATE_USER:
+                return { ...state, loggedInUser: action.payload.user }
         default:
             return state;
     }
