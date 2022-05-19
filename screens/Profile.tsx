@@ -11,11 +11,12 @@ import {
   Switch,
   Text,
   View,
+  Image,
 } from "react-native";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../src/store/actions/user.actions";
 import { StackParamList } from "../typings/navigations";
-import CustomButton from "../components/CustomButton";
+import { RootState } from "../App";
 
 type ScreenNavigationType = NativeStackNavigationProp<
   StackParamList,
@@ -23,6 +24,8 @@ type ScreenNavigationType = NativeStackNavigationProp<
 >;
 
 export default function Profile() {
+  const user = useSelector((state: RootState) => state.user.loggedInUser);
+  console.log(user)
   const [isEnabled, setIsEnabled] = useState(false);
   const toggleSwitch = () =>
     setIsEnabled((previousState: any) => !previousState);
@@ -31,7 +34,10 @@ export default function Profile() {
   return (
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.container}>
-        <View></View>
+        <View>
+          {/* <Image source={require(user.photoUrl)}/> */}
+         <Text>{user.displayname}</Text>
+        </View>
         <View>
           <Pressable
             style={styles.editButton}
@@ -148,3 +154,5 @@ const styles = StyleSheet.create({
     textAlign: "left",
   },
 });
+
+

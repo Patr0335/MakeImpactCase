@@ -18,7 +18,6 @@ import {
 import { useDispatch } from "react-redux";
 import { logout, createUser } from "../src/store/actions/user.actions";
 import { StackParamList } from "../typings/navigations";
-import CustomButton from "../components/CustomButton";
 
 type ScreenNavigationType = NativeStackNavigationProp<
   StackParamList,
@@ -27,6 +26,7 @@ type ScreenNavigationType = NativeStackNavigationProp<
 
 export default function SetupProfile() {
   const [displayname, setDisplayname] = useState("");
+  const [photoUrl, setPhotoUrl] = useState();
   const dispatch = useDispatch(); // hook to get
 
   const [isEnabled, setIsEnabled] = useState(false);
@@ -47,13 +47,18 @@ export default function SetupProfile() {
           style={styles.textInput}
         />
 
-        <Button title="Logout" onPress={() => dispatch(logout())} />
+        <TextInput
+          value={photoUrl}
+          placeholder="Insert Photo"
+          onChangeText={setPhotoUrl}
+          style={styles.textInput}
+        />
 
-    
+        <Button title="Logout" onPress={() => dispatch(logout())} />
 
         <Pressable
           style={styles.nextButton}
-          onPress={() => dispatch(createUser(displayname))}
+          onPress={() => dispatch(createUser(displayname, photoUrl))}
         >
           <Text style={styles.nextText}>Save Changes</Text>
         </Pressable>
@@ -65,12 +70,10 @@ export default function SetupProfile() {
               ? styles.nextButton
               : styles.nextButtonDisabled
           }
-          onPress={() => navigation.navigate("HomePage")}
+          onPress={() => navigation.navigate("home")}
         >
           <Text style={styles.nextText}>Next</Text>
         </Pressable>
-
-
       </View>
     </ImageBackground>
   );

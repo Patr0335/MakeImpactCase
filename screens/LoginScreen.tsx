@@ -36,6 +36,7 @@ export default function LoginScreen() {
 }
 
   useEffect(() => {
+    console.log("-----------------------------------")
     readPersistedUserInfo();
   }, []);
 

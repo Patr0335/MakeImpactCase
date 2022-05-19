@@ -13,7 +13,7 @@ export const rehydrateUser = (user: User, idToken: string) => {
     return { type: REHYDRATE_USER, payload: { user, idToken } }
 }
 
-export const createUser = (displayname: string) => {
+export const createUser = (displayname: string, photoUrl: string) => {
     const APIKEY = "AIzaSyARVBYF9aJs_TJeEv7aXAvcn37PBVlN8tM"
     const url = "https://identitytoolkit.googleapis.com/v1/accounts:update?key=" + APIKEY
      return async (dispatch: (arg0: { type: string; payload: any; }) => void) => {
@@ -26,6 +26,7 @@ export const createUser = (displayname: string) => {
             body: JSON.stringify({ //javascript to json string
                 //key value pairs of data you want to send to server
                 // ...
+                photoUrl: photoUrl,
                 displayName: displayname, 
                 idToken,
                 returnSecureToken: true 
@@ -37,8 +38,10 @@ export const createUser = (displayname: string) => {
             //There was a problem..
             console.log("Something went wrong in updating the displayName")
         } else {
+            SecureStore.setItemAsync("displayName", data.displayName);
+            SecureStore.setItemAsync("photourl", data.photoURL);
             console.log("Updated your DisplayName")
-            dispatch({type: CREATE_USER, payload: { displayname: data.displayname } })
+            dispatch({type: CREATE_USER, payload: { displayname: data.displayname, photoUrl: data.photoUrl } })
         }
     };
 }
@@ -77,11 +80,14 @@ export const login = (email : string, password : string) => {
             //There was a problem..
         } else {
             
-            const user = new User(data.email, '', '');
+            // const user = new User(data.email, '', '');
              
-             
+            console.log(JSON.stringify(new User(data.email, data.displayName, data.photoUrl)))
+
             SecureStore.setItemAsync('idToken', data.idToken);
-            SecureStore.setItemAsync('user', JSON.stringify(user));
+            // SecureStore.setItemAsync('user', JSON.stringify(user));
+            // SecureStore.setItemAsync('user', JSON.stringify(user));
+            // SecureStore.setItemAsync("displayName", data.displayName);
 
 
             // let expiration = new Date();
@@ -90,7 +96,7 @@ export const login = (email : string, password : string) => {
             // SecureStore.setItemAsync('refreshToken', data.refreshToken);
  
  
-            dispatch({type: LOGIN, payload: { user, token: data.idToken } })
+            dispatch({type: LOGIN, payload: {user:  { email: data.email, displayname: data.displayName, token: data.idToken }}})
         }
     };
  };

@@ -56,7 +56,14 @@ function ProfileStackNavigator() {
       <Stack.Screen
         name="EditProfile"
         component={EditProfile}
-        options={{ headerShown: false }}
+        options={{
+          title: "Edit Profile",
+          headerTitleAlign: "center",
+          headerTitleStyle: {
+            color: "#003399",
+            fontWeight: "bold",
+          },
+        }}
       />
     </Stack.Navigator>
   );

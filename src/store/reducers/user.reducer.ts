@@ -28,6 +28,7 @@ const userReducer = (state: ReduxState = initialState, action: any) => {
             case LOGIN:
 
                 console.log("Successfully logged in, bitch");
+                console.log(action.payload);
 
             return { ...state, loggedInUser: action.payload.user, 
                 token: action.payload.token };
