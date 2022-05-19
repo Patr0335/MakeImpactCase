@@ -1,6 +1,7 @@
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import Constants from "expo-constants";
+import { getDownloadURL } from "firebase/storage";
 import React, { useState } from "react";
 import {
   Button,
@@ -34,6 +35,7 @@ export default function SetupProfile() {
   const toggleSwitch = () =>
     setIsEnabled((previousState: any) => !previousState);
   const navigation = useNavigation<ScreenNavigationType>();
+  
   return (
     <ImageBackground
       style={styles.background}
@@ -47,11 +49,10 @@ export default function SetupProfile() {
           onChangeText={setDisplayname}
           style={styles.textInput}
         />
-
-        <UploadScreen/>
-
+ 
+        <UploadScreen />
+        
         <Button title="Logout" onPress={() => dispatch(logout())} />
-
         <Pressable
           style={styles.nextButton}
           onPress={() => dispatch(createUser(displayname, photoUrl))}

@@ -38,7 +38,7 @@ export const createUser = (displayname: string, photoUrl: string) => {
             console.log("Something went wrong in updating the displayName")
         } else {
             SecureStore.setItemAsync("displayName", data.displayName);
-            SecureStore.setItemAsync("photourl", data.photoURL);
+            SecureStore.setItemAsync("photoUrl", data.photoUrl);
             console.log("Updated your DisplayName")
             dispatch({type: CREATE_USER, payload: { displayname: data.displayname, photoUrl: data.photoUrl } })
         }
