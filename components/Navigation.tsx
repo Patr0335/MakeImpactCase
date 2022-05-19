@@ -77,7 +77,18 @@ function DiceGamesStackNavigator() {
         component={DiceGames}
         options={{ headerShown: false }}
       />
-      <Stack.Screen name="Meyer" component={Meyer} />
+      <Stack.Screen
+        name="Meyer"
+        component={Meyer}
+        options={{
+          title: "Meyer - Dice Game Rules",
+          headerTitleAlign: "center",
+          headerTitleStyle: {
+            color: "#003399",
+            fontWeight: "bold",
+          },
+        }}
+      />
     </Stack.Navigator>
   );
 }
