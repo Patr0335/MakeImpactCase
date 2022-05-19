@@ -16,6 +16,7 @@ import {
   View,
 } from "react-native";
 import { useDispatch } from "react-redux";
+import UploadScreen from "../components/UploadScreen";
 import { logout, createUser } from "../src/store/actions/user.actions";
 import { StackParamList } from "../typings/navigations";
 
@@ -47,12 +48,7 @@ export default function SetupProfile() {
           style={styles.textInput}
         />
 
-        <TextInput
-          value={photoUrl}
-          placeholder="Insert Photo"
-          onChangeText={setPhotoUrl}
-          style={styles.textInput}
-        />
+        <UploadScreen/>
 
         <Button title="Logout" onPress={() => dispatch(logout())} />
 

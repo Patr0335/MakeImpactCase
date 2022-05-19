@@ -136,6 +136,17 @@ function LoginSignupStackNavigator() {
           title: "Login! ",
         }}
       />
+      <Stack.Screen
+        name="SetupProfile"
+        component={SetupProfile}
+        
+        options={{
+          title: "Setup your profile! ",
+          headerTitleAlign: "center",
+          animationTypeForReplace: "push",
+        }}
+        
+      />
     </Stack.Navigator>
   );
 }
