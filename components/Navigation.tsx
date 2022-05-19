@@ -11,6 +11,7 @@ import EditProfile from "../screens/EditProfile";
 import SignupScreen from "../screens/SignupScreen";
 import LoginScreen from "../screens/LoginScreen";
 import Screen2 from "../screens/Screen2";
+import SetupProfile from "../screens/SetupProfile";
 import { StackParamList } from "../typings/navigations";
 import Meyer from "../screens/Meyer";
 import { Entypo } from "@expo/vector-icons";
@@ -43,14 +44,14 @@ function ProfileStackNavigator() {
       <Stack.Screen
         name="Profile"
         component={Profile}
-        options={{ title: "My Profile",
-        headerTitleAlign: 'center',
-        headerTitleStyle: {
-          color: '#003399',
-          fontWeight: 'bold',
-        },
-         
-      }}
+        options={{
+          title: "My Profile",
+          headerTitleAlign: "center",
+          headerTitleStyle: {
+            color: "#003399",
+            fontWeight: "bold",
+          },
+        }}
       />
       <Stack.Screen
         name="EditProfile"
@@ -82,6 +83,24 @@ function TournamentStackNavigator() {
   );
 }
 
+function SetupProfileStackNavigator() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="SetupProfile"
+        component={SetupProfile}
+        
+        options={{
+          title: "Setup your profile! ",
+          headerTitleAlign: "center",
+          animationTypeForReplace: "push",
+        }}
+        
+      />
+    </Stack.Navigator>
+  );
+}
+
 // function MeyerStackNavigator() {
 //   return (
 //     <Stack.Navigator>
@@ -96,18 +115,18 @@ function LoginSignupStackNavigator() {
       <Stack.Screen
         name="SignupScreen"
         component={SignupScreen}
-        options={{ 
+        options={{
           title: "Sign up! ",
           headerTitleAlign: "center",
-          animationTypeForReplace: "push" }}
+          animationTypeForReplace: "push",
+        }}
       />
-
       <Stack.Screen
         name="LoginScreen"
         component={LoginScreen}
-        options={{ 
+        options={{
           headerTitleAlign: "center",
-          title: "Login! " 
+          title: "Login! ",
         }}
       />
     </Stack.Navigator>
@@ -116,11 +135,21 @@ function LoginSignupStackNavigator() {
 
 export default function Navigation() {
   const user = useSelector((state: RootState) => state.user.loggedInUser);
-
+  
   return (
     <NavigationContainer>
       {user !== null ? ( // if user is logged in. (not null)
+        
         <Tab.Navigator screenOptions={{ headerShown: false }}>
+          <Tab.Screen
+            name="SetupProfile"
+            component={SetupProfileStackNavigator}
+            options={{
+              tabBarStyle: { display: "none" }, // removes tabbar from this specific screen
+              tabBarButton: () => null,
+              tabBarLabel: () => null, // if you don't want to see the tab bar
+            }}
+          />
           <Tab.Screen
             name="home"
             component={HomePageStackNavigator}
@@ -153,7 +182,7 @@ export default function Navigation() {
           />
           <Tab.Screen
             name="user"
-            component={ProfileStackNavigator} 
+            component={ProfileStackNavigator}
             options={{
               tabBarLabel: "Profile",
               tabBarIcon: ({ color, size }) => (
@@ -168,7 +197,7 @@ export default function Navigation() {
             name="SignupScreen"
             component={LoginSignupStackNavigator}
             options={{
-              animationTypeForReplace: "push" 
+              animationTypeForReplace: "push",
             }}
           />
         </Stack.Navigator>

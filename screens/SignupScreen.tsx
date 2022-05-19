@@ -89,9 +89,13 @@ export default function SignupScreen() {
         <View > 
         <TouchableOpacity
           
-          onPress={() => dispatch(signup(email, passwordStr))}
+          onPress={() => {
+            dispatch(signup(email, passwordStr))
+            navigation.navigate("SetupProfile")
+          }
+        }
           disabled={check1 !== false && email && passwordStr ? ( false ) : ( true ) }
-          style={styles.signup}
+          style={check1 !== false && email && passwordStr ? styles.signup : styles.signupDisabled}
         >
         
         <Text>Sign up</Text>
@@ -137,10 +141,24 @@ const styles = StyleSheet.create({
   },
 
   signup:{
-    width:200,
-    height: 40,
-    fontSize:100,
-    backgroundColor: "blue"
+    alignItems: "center",
+    justifyContent: "center",
+    paddingVertical: 12,
+    paddingHorizontal: 130,
+    borderRadius: 4,
+    elevation: 3,
+    backgroundColor: "#003399",
+    
+  },
+
+  signupDisabled:{
+    alignItems: "center",
+    justifyContent: "center",
+    paddingVertical: 12,
+    paddingHorizontal: 130,
+    borderRadius: 4,
+    elevation: 3,
+    backgroundColor: "gray",
   }
   
 });

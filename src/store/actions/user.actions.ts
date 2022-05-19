@@ -5,11 +5,43 @@ import { User } from "../../../entities/User";
 export const SIGNUP = "SIGNUP";
 export const LOGOUT = 'LOGOUT';
 export const LOGIN = "LOGIN";
-// export const REHYDRATE_USER = 'REHYDRATE_USER';
+export const CREATE_USER = 'CREATE_USER';
 
 // export const rehydrateUser = (user: User, idToken: string) => {
 //     return { type: REHYDRATE_USER, payload: { user, idToken } }
 // }
+
+export const createUser = (displayname: string) => {
+    const APIKEY = "AIzaSyARVBYF9aJs_TJeEv7aXAvcn37PBVlN8tM"
+    const url = "https://identitytoolkit.googleapis.com/v1/accounts:update?key=" + APIKEY
+     return async (dispatch: (arg0: { type: string; payload: any; }) => void) => {
+        const idToken = await SecureStore.getItemAsync('idToken');
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ //javascript to json string
+                //key value pairs of data you want to send to server
+                // ...
+                displayName: displayname, 
+                idToken,
+                returnSecureToken: true 
+            })
+        });
+        const data = await response.json(); // json to javascript
+        console.log(data);
+        if (!response.ok) {
+            //There was a problem..
+            console.log("Something went wrong in updating the displayName")
+        } else {
+            console.log("Updated your DisplayName")
+            dispatch({type: CREATE_USER, payload: { displayname: data.displayname } })
+        }
+    };
+}
+
+
 
 export const logout = () => {
     SecureStore.deleteItemAsync('idToken'); 
@@ -28,7 +60,7 @@ export const login = (email : string, password : string) => {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ //javascript to json
+            body: JSON.stringify({ //javascript to json string
                 //key value pairs of data you want to send to server
                 // ...
                 email: email, 
