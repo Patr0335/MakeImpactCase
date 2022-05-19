@@ -12,7 +12,7 @@ export const rehydrateUser = (user: User, idToken: string) => {
     return { type: REHYDRATE_USER, payload: { user, idToken } }
 }
 
-export const createUser = (displayname: string, photoUrl: string) => {
+export const createUser = (displayname: string, photourl: string) => {
     const APIKEY = "AIzaSyARVBYF9aJs_TJeEv7aXAvcn37PBVlN8tM"
     const url = "https://identitytoolkit.googleapis.com/v1/accounts:update?key=" + APIKEY
      return async (dispatch: (arg0: { type: string; payload: any; }) => void) => {
@@ -25,7 +25,7 @@ export const createUser = (displayname: string, photoUrl: string) => {
             body: JSON.stringify({ //javascript to json string
                 //key value pairs of data you want to send to server
                 // ...
-                photoUrl: photoUrl,
+                photoUrl: photourl,
                 displayName: displayname, 
                 idToken,
                 returnSecureToken: true 
@@ -40,7 +40,7 @@ export const createUser = (displayname: string, photoUrl: string) => {
             SecureStore.setItemAsync("displayName", data.displayName);
             SecureStore.setItemAsync("photourl", data.photoURL);
             console.log("Updated your DisplayName")
-            dispatch({type: CREATE_USER, payload: { displayname: data.displayname, photoUrl: data.photoUrl } })
+            dispatch({type: CREATE_USER, payload: { displayname: data.displayname, photourl: data.photourl } })
         }
     };
 }

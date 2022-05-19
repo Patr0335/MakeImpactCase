@@ -25,7 +25,7 @@ type ScreenNavigationType = NativeStackNavigationProp<
 
 export default function Profile() {
   const user = useSelector((state: RootState) => state.user.loggedInUser);
-  console.log(user)
+  console.log(user);
   const [isEnabled, setIsEnabled] = useState(false);
   const toggleSwitch = () =>
     setIsEnabled((previousState: any) => !previousState);
@@ -35,8 +35,9 @@ export default function Profile() {
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.container}>
         <View>
+          {/* <Image source={{ uri: user.photoURL }} /> */}
           {/* <Image source={require(user.photoUrl)}/> */}
-         <Text>{user.displayname}</Text>
+          <Text>{user.displayname}</Text>
         </View>
         <View>
           <Pressable
@@ -154,5 +155,3 @@ const styles = StyleSheet.create({
     textAlign: "left",
   },
 });
-
-

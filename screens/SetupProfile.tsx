@@ -27,13 +27,17 @@ type ScreenNavigationType = NativeStackNavigationProp<
 
 export default function SetupProfile() {
   const [displayname, setDisplayname] = useState("");
-  const [photoUrl, setPhotoUrl] = useState();
+  const [photoUrl, setPhotoUrl] = useState("");
   const dispatch = useDispatch(); // hook to get
-
   const [isEnabled, setIsEnabled] = useState(false);
   const toggleSwitch = () =>
     setIsEnabled((previousState: any) => !previousState);
   const navigation = useNavigation<ScreenNavigationType>();
+
+  const onChange = (e: { target: { files: any; }; }) => {
+    console.log(e.target.files);
+  };
+
   return (
     <ImageBackground
       style={styles.background}
@@ -47,7 +51,7 @@ export default function SetupProfile() {
           onChangeText={setDisplayname}
           style={styles.textInput}
         />
-
+        
         <UploadScreen/>
 
         <Button title="Logout" onPress={() => dispatch(logout())} />
