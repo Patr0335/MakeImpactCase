@@ -7,12 +7,13 @@ export const LOGOUT = 'LOGOUT';
 export const LOGIN = "LOGIN";
 export const CREATE_USER = 'CREATE_USER';
 export const REHYDRATE_USER = 'REHYDRATE_USER';
+export const PHOTO_URL = "PHOTO_URL";
 
 export const rehydrateUser = (user: User, idToken: string) => {
     return { type: REHYDRATE_USER, payload: { user, idToken } }
 }
 
-export const createUser = (displayname: string, photourl: string) => {
+export const createUser = (displayname: string) => {
     const APIKEY = "AIzaSyARVBYF9aJs_TJeEv7aXAvcn37PBVlN8tM"
     const url = "https://identitytoolkit.googleapis.com/v1/accounts:update?key=" + APIKEY
      return async (dispatch: (arg0: { type: string; payload: any; }) => void) => {
@@ -25,25 +26,61 @@ export const createUser = (displayname: string, photourl: string) => {
             body: JSON.stringify({ //javascript to json string
                 //key value pairs of data you want to send to server
                 // ...
-                photoUrl: photourl,
+                
                 displayName: displayname, 
                 idToken,
                 returnSecureToken: true 
             })
         });
         const data = await response.json(); // json to javascript
+        console.log("***************************")
         console.log(data);
         if (!response.ok) {
             //There was a problem..
             console.log("Something went wrong in updating the displayName")
         } else {
             SecureStore.setItemAsync("displayName", data.displayName);
-            SecureStore.setItemAsync("photoUrl", data.photoUrl);
+            console.log(data.photoUrl)
             console.log("Updated your DisplayName")
-            dispatch({type: CREATE_USER, payload: { displayname: data.displayname, photourl: data.photourl } })
+            dispatch({type: CREATE_USER, payload: { displayname: data.displayname} })
         }
     };
 }
+
+export const updateImageUrl = (photoUrl: string) => {
+    const APIKEY = "AIzaSyARVBYF9aJs_TJeEv7aXAvcn37PBVlN8tM"
+    const url = "https://identitytoolkit.googleapis.com/v1/accounts:update?key=" + APIKEY
+     return async (dispatch: (arg0: { type: string; payload: any; }) => void) => {
+        const idToken = await SecureStore.getItemAsync('idToken');
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ //javascript to json string
+                //key value pairs of data you want to send to server
+                // ...
+                photoUrl: photoUrl, 
+                idToken,
+                returnSecureToken: true 
+            })
+        });
+        const data = await response.json(); // json to javascript
+        // console.log(data);
+        if (!response.ok) {
+            //There was a problem..
+            console.log("Something went wrong in updating the displayName")
+        } else {
+            SecureStore.setItemAsync("photoUrl", data.photoUrl);
+            console.log(data)
+            console.log("Updated your DisplayName")
+            dispatch({type: PHOTO_URL, payload: {displayname: data.displayname, photoUrl: data.photoUrl } })
+        }
+    };
+}
+
+
+
 
 
 

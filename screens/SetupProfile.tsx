@@ -18,7 +18,7 @@ import {
 } from "react-native";
 import { useDispatch } from "react-redux";
 import UploadScreen from "../components/UploadScreen";
-import { logout, createUser } from "../src/store/actions/user.actions";
+import { logout, createUser, updateImageUrl } from "../src/store/actions/user.actions";
 import { StackParamList } from "../typings/navigations";
 
 type ScreenNavigationType = NativeStackNavigationProp<
@@ -34,10 +34,6 @@ export default function SetupProfile() {
   const toggleSwitch = () =>
     setIsEnabled((previousState: any) => !previousState);
   const navigation = useNavigation<ScreenNavigationType>();
-
-  const onChange = (e: { target: { files: any; }; }) => {
-    console.log(e.target.files);
-  };
 
   return (
     <ImageBackground
@@ -58,7 +54,7 @@ export default function SetupProfile() {
         <Button title="Logout" onPress={() => dispatch(logout())} />
         <Pressable
           style={styles.nextButton}
-          onPress={() => dispatch(createUser(displayname, photoUrl))}
+          onPress={() => dispatch(createUser(displayname))}
         >
           <Text style={styles.nextText}>Save Changes</Text>
         </Pressable>
