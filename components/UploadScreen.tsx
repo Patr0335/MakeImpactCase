@@ -70,10 +70,8 @@ export default function UploadScreen(probs: any) {
       //convert image to array of bytes
       const img = await fetch(result.uri);
       const bytes = await img.blob();
-      console.log("----------------")
       await uploadBytes(reference, bytes); //upload images
       getDownloadURL(ref(storage, reference.fullPath)).then((url)=> {
-        console.log(url)
         dispatch(updateImageUrl(url))
       })
     }

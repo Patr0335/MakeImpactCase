@@ -130,16 +130,7 @@ function SetupProfileStackNavigator() {
 function LoginSignupStackNavigator() {
   return (
     <Stack.Navigator>
-      <Stack.Screen
-        name="SignupScreen"
-        component={SignupScreen}
-        options={{
-          title: "Sign up! ",
-          headerTitleAlign: "center",
-          animationTypeForReplace: "push",
-        }}
-      />
-      <Stack.Screen
+            <Stack.Screen
         name="LoginScreen"
         component={LoginScreen}
         options={{
@@ -148,15 +139,13 @@ function LoginSignupStackNavigator() {
         }}
       />
       <Stack.Screen
-        name="SetupProfile"
-        component={SetupProfile}
-        
+        name="SignupScreen"
+        component={SignupScreen}
         options={{
-          title: "Setup your profile! ",
+          title: "Sign up! ",
           headerTitleAlign: "center",
           animationTypeForReplace: "push",
         }}
-        
       />
     </Stack.Navigator>
   );
@@ -170,15 +159,6 @@ export default function Navigation() {
       {user !== null ? ( // if user is logged in. (not null)
         
         <Tab.Navigator screenOptions={{ headerShown: false }}>
-          <Tab.Screen
-            name="SetupProfile"
-            component={SetupProfileStackNavigator}
-            options={{
-              tabBarStyle: { display: "none" }, // removes tabbar from this specific screen
-              tabBarButton: () => null,
-              tabBarLabel: () => null, // if you don't want to see the tab bar
-            }}
-          />
           <Tab.Screen
             name="home"
             component={HomePageStackNavigator}

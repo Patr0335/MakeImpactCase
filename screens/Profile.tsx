@@ -25,13 +25,11 @@ type ScreenNavigationType = NativeStackNavigationProp<
 
 export default function Profile() {
   const user = useSelector((state: RootState) => state.user.loggedInUser);
-  console.log("user object", user);
   const [isEnabled, setIsEnabled] = useState(false);
   const toggleSwitch = () =>
     setIsEnabled((previousState: any) => !previousState);
   const navigation = useNavigation<ScreenNavigationType>();
   const dispatch = useDispatch();
-  console.log("user ;) :", user?.displayname)
   return (
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.container}>

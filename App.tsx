@@ -60,10 +60,8 @@ export default function App(probs: any) {
 // Listen for authentication state to change.
 // onAuthStateChanged(auth, user => {
 //   if (user != null) { // hvis brugeren er forskellig end null.
-//     console.log('We are authenticated now!');
 //     store.dispatch({type: LOGINUSER})
 //     const some = store.getState();
-//     console.log(some)
 //   }
 // });
 

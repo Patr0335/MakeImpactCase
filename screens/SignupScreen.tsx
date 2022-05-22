@@ -91,7 +91,6 @@ export default function SignupScreen() {
           
           onPress={() => {
             dispatch(signup(email, passwordStr))
-            navigation.navigate("SetupProfile")
           }
         }
           disabled={check1 !== false && email && passwordStr ? ( false ) : ( true ) }
@@ -101,7 +100,7 @@ export default function SignupScreen() {
         <Text>Sign up</Text>
         </TouchableOpacity>
         </View>
-        <Text style={styles.loginText}>Already got a login? <Text style={{color: 'blue'}} onPress={() => navigation.navigate("LoginScreen")}>Click here to login</Text></Text>
+        
         
       </View>
     </ImageBackground>
@@ -136,9 +135,7 @@ const styles = StyleSheet.create({
 
   },
 
-  loginText: {
-    margin: "10%"
-  },
+  
 
   signup:{
     alignItems: "center",

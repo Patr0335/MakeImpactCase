@@ -39,7 +39,6 @@ export const updateUser = (displayname: string) => {
             console.log("Something went wrong in updating the displayName")
         } else {
             SecureStore.setItemAsync("displayName", data.displayName);
-            console.log("Updated your DisplayName")
             dispatch({type: UPDATE_USER, payload: { idToken: data.idToken, displayname: data.displayname} })
         }
     };
@@ -64,7 +63,6 @@ export const getUserInfo = () => {
             })
         });
         const data = await response.json(); // json to javascript
-        console.log("***************************")
         if (!response.ok) {
             //There was a problem..
             console.log("Something went wrong in updating the displayName")
@@ -93,10 +91,8 @@ export const updateImageUrl = (photoUrl: string) => {
             })
         });
         const data = await response.json(); // json to javascript
-        // console.log(data);
         if (!response.ok) {
             //There was a problem..
-            console.log("Something went wrong in updating the displayName")
         } else {
             SecureStore.setItemAsync("photoUrl", data.photoUrl);
             dispatch({type: PHOTO_URL, payload: {displayname: data.displayname, photoUrl: data.photoUrl } })
@@ -142,7 +138,6 @@ export const login = (email : string, password : string) => {
             
             // const user = new User(data.email, '', '');
              
-            console.log(JSON.stringify(new User(data.email, data.displayName, data.photoUrl)))
 
             SecureStore.setItemAsync('idToken', data.idToken);
             // SecureStore.setItemAsync('user', JSON.stringify(user));
@@ -193,7 +188,6 @@ export const signup = (email : string, password : string) => {
 
        } else {
            const data: firebaseSignupSuccess = await response.json(); // json to javascript
-           console.log("Data from the server ", data);
 
            const user = new User(data.email, '', '');
 

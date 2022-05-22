@@ -11,11 +11,19 @@ import {
 } from "react-native";
 import { useDispatch } from "react-redux";
 import { rehydrateUser, signup, login } from "../src/store/actions/user.actions";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { StackParamList } from "../typings/navigations";
+import { useNavigation } from "@react-navigation/native";
 
+type ScreenNavigationType = NativeStackNavigationProp<
+  StackParamList,
+  "LoginScreen"
+>;
 export default function LoginScreen() {
   const [email, setEmail] = useState("");
   const [passwordStr, setPasswordStr] = useState("");
   const dispatch = useDispatch(); // hook to get
+  const navigation = useNavigation<ScreenNavigationType>();
 
   async function readPersistedUserInfo() {
     const token = await SecureStore.getItemAsync("idToken");
@@ -65,6 +73,9 @@ export default function LoginScreen() {
         <Button title="Login"  
         onPress={() => dispatch(handleLogin)} /> 
       </View>
+      <View style={styles.signupText}>
+      <Text>Dont have a user? <Text style={{color: 'blue'}} onPress={() => navigation.navigate("SignupScreen")}>Click here to Sign up</Text></Text>
+      </View>
     </ImageBackground>
   );
 }
@@ -92,5 +103,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
     width: Dimensions.get('window').width,
     height: Dimensions.get('window').height,
+  },
+  signupText: {
+    margin: "10%",
+    position: "absolute",
+    left: Dimensions.get('window').width-370,
+    top: Dimensions.get('window').height-460
   },
 });

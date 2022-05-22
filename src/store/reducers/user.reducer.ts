@@ -32,7 +32,6 @@ const userReducer = (state: ReduxState = initialState, action: any) => {
     case SIGNUP:
       // const user = new User(action.payload.email, '', '');
       // return {...state, loggedInUser: user}
-      console.log("Successfully signed up, bitch");
 
       //const user = {email: 'fakjsdflh', photoUrl: 'afdds' } as User
       return {
@@ -42,9 +41,7 @@ const userReducer = (state: ReduxState = initialState, action: any) => {
       };
 
     case LOGIN:
-      console.log("Successfully logged in, bitch");
-      console.log(action.payload);
-
+      console.log(action.payload.user)
       return {
         ...state,
         loggedInUser: action.payload.user,
@@ -52,8 +49,8 @@ const userReducer = (state: ReduxState = initialState, action: any) => {
       };
 
     case UPDATE_USER:
-      console.log("UPDATE USER", action.payload.user)
-      return { ...state, idToken: action.payload.idToken, loggedInUser: action.payload.user  };
+      console.log(action.payload)
+      return { ...state, loggedInUser: action.payload.user, idToken: action.payload.idToken  };
 
     // case PHOTO_URL:
     //     return { ...state, loggedInUser: action.payload.user }
