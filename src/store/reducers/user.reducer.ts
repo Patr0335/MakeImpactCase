@@ -51,7 +51,7 @@ const userReducer = (state: ReduxState = initialState, action: any) => {
       };
 
     case CREATE_USER:
-      return { ...state, loggedInUser: action.payload.user };
+      return { ...state, loggedInUser: action.payload.use, idToken: action.payload.idToken };
 
     // case PHOTO_URL:
     //     return { ...state, loggedInUser: action.payload.user }

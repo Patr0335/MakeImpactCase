@@ -27,6 +27,9 @@ export default function EditProfile() {
   return (
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.container}>
+
+        
+
         <TextInput
           value={displayname}
           placeholder="Firstname and last name"

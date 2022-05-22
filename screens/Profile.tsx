@@ -17,6 +17,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../src/store/actions/user.actions";
 import { StackParamList } from "../typings/navigations";
 import { RootState } from "../App";
+import { User } from "../entities/User";
+
 
 type ScreenNavigationType = NativeStackNavigationProp<
   StackParamList,
@@ -24,8 +26,8 @@ type ScreenNavigationType = NativeStackNavigationProp<
 >;
 
 export default function Profile() {
-  const user = useSelector((state: RootState) => state.user.loggedInUser);
-  console.log(user);
+  const user: User = useSelector((state: RootState) => state.user.loggedInUser);
+  console.log("user object", user);
   const [isEnabled, setIsEnabled] = useState(false);
   const toggleSwitch = () =>
     setIsEnabled((previousState: any) => !previousState);
@@ -38,7 +40,7 @@ export default function Profile() {
         <View>
           <Image source={{ uri: "https://firebasestorage.googleapis.com/v0/b/youonlydicetwice.appspot.com/o/e2ed2c20-dce6-4c3a-9671-77d92e97f3ec.jpg?alt=media&token=52625773-513d-42ca-973d-013c9bb255b4" }} style={{height: 100, width: 100}}/>
           {/* <Image source={require(user.photoUrl)}/> */}
-          <Text>{user?.displayName}</Text>
+          <Text>{user?.displayname}</Text>
         </View>
         <View>
           <Pressable

@@ -42,7 +42,7 @@ export const createUser = (displayname: string) => {
             SecureStore.setItemAsync("displayName", data.displayName);
             console.log(data.photoUrl)
             console.log("Updated your DisplayName")
-            dispatch({type: CREATE_USER, payload: { displayname: data.displayname} })
+            dispatch({type: CREATE_USER, payload: { displayname: data.displayname, idToken: data.idToken} })
         }
     };
 }
