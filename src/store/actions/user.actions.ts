@@ -5,15 +5,16 @@ import { User } from "../../../entities/User";
 export const SIGNUP = "SIGNUP";
 export const LOGOUT = 'LOGOUT';
 export const LOGIN = "LOGIN";
-export const CREATE_USER = 'CREATE_USER';
+export const UPDATE_USER = 'UPDATE_USER';
 export const REHYDRATE_USER = 'REHYDRATE_USER';
 export const PHOTO_URL = "PHOTO_URL";
+export const GET_USER = "GET_USER";
 
 export const rehydrateUser = (user: User, idToken: string) => {
     return { type: REHYDRATE_USER, payload: { user, idToken } }
 }
 
-export const createUser = (displayname: string) => {
+export const updateUser = (displayname: string) => {
     const APIKEY = "AIzaSyARVBYF9aJs_TJeEv7aXAvcn37PBVlN8tM"
     const url = "https://identitytoolkit.googleapis.com/v1/accounts:update?key=" + APIKEY
      return async (dispatch: (arg0: { type: string; payload: any; }) => void) => {
@@ -33,16 +34,42 @@ export const createUser = (displayname: string) => {
             })
         });
         const data = await response.json(); // json to javascript
-        console.log("***************************")
-        console.log(data);
         if (!response.ok) {
             //There was a problem..
             console.log("Something went wrong in updating the displayName")
         } else {
             SecureStore.setItemAsync("displayName", data.displayName);
-            console.log(data.photoUrl)
             console.log("Updated your DisplayName")
-            dispatch({type: CREATE_USER, payload: { displayname: data.displayname, idToken: data.idToken} })
+            dispatch({type: UPDATE_USER, payload: { idToken: data.idToken, displayname: data.displayname} })
+        }
+    };
+}
+
+export const getUserInfo = () => {
+    const APIKEY = "AIzaSyARVBYF9aJs_TJeEv7aXAvcn37PBVlN8tM"
+    const url = "https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=" + APIKEY
+     return async (dispatch: (arg0: { type: string; payload: any; }) => void) => {
+        const idToken = await SecureStore.getItemAsync('idToken');
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ //javascript to json string
+                //key value pairs of data you want to send to server
+                // ...
+                user: User,
+                idToken,
+                returnSecureToken: true 
+            })
+        });
+        const data = await response.json(); // json to javascript
+        console.log("***************************")
+        if (!response.ok) {
+            //There was a problem..
+            console.log("Something went wrong in updating the displayName")
+        } else {
+            dispatch({type: GET_USER, payload: { user: data.user} })
         }
     };
 }
@@ -72,8 +99,6 @@ export const updateImageUrl = (photoUrl: string) => {
             console.log("Something went wrong in updating the displayName")
         } else {
             SecureStore.setItemAsync("photoUrl", data.photoUrl);
-            console.log(data)
-            console.log("Updated your DisplayName")
             dispatch({type: PHOTO_URL, payload: {displayname: data.displayname, photoUrl: data.photoUrl } })
         }
     };
@@ -111,7 +136,6 @@ export const login = (email : string, password : string) => {
         });
   
         const data = await response.json(); // json to javascript
-        console.log(data);
         if (!response.ok) {
             //There was a problem..
         } else {

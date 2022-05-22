@@ -138,8 +138,6 @@ function LoginSignupStackNavigator() {
 
 export default function Navigation() {
   const user = useSelector((state: RootState) => state.user.loggedInUser);
-  const check = user?.displayName;
-  console.log("her er vi",check)
   return (
     <NavigationContainer>
       {user !== null? ( // if user is logged in. (not null)

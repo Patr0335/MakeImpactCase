@@ -13,7 +13,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../App";
 import Input from "../components/Input";
 import { User } from "../entities/User";
-import { createUser } from "../src/store/actions/user.actions";
+import { updateUser } from "../src/store/actions/user.actions";
 
 export default function EditProfile() {
   const user: User = useSelector((state: RootState) => state.user.loggedInUser);
@@ -28,7 +28,7 @@ export default function EditProfile() {
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.container}>
 
-        
+
 
         <TextInput
           value={displayname}
@@ -42,7 +42,7 @@ export default function EditProfile() {
 
         <Pressable
           style={styles.saveButton}
-          onPress={() => dispatch(createUser(displayname))}
+          onPress={() => dispatch(updateUser(displayname))}
         >
           <Text style={styles.saveText}>Save Changes</Text>
         </Pressable>

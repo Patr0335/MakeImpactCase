@@ -18,7 +18,7 @@ import {
 } from "react-native";
 import { useDispatch } from "react-redux";
 import UploadScreen from "../components/UploadScreen";
-import { logout, createUser, updateImageUrl } from "../src/store/actions/user.actions";
+import { logout, updateUser, updateImageUrl } from "../src/store/actions/user.actions";
 import { StackParamList } from "../typings/navigations";
 
 type ScreenNavigationType = NativeStackNavigationProp<
@@ -54,7 +54,7 @@ export default function SetupProfile() {
         <Button title="Logout" onPress={() => dispatch(logout())} />
         <Pressable
           style={styles.nextButton}
-          onPress={() => dispatch(createUser(displayname))}
+          onPress={() => dispatch(updateUser(displayname))}
         >
           <Text style={styles.nextText}>Save Changes</Text>
         </Pressable>
