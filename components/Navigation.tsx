@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
@@ -10,6 +10,7 @@ import Profile from "../screens/Profile";
 import EditProfile from "../screens/EditProfile";
 import SignupScreen from "../screens/SignupScreen";
 import LoginScreen from "../screens/LoginScreen";
+import LoadScreen from "../screens/LoadScreen";
 import Screen2 from "../screens/Screen2";
 import SetupProfile from "../screens/SetupProfile";
 import { StackParamList } from "../typings/navigations";
@@ -22,6 +23,7 @@ import { FontAwesome } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
 import { useSelector } from "react-redux";
 import { RootState } from "../App";
+import { User } from "../entities/User";
 
 const Stack = createNativeStackNavigator<StackParamList>();
 const Tab = createBottomTabNavigator();
@@ -101,23 +103,6 @@ function TournamentStackNavigator() {
   );
 }
 
-function SetupProfileStackNavigator() {
-  return (
-    <Stack.Navigator>
-      <Stack.Screen
-        name="SetupProfile"
-        component={SetupProfile}
-        
-        options={{
-          title: "Setup your profile! ",
-          headerTitleAlign: "center",
-          animationTypeForReplace: "push",
-        }}
-        
-      />
-    </Stack.Navigator>
-  );
-}
 
 // function MeyerStackNavigator() {
 //   return (
@@ -146,39 +131,20 @@ function LoginSignupStackNavigator() {
           headerTitleAlign: "center",
           title: "Login! ",
         }}
-      />
-      <Stack.Screen
-        name="SetupProfile"
-        component={SetupProfile}
-        
-        options={{
-          title: "Setup your profile! ",
-          headerTitleAlign: "center",
-          animationTypeForReplace: "push",
-        }}
-        
-      />
+      />  
     </Stack.Navigator>
   );
 }
 
 export default function Navigation() {
   const user = useSelector((state: RootState) => state.user.loggedInUser);
-  
+  const check = user?.displayName;
+  console.log("her er vi",check)
   return (
     <NavigationContainer>
-      {user !== null ? ( // if user is logged in. (not null)
+      {user !== null? ( // if user is logged in. (not null)
         
         <Tab.Navigator screenOptions={{ headerShown: false }}>
-          <Tab.Screen
-            name="SetupProfile"
-            component={SetupProfileStackNavigator}
-            options={{
-              tabBarStyle: { display: "none" }, // removes tabbar from this specific screen
-              tabBarButton: () => null,
-              tabBarLabel: () => null, // if you don't want to see the tab bar
-            }}
-          />
           <Tab.Screen
             name="home"
             component={HomePageStackNavigator}
@@ -228,8 +194,11 @@ export default function Navigation() {
             options={{
               animationTypeForReplace: "push",
             }}
+            
           />
+          
         </Stack.Navigator>
+        
       )}
     </NavigationContainer>
   );

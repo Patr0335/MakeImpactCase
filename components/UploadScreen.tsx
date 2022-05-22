@@ -7,14 +7,12 @@ import {
   TouchableHighlight
 } from "react-native";
 import * as ImagePicker from 'expo-image-picker';
-import { getDownloadURL, getStorage, ref, uploadBytes } from 'firebase/storage';
+import { getStorage, ref, uploadBytes } from 'firebase/storage';
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import userReducer from "../src/store/reducers/user.reducer";
-import { useDispatch } from "react-redux";
-import { updateImageUrl } from "../src/store/actions/user.actions";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -38,7 +36,6 @@ const analytics = getAnalytics(app);
 initializeApp(firebaseConfig);
 
 export default function UploadScreen(probs: any) {
-  const dispatch = useDispatch(); // hook to get
   useEffect(() => {
     (async () => {
       if (Platform.OS !== 'web') {
@@ -70,12 +67,8 @@ export default function UploadScreen(probs: any) {
       //convert image to array of bytes
       const img = await fetch(result.uri);
       const bytes = await img.blob();
-      console.log("----------------")
+      
       await uploadBytes(reference, bytes); //upload images
-      getDownloadURL(ref(storage, reference.fullPath)).then((url)=> {
-        console.log(url)
-        dispatch(updateImageUrl(url))
-      })
     }
   };
 

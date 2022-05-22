@@ -55,7 +55,7 @@ const userReducer = (state: ReduxState = initialState, action: any) => {
 
     // case PHOTO_URL:
     //     return { ...state, loggedInUser: action.payload.user }
-
+     
     default:
       return state;
   }

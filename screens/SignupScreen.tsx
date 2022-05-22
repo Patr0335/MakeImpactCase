@@ -90,8 +90,9 @@ export default function SignupScreen() {
         <TouchableOpacity
           
           onPress={() => {
+            //navigation.navigate("home")
             dispatch(signup(email, passwordStr))
-            navigation.navigate("SetupProfile")
+
           }
         }
           disabled={check1 !== false && email && passwordStr ? ( false ) : ( true ) }
