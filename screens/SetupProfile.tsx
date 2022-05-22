@@ -66,7 +66,7 @@ export default function SetupProfile() {
               ? styles.nextButton
               : styles.nextButtonDisabled
           }
-          onPress={() => navigation.navigate("")}
+          onPress={() => navigation.navigate("home")}
         >
           <Text style={styles.nextText}>Next</Text>
         </Pressable>

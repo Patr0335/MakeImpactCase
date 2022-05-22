@@ -47,9 +47,9 @@ export default function SignupScreen() {
     }
   }
 
-  const handleLogin = () => {
-    dispatch(login(email, passwordStr));
-}
+//   const handleLogin = () => {
+//     dispatch(login(email, passwordStr));
+// }
 
   useEffect(() => {
     readPersistedUserInfo();
@@ -90,9 +90,8 @@ export default function SignupScreen() {
         <TouchableOpacity
           
           onPress={() => {
-            //navigation.navigate("home")
             dispatch(signup(email, passwordStr))
-
+            navigation.navigate("SetupProfile")
           }
         }
           disabled={check1 !== false && email && passwordStr ? ( false ) : ( true ) }
