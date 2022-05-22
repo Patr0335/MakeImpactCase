@@ -21,12 +21,12 @@ const userReducer = (state: ReduxState = initialState, action: any) => {
   switch (action.type) {
     case LOGOUT:
       return { ...state, loggedInUser: null, idToken: undefined };
-    case REHYDRATE_USER:
-      return {
-        ...state,
-        loggedInUser: action.payload.user,
-        idToken: action.payload.idToken,
-      };
+    // case REHYDRATE_USER:
+    //   return {
+    //     ...state,
+    //     loggedInUser: action.payload.user,
+    //     idToken: action.payload.idToken,
+    //   };
     case SIGNUP:
       // const user = new User(action.payload.email, '', '');
       // return {...state, loggedInUser: user}
