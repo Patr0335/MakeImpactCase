@@ -21,28 +21,29 @@ const userReducer = (state: ReduxState = initialState, action: any) => {
   switch (action.type) {
     case LOGOUT:
       return { ...state, loggedInUser: null, idToken: undefined };
-    case REHYDRATE_USER:
-      return {
-        ...state,
-        loggedInUser: action.payload.user,
-        idToken: action.payload.idToken,
-      };
+    // case REHYDRATE_USER:
+    //   return {
+    //     ...state,
+    //     loggedInUser: action.payload.user,
+    //     idToken: action.payload.idToken,
+    //   };
     case SIGNUP:
-      // const user = new User(action.payload.email, '', '');
+      const newUser = new User(action.payload.email, '', '');
       // return {...state, loggedInUser: user}
 
       //const user = {email: 'fakjsdflh', photoUrl: 'afdds' } as User
       return {
         ...state,
-        loggedInUser: action.payload.user,
+        loggedInUser: newUser,
         idToken: action.payload.idToken,
       };
 
     case LOGIN:
-      console.log("login: ", action.payload.user)
+      const user = new User(action.payload.email, action.payload.displayName, action.payload.photoUrl)
+      
       return {
         ...state,
-        loggedInUser: action.payload.user,
+        loggedInUser: user,
         idToken: action.payload.idToken,
       };
 
@@ -53,9 +54,6 @@ const userReducer = (state: ReduxState = initialState, action: any) => {
         loggedInUser: action.payload.user,
         idToken: action.payload.idToken,
       };
-
-    // case PHOTO_URL:
-    //     return { ...state, loggedInUser: action.payload.user }
 
     default:
       return state;

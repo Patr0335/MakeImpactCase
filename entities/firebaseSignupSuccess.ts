@@ -1,5 +1,5 @@
 export class firebaseSignupSuccess {
-    constructor(public idToken: string, public email: string, public refreshToken: string, 
+    constructor(public idToken: string, public email: string, public refreshToken: string, public displayName: string, public profilePicture: string, 
         public expiresIn: string, public localId: string) {
             
     }
