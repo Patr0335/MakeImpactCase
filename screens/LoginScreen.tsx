@@ -10,7 +10,7 @@ import {
   Dimensions
 } from "react-native";
 import { useDispatch } from "react-redux";
-import { rehydrateUser, signup, login } from "../src/store/actions/user.actions";
+import { login } from "../src/store/actions/user.actions";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { StackParamList } from "../typings/navigations";
 import { useNavigation } from "@react-navigation/native";
@@ -28,16 +28,17 @@ export default function LoginScreen() {
   async function readPersistedUserInfo() {
     const token = await SecureStore.getItemAsync("idToken");
     const userJson = await SecureStore.getItemAsync("user");
-    let user = null;
-    if (userJson) {
-      user = JSON.parse(userJson);
-    }
-    if (user) {
-      // then we have a priv. login
-      // restore the signup by updating the redux store based on usre and token.
-      dispatch(rehydrateUser(user, token!));
-    }
   }
+  //   let user = null;
+  //   if (userJson) {
+  //     user = JSON.parse(userJson);
+  //   }
+  //   if (user) {
+  //     // then we have a priv. login
+  //     // restore the signup by updating the redux store based on usre and token.
+  //     dispatch(rehydrateUser(user, token!));
+  //   }
+  // }
 
   const handleLogin = () => {
     dispatch(login(email, passwordStr));

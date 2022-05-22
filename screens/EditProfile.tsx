@@ -10,20 +10,27 @@ import {
   View,
 } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../App";
 import Input from "../components/Input";
 import { User } from "../entities/User";
 import { updateUser } from "../src/store/actions/user.actions";
 
 export default function EditProfile() {
-  const user: User = useSelector((state: RootState) => state.user.loggedInUser);
-  const token = useSelector((state: RootState) => state.user.idToken);
+  const user = useSelector((state: any) => state.user.loggedInUser);
+  const token = useSelector((state: any) => state.user.idToken);
   const dispatch = useDispatch(); // hook to get
-  const [displayName, setDisplayName] = useState("");
+  const [name, setName] = React.useState(user.displayName);
+  const [photoUrl, setphotoUrl] = React.useState(user.photoUrl)
   // const [photoUrl, setphotoUrl] = useState(user.photoUrl)
   
 
-  console.log(user)
+  const onSave = () => {
+    if (name !== ""  && photoUrl !== "") {
+      const newUser: User = new User(user.email, name, photoUrl)
+      dispatch(updateUser(newUser, token))
+    } else {
+      alert("Username or Picture")
+    }
+  }
   
 
   return (
@@ -33,8 +40,14 @@ export default function EditProfile() {
 
 
         <Input title="Firstname and last name"
-        inputValue={displayName}
-        setText={setDisplayName} 
+        inputValue={name}
+        setText={setName} 
+        error={"Cannot be empty"}          
+        />
+
+<Input title="Photo url"
+        inputValue={photoUrl}
+        setText={setphotoUrl} 
         error={"Cannot be empty"}          
         />
         {/* <Input title="Study programme"
@@ -44,7 +57,7 @@ export default function EditProfile() {
         <Pressable
           style={styles.saveButton}
           onPress={() => {
-            dispatch(updateUser(user))
+            dispatch(onSave)
 
           }}
         >
