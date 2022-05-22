@@ -47,9 +47,9 @@ export default function SignupScreen() {
     }
   }
 
-  const handleLogin = () => {
-    dispatch(login(email, passwordStr));
-}
+//   const handleLogin = () => {
+//     dispatch(login(email, passwordStr));
+// }
 
   useEffect(() => {
     readPersistedUserInfo();
