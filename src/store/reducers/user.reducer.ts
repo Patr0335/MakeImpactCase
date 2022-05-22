@@ -4,9 +4,7 @@ import {
   LOGOUT,
   REHYDRATE_USER,
   LOGIN,
-  PHOTO_URL,
   UPDATE_USER,
-  GET_USER
 } from "../actions/user.actions";
 
 interface ReduxState {
@@ -41,7 +39,7 @@ const userReducer = (state: ReduxState = initialState, action: any) => {
       };
 
     case LOGIN:
-      console.log(action.payload.user)
+      console.log("login: ", action.payload.user)
       return {
         ...state,
         loggedInUser: action.payload.user,
@@ -49,13 +47,16 @@ const userReducer = (state: ReduxState = initialState, action: any) => {
       };
 
     case UPDATE_USER:
-      console.log(action.payload)
-      return { ...state, loggedInUser: action.payload.user, idToken: action.payload.idToken  };
+      console.log("display name updated", action.payload.user)
+      return {
+        ...state,
+        loggedInUser: action.payload.user,
+        idToken: action.payload.idToken,
+      };
 
     // case PHOTO_URL:
     //     return { ...state, loggedInUser: action.payload.user }
-    case GET_USER:
-      return {...state, user: action.payload.user}
+
     default:
       return state;
   }

@@ -17,11 +17,13 @@ import { updateUser } from "../src/store/actions/user.actions";
 
 export default function EditProfile() {
   const user: User = useSelector((state: RootState) => state.user.loggedInUser);
+  const token = useSelector((state: RootState) => state.user.idToken);
   const dispatch = useDispatch(); // hook to get
-  const [displayname, setDisplayname] = useState("");
+  const [displayName, setDisplayName] = useState("");
   // const [photoUrl, setphotoUrl] = useState(user.photoUrl)
   
 
+  console.log(user)
   
 
   return (
@@ -30,11 +32,10 @@ export default function EditProfile() {
 
 
 
-        <TextInput
-          value={displayname}
-          placeholder="Firstname and last name"
-          onChangeText={setDisplayname}
-          style={styles.textInput}
+        <Input title="Firstname and last name"
+        inputValue={displayName}
+        setText={setDisplayName} 
+        error={"Cannot be empty"}          
         />
         {/* <Input title="Study programme"
                 inputValue=""
@@ -42,7 +43,10 @@ export default function EditProfile() {
 
         <Pressable
           style={styles.saveButton}
-          onPress={() => dispatch(updateUser(displayname))}
+          onPress={() => {
+            dispatch(updateUser(user))
+
+          }}
         >
           <Text style={styles.saveText}>Save Changes</Text>
         </Pressable>

@@ -14,7 +14,7 @@ export const rehydrateUser = (user: User, idToken: string) => {
     return { type: REHYDRATE_USER, payload: { user, idToken } }
 }
 
-export const updateUser = (displayname: string) => {
+export const updateUser = (displayName: String) => {
     const APIKEY = "AIzaSyARVBYF9aJs_TJeEv7aXAvcn37PBVlN8tM"
     const url = "https://identitytoolkit.googleapis.com/v1/accounts:update?key=" + APIKEY
      return async (dispatch: (arg0: { type: string; payload: any; }) => void) => {
@@ -28,7 +28,7 @@ export const updateUser = (displayname: string) => {
                 //key value pairs of data you want to send to server
                 // ...
                 
-                displayName: displayname, 
+                displayName: displayName,
                 idToken,
                 returnSecureToken: true 
             })
@@ -38,67 +38,67 @@ export const updateUser = (displayname: string) => {
             //There was a problem..
             console.log("Something went wrong in updating the displayName")
         } else {
-            SecureStore.setItemAsync("displayName", data.displayName);
-            dispatch({type: UPDATE_USER, payload: { idToken: data.idToken, displayname: data.displayname} })
+            // SecureStore.setItemAsync("displayName", data.displayName);
+            dispatch({type: UPDATE_USER, payload: { displayName: data.displayName, idToken: data.idToken}})
         }
     };
 }
 
-export const getUserInfo = () => {
-    const APIKEY = "AIzaSyARVBYF9aJs_TJeEv7aXAvcn37PBVlN8tM"
-    const url = "https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=" + APIKEY
-     return async (dispatch: (arg0: { type: string; payload: any; }) => void) => {
-        const idToken = await SecureStore.getItemAsync('idToken');
-        const response = await fetch(url, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ //javascript to json string
-                //key value pairs of data you want to send to server
-                // ...
-                user: User,
-                idToken,
-                returnSecureToken: true 
-            })
-        });
-        const data = await response.json(); // json to javascript
-        if (!response.ok) {
-            //There was a problem..
-            console.log("Something went wrong in updating the displayName")
-        } else {
-            dispatch({type: GET_USER, payload: { user: data.user} })
-        }
-    };
-}
+// export const getUserInfo = () => {
+//     const APIKEY = "AIzaSyARVBYF9aJs_TJeEv7aXAvcn37PBVlN8tM"
+//     const url = "https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=" + APIKEY
+//      return async (dispatch: (arg0: { type: string; payload: any; }) => void) => {
+//         const idToken = await SecureStore.getItemAsync('idToken');
+//         const response = await fetch(url, {
+//             method: 'POST',
+//             headers: {
+//                 'Content-Type': 'application/json'
+//             },
+//             body: JSON.stringify({ //javascript to json string
+//                 //key value pairs of data you want to send to server
+//                 // ...
+//                 user: User,
+//                 idToken,
+//                 returnSecureToken: true 
+//             })
+//         });
+//         const data = await response.json(); // json to javascript
+//         if (!response.ok) {
+//             //There was a problem..
+//             console.log("Something went wrong in updating the displayName")
+//         } else {
+//             dispatch({type: GET_USER, payload: { user: data.user} })
+//         }
+//     };
+// }
 
-export const updateImageUrl = (photoUrl: string) => {
-    const APIKEY = "AIzaSyARVBYF9aJs_TJeEv7aXAvcn37PBVlN8tM"
-    const url = "https://identitytoolkit.googleapis.com/v1/accounts:update?key=" + APIKEY
-     return async (dispatch: (arg0: { type: string; payload: any; }) => void) => {
-        const idToken = await SecureStore.getItemAsync('idToken');
-        const response = await fetch(url, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ //javascript to json string
-                //key value pairs of data you want to send to server
-                // ...
-                photoUrl: photoUrl, 
-                idToken,
-                returnSecureToken: true 
-            })
-        });
-        const data = await response.json(); // json to javascript
-        if (!response.ok) {
-            //There was a problem..
-        } else {
-            SecureStore.setItemAsync("photoUrl", data.photoUrl);
-            dispatch({type: PHOTO_URL, payload: {displayname: data.displayname, photoUrl: data.photoUrl } })
-        }
-    };
-}
+// export const updateImageUrl = (photoUrl: string) => {
+//     const APIKEY = "AIzaSyARVBYF9aJs_TJeEv7aXAvcn37PBVlN8tM"
+//     const url = "https://identitytoolkit.googleapis.com/v1/accounts:update?key=" + APIKEY
+//      return async (dispatch: (arg0: { type: string; payload: any; }) => void) => {
+//         const idToken = await SecureStore.getItemAsync('idToken');
+//         const response = await fetch(url, {
+//             method: 'POST',
+//             headers: {
+//                 'Content-Type': 'application/json'
+//             },
+//             body: JSON.stringify({ //javascript to json string
+//                 //key value pairs of data you want to send to server
+//                 // ...
+//                 photoUrl: photoUrl, 
+//                 idToken,
+//                 returnSecureToken: true 
+//             })
+//         });
+//         const data = await response.json(); // json to javascript
+//         if (!response.ok) {
+//             //There was a problem..
+//         } else {
+//             SecureStore.setItemAsync("photoUrl", data.photoUrl);
+//             dispatch({type: PHOTO_URL, payload: {displayname: data.displayname, photoUrl: data.photoUrl } })
+//         }
+//     };
+// }
 
 
 
@@ -151,7 +151,7 @@ export const login = (email : string, password : string) => {
             // SecureStore.setItemAsync('refreshToken', data.refreshToken);
  
  
-            dispatch({type: LOGIN, payload: {user:  { email: data.email, displayname: data.displayName, token: data.idToken }}})
+            dispatch({type: LOGIN, payload: {user:  { email: data.email, displayName: data.displayName, token: data.idToken }}})
         }
     };
  };
@@ -191,7 +191,7 @@ export const signup = (email : string, password : string) => {
 
            const user = new User(data.email, '', '');
 
-            await SecureStore.setItemAsync('idToken', data.idToken);
+            // await SecureStore.setItemAsync('idToken', data.idToken);
             await SecureStore.setItemAsync('user', JSON.stringify(user)); // convert user js-obj. to json
 
            dispatch({type: SIGNUP, payload: {email: data.email, idToken: data.idToken}})

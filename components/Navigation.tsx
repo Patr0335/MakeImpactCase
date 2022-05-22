@@ -10,8 +10,6 @@ import Profile from "../screens/Profile";
 import EditProfile from "../screens/EditProfile";
 import SignupScreen from "../screens/SignupScreen";
 import LoginScreen from "../screens/LoginScreen";
-import Screen2 from "../screens/Screen2";
-import SetupProfile from "../screens/SetupProfile";
 import { StackParamList } from "../typings/navigations";
 import Meyer from "../screens/Meyer";
 import { Entypo } from "@expo/vector-icons";
@@ -22,6 +20,7 @@ import { FontAwesome } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
 import { useSelector } from "react-redux";
 import { RootState } from "../App";
+import { User } from "../entities/User";
 
 const Stack = createNativeStackNavigator<StackParamList>();
 const Tab = createBottomTabNavigator();
@@ -101,23 +100,6 @@ function TournamentStackNavigator() {
   );
 }
 
-function SetupProfileStackNavigator() {
-  return (
-    <Stack.Navigator>
-      <Stack.Screen
-        name="SetupProfile"
-        component={SetupProfile}
-        
-        options={{
-          title: "Setup your profile! ",
-          headerTitleAlign: "center",
-          animationTypeForReplace: "push",
-        }}
-        
-      />
-    </Stack.Navigator>
-  );
-}
 
 // function MeyerStackNavigator() {
 //   return (
@@ -152,7 +134,7 @@ function LoginSignupStackNavigator() {
 }
 
 export default function Navigation() {
-  const user = useSelector((state: RootState) => state.user.loggedInUser);
+  const user: User = useSelector((state: RootState) => state.user.loggedInUser);
   
   return (
     <NavigationContainer>
