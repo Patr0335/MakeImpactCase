@@ -57,7 +57,8 @@ export default function LoginScreen() {
       <View style={styles.container}>
         
         <TextInput 
-        value={email} 
+        value={email}
+        //value="test8@gmail.com" 
         placeholder="email" 
         onChangeText={setEmail}
         style={styles.textInput} 
@@ -66,6 +67,7 @@ export default function LoginScreen() {
         <TextInput
         secureTextEntry={true}
           value={passwordStr}
+          //value="123456"
           placeholder="password"
           onChangeText={setPasswordStr}
           style={styles.textInput}
