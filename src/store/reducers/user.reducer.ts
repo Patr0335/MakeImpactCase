@@ -2,7 +2,6 @@ import { User } from "../../../entities/User";
 import {
   SIGNUP,
   LOGOUT,
-  REHYDRATE_USER,
   LOGIN,
   UPDATE_USER,
 } from "../actions/user.actions";
