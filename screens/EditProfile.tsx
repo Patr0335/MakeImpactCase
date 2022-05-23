@@ -38,7 +38,7 @@ export default function EditProfile() {
   }
 
   if (user.photoUrl === "") {
-    user.photoUrl = "https://reactjs.org/logo-og.png"
+    user.photoUrl = "https://picsum.photos/200"
   }
   return (
     <KeyboardAvoidingView style={{ flex: 1 }}
@@ -128,5 +128,4 @@ const styles = StyleSheet.create({
     borderRadius: 80
 
   },
-
 });

@@ -135,12 +135,14 @@ function LoginSignupStackNavigator() {
 
 export default function Navigation() {
   const user = useSelector((state: any) => state.user.loggedInUser);
-  console.log(user)
+  console.log("User: ", user)
   return (
     <NavigationContainer>
-      {user !== null ? ( // if user is logged in. (not null)
-        
-        <Tab.Navigator screenOptions={{ headerShown: false }}>
+      {user !== null && !user.email ? ( // if user is logged in. (not null)
+        <Tab.Navigator screenOptions={{ 
+          headerShown: false,
+          tabBarHideOnKeyboard: true
+          }}>
           <Tab.Screen
             name="home"
             component={HomePageStackNavigator}

@@ -7,7 +7,6 @@ export const LOGOUT = 'LOGOUT';
 export const LOGIN = "LOGIN";
 export const UPDATE_USER = 'UPDATE_USER';
 export const REHYDRATE_USER = 'REHYDRATE_USER';
-export const GET_USER = "GET_USER";
 
 export const rehydrateUser = (user: User, idToken: string) => {
     return { type: REHYDRATE_USER, payload: { user, idToken } }

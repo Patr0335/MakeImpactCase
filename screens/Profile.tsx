@@ -14,7 +14,7 @@ import {
   Image,
 } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
-import { logout} from "../src/store/actions/user.actions";
+import { logout } from "../src/store/actions/user.actions";
 import { StackParamList } from "../typings/navigations";
 import { RootState } from "../App";
 import { User } from "../entities/User";
@@ -33,28 +33,27 @@ export default function Profile() {
   const dispatch = useDispatch();
   // console.log("user:", user)
 
-  if(user.displayName === "") {
-    user.displayName = "Gandalf"
-  } if(user.photoUrl === "") {
-    user.photoUrl = "https://reactjs.org/logo-og.png"
+  if (user.displayName === "") {
+    user.displayName = "Voldemort";
   }
-  console.log(user)
+  if (user.photoUrl === "") {
+    user.photoUrl = "https://picsum.photos/200";
+  }
+  console.log(user);
   return (
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.container}>
-        <View>
-          <Image source={{ uri: user.photoUrl }} style={{height: 100, width: 100}}/>
+        <View style={styles.row}>
+          <Image source={{ uri: user.photoUrl }} style={styles.imageStyle} />
           {/* <Image source={require(user.photoUrl)}/> */}
           <Text>{user.displayName}</Text>
         </View>
-        <View>
-          <Pressable
-            style={styles.editButton}
-            onPress={() => navigation.navigate("EditProfile")}
-          >
-            <Text style={styles.editText}>Edit Profile</Text>
-          </Pressable>
-        </View>
+        <Pressable
+          style={styles.editButton}
+          onPress={() => navigation.navigate("EditProfile")}
+        >
+          <Text style={styles.editText}>Edit Profile</Text>
+        </Pressable>
       </View>
       <View
         style={{
@@ -98,6 +97,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     height: Dimensions.get("window").height,
     margin: 20,
+    alignContent: "flex-start",
   },
   container1: {
     flex: 0.5,
@@ -162,4 +162,23 @@ const styles = StyleSheet.create({
     color: "#003399",
     textAlign: "left",
   },
+  imageStyle: {
+    width: 100,
+    height: 100,
+    margin: 5,
+    // resizeMode: "contain",
+    borderRadius: 80,
+    alignItems: 'flex-start',
+    
+  },
+  row: {
+    flex: 1,
+    flexDirection: "row",
+    alignContent: "flex-start",
+  },
+  // column: {
+  //   flexDirection: 'column',
+  //   alignItems: 'center',
+  //   width: '50%',
+  // }
 });

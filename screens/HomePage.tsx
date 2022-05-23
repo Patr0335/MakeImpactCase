@@ -36,7 +36,7 @@ export default function HomePage() {
         <View style={styles.container}>
           <Text style={styles.header}>Welcome to YouOnlyDiceTwice</Text>
           <View style={styles.buttonContainer}>
-            <Button title="Logout" onPress={() => dispatch(logout())} />
+            {/* <Button title="Logout" onPress={() => dispatch(logout())} /> */}
             <TouchableOpacity
               style={styles.clickableButton}
               onPress={() => navigation.navigate("DiceGames")}

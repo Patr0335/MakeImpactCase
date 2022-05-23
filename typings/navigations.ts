@@ -11,7 +11,5 @@ export type StackParamList = {
     SmallBox: undefined;
     SectorImage: undefined;
     Meyer: undefined;
-    Button: undefined;
-    SetupProfile: undefined;
     
 }
