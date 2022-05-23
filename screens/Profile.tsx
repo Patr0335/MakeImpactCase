@@ -37,9 +37,9 @@ export default function Profile() {
     user.displayName = "Voldemort";
   }
   if (user.photoUrl === "") {
-    user.photoUrl = "https://picsum.photos/200";
+    user.photoUrl = "https://i.imgur.com/QJG4SJo.jpg";
   }
-  console.log(user);
+  //console.log(user);
   return (
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.container}>
@@ -166,6 +166,7 @@ const styles = StyleSheet.create({
     width: 100,
     height: 100,
     margin: 5,
+    //overflow: "hidden",
     // resizeMode: "contain",
     borderRadius: 80,
     alignItems: 'flex-start',
