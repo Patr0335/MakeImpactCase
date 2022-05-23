@@ -8,7 +8,6 @@ import ReduxThunk from "redux-thunk";
 import chatReducer from "./src/store/reducers/chat.reducer";
 import userReducer from "./src/store/reducers/user.reducer";
 import Navigation from './components/Navigation';
-import BigBox from './components/BigBox';
 
 const rootReducer = combineReducers({
   chat: chatReducer,
