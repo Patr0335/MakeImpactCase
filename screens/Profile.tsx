@@ -33,10 +33,7 @@ export default function Profile() {
   const navigation = useNavigation<ScreenNavigationType>();
   const dispatch = useDispatch();
   // console.log("user:", user)
-  useEffect(() => {
-    GetProfilePicture
-  }, [user]
-  )
+  console.log("photourl in profile: ", user.photoUrl)
 
   if (user.displayName === "" || user.displayName === undefined) {
     user.displayName = "Voldemort";
@@ -44,7 +41,7 @@ export default function Profile() {
   if (user.photoUrl === "" || user.photoUrl === undefined) {
     user.photoUrl = "Ca3pture.JPG";
   }
-  //console.log(user);
+  console.log("profile: ", user.photoUrl);
   return (
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.container}>

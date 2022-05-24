@@ -147,7 +147,6 @@ function LoginSignupStackNavigator() {
 
 export default function Navigation() {
   const user : User = useSelector((state: any) => state.user.loggedInUser);
-  console.log("User: ", user)
   return (
     <NavigationContainer>
       {user !== null && user.email !== undefined ? ( // if user is logged in. (not null)

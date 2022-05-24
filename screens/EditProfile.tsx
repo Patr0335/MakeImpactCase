@@ -64,7 +64,7 @@ export default function EditProfile() {
             style={styles.saveButton}
             onPress={() => {
               dispatch(onSave)
-
+              
             }}
           >
             <Text style={styles.saveText}>Save Changes</Text>
