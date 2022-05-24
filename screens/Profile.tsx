@@ -1,7 +1,7 @@
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import Constants from "expo-constants";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Button,
   Dimensions,
@@ -33,6 +33,10 @@ export default function Profile() {
   const navigation = useNavigation<ScreenNavigationType>();
   const dispatch = useDispatch();
   // console.log("user:", user)
+  useEffect(() => {
+    GetProfilePicture
+  }, [user]
+  )
 
   if (user.displayName === "" || user.displayName === undefined) {
     user.displayName = "Voldemort";

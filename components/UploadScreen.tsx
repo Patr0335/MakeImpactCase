@@ -83,6 +83,7 @@ export default function UploadScreen(probs: any) {
     <View style={styles.uploadImageButton}>
       <TouchableHighlight onPress={pickImage}>
         <Text style={styles.textStyle}>Upload image</Text>
+        
       </TouchableHighlight>
     </View> 
   );

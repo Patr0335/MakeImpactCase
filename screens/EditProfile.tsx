@@ -31,16 +31,13 @@ export default function EditProfile() {
 
   const onSave = () => {
     if (name !== "" && photoUrl !== "") {
-      const newUser: User = new User(user.email, name, photoUrl)
+      const newUser: User = new User(user.email, name, user.photoUrl)
       dispatch(updateUser(newUser, token))
     } else {
       alert("Username or Picture")
     }
   }
 
-  if (user.photoUrl === "") {
-    user.photoUrl = "https://picsum.photos/200"
-  }
   return (
     <KeyboardAvoidingView style={{ flex: 1 }}
       behavior={'padding'}
@@ -58,11 +55,7 @@ export default function EditProfile() {
             error={"Cannot be empty"}
           />
 
-          <Input title="Photo url"
-            inputValue={photoUrl}
-            setText={setphotoUrl}
-            error={"Cannot be empty"}
-          />
+          
           {/* <Input title="Study programme"
                 inputValue=""
                 error="Study programme cannot be empty" /> */}
