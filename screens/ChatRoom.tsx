@@ -17,7 +17,7 @@ import { StackParamList } from "../typings/navigations";
 
 type ScreenNavigationType = NativeStackNavigationProp<
   StackParamList,
-  "Invest"
+  "ChatRoom"
 >;
 
 export default function Chat1() {
