@@ -132,7 +132,9 @@ const styles = StyleSheet.create({
     fontWeight: "600",
     fontSize: 18,
     justifyContent: "center",
-    alignContent: "center"
+    alignContent: "center",
+    padding: 50
+    
   },
 
   imageBox: {

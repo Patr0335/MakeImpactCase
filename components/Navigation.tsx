@@ -5,7 +5,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import HomePage from "../screens/HomePage";
 import DiceGames from "../screens/DiceGames";
-import Invest from "../screens/Invest";
+import ChatRoom from "../screens/ChatRoom";
 import Profile from "../screens/Profile";
 import EditProfile from "../screens/EditProfile";
 import SignupScreen from "../screens/SignupScreen";
@@ -107,7 +107,7 @@ function DiceGamesStackNavigator() {
 function TournamentStackNavigator() {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Invest" component={Invest} />
+      <Stack.Screen name="ChatRoom" component={ChatRoom} />
     </Stack.Navigator>
   );
 }
@@ -176,12 +176,12 @@ export default function Navigation() {
             }}
           />
           <Tab.Screen
-            name="Ved ikke endnu"
+            name="Chat Rooms"
             component={TournamentStackNavigator}
             options={{
-              tabBarLabel: "Ved ikke endnu",
+              tabBarLabel: "Chat",
               tabBarIcon: ({ color, size }) => (
-                <FontAwesome5 name="money-bill" color={color} size={size} />
+                <Entypo name="chat" color={color} size={size} />
               ),
             }}
           />

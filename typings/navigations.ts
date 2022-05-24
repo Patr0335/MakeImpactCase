@@ -2,7 +2,7 @@ export type StackParamList = {
     HomePage: undefined;
     Screen2: undefined;
     DiceGames: undefined;
-    Invest: undefined;
+    ChatRoom: undefined;
     SlideBox: undefined;
     Profile: undefined;
     EditProfile: undefined;

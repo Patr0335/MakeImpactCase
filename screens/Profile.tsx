@@ -38,7 +38,7 @@ export default function Profile() {
     user.displayName = "Voldemort";
   }
   if (user.photoUrl === "" || user.photoUrl === undefined) {
-    user.photoUrl = "https://i.imgur.com/QJG4SJo.jpg";
+    user.photoUrl = "Ca3pture.JPG";
   }
   //console.log(user);
   return (
