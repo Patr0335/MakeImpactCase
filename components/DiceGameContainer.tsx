@@ -5,13 +5,13 @@ import { Dimensions, ImageBackground, StyleSheet, Text, TextInput, TouchableOpac
 
 
 
-const Box = ({ title, img, onPress }:
-    { title: string, img: any, onPress: any }) => {
+const Box = ({ title, img, onPress, style }:
+    { title: string, img: any, onPress: any, style: any }) => {
 
 
     const handleError = (e: { nativeEvent: { error: any; }; }) => { console.log(e.nativeEvent.error); };
     return (
-        <View style={styles.imageBox}>
+        <View style={[styles.imageBox, style]}>
             <ImageBackground
                 //onError={handleError}
                 source={img}

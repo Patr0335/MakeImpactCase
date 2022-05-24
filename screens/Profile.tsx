@@ -18,6 +18,7 @@ import { logout } from "../src/store/actions/user.actions";
 import { StackParamList } from "../typings/navigations";
 import { RootState } from "../App";
 import { User } from "../entities/User";
+import GetProfilePicture from "../components/GetProfilePicture";
 
 type ScreenNavigationType = NativeStackNavigationProp<
   StackParamList,
@@ -33,10 +34,10 @@ export default function Profile() {
   const dispatch = useDispatch();
   // console.log("user:", user)
 
-  if (user.displayName === "") {
+  if (user.displayName === "" || user.displayName === undefined) {
     user.displayName = "Voldemort";
   }
-  if (user.photoUrl === "") {
+  if (user.photoUrl === "" || user.photoUrl === undefined) {
     user.photoUrl = "https://i.imgur.com/QJG4SJo.jpg";
   }
   //console.log(user);
@@ -44,8 +45,9 @@ export default function Profile() {
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.container}>
         <View style={styles.row}>
-          <Image source={{ uri: user.photoUrl }} style={styles.imageStyle} />
-          {/* <Image source={require(user.photoUrl)}/> */}
+          <View>
+          <GetProfilePicture />
+          </View>
           <Text>{user.displayName}</Text>
         </View>
         <Pressable
@@ -138,7 +140,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 130,
     borderRadius: 4,
     elevation: 3,
-    backgroundColor: "white",
+    backgroundColor: "#F5B041",
   },
   editText: {
     fontSize: 16,
@@ -152,7 +154,7 @@ const styles = StyleSheet.create({
     lineHeight: 21,
     fontWeight: "bold",
     letterSpacing: 0.25,
-    color: "#003399",
+    color: "red",
   },
   titleText: {
     fontSize: 16,

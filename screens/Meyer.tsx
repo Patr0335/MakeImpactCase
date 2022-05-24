@@ -17,7 +17,7 @@ export default function Invest() {
       source={require("../assets/background.jpg")}
     >
         <View>
-            <Text>This is the Invest page</Text>
+            <Text>Meyer game coming soon... This summer!</Text>
         </View>
         </ImageBackground>
      );

@@ -3,7 +3,7 @@ export type StackParamList = {
     Screen2: undefined;
     DiceGames: undefined;
     Invest: undefined;
-    BigBox: undefined;
+    SlideBox: undefined;
     Profile: undefined;
     EditProfile: undefined;
     SignupScreen: undefined;
@@ -11,5 +11,7 @@ export type StackParamList = {
     SmallBox: undefined;
     SectorImage: undefined;
     Meyer: undefined;
+    BigBox: undefined;
+    KanyeQuotes: undefined;
     
 }

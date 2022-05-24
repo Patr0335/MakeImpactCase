@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Button,
   Dimensions,
@@ -16,6 +16,7 @@ import Input from "../components/Input";
 import UploadScreen from "../components/UploadScreen";
 import { User } from "../entities/User";
 import { updateUser } from "../src/store/actions/user.actions";
+import GetProfilePicture from "../components/GetProfilePicture";
 
 export default function EditProfile() {
   const user = useSelector((state: any) => state.user.loggedInUser);
@@ -24,9 +25,9 @@ export default function EditProfile() {
   const [name, setName] = React.useState(user.displayName);
   const [photoUrl, setphotoUrl] = React.useState(user.photoUrl)
   // const [photoUrl, setphotoUrl] = useState(user.photoUrl)
+  
 
-
-
+  
 
   const onSave = () => {
     if (name !== "" && photoUrl !== "") {
@@ -47,7 +48,7 @@ export default function EditProfile() {
       <SafeAreaView style={styles.safeArea}>
         
         <UploadScreen />
-      <Image source={{ uri: user.photoUrl }} style={styles.imageStyle} />
+      <GetProfilePicture />
       
         <View style={styles.container}>
 

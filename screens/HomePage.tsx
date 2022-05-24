@@ -17,8 +17,8 @@ import {
 import { useNavigation } from "@react-navigation/native";
 import { StackParamList } from "../typings/navigations";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import BigBox from "../components/BigBox";
-import SmallBox from "../components/SmallBox";
+import SlideBox from "../components/SlideBox";
+import KanyeQuotes from "../components/KanyeQuotes";
 import { useDispatch } from "react-redux";
 import { logout } from "../src/store/actions/user.actions";
 import Constants from "expo-constants";
@@ -32,6 +32,7 @@ export default function HomePage() {
   const navigation = useNavigation<ScreenNavigationType>();
   const dispatch = useDispatch();
   return (
+      <ScrollView showsVerticalScrollIndicator={false}>
     <SafeAreaView style={styles.safeArea}>
         <View style={styles.container}>
           <Text style={styles.header}>Welcome to YouOnlyDiceTwice</Text>
@@ -41,17 +42,17 @@ export default function HomePage() {
               style={styles.clickableButton}
               onPress={() => navigation.navigate("DiceGames")}
             >
-              <Text>See all Dice Games ➜</Text>
+              <Text style={{color: "white"}}>See all Dice Games ➜</Text>
             </TouchableOpacity>
           </View>
-          <View>
-            <Text style={styles.title}></Text>
-          </View>
+
           <Text style={styles.BigBoxHeadline}> Our Popular Games</Text>
-          <BigBox/>
-          <SmallBox />
+          <SlideBox />
+          <Text style={styles.BigBoxHeadline}> Kanye Quotes</Text>
+          <KanyeQuotes />
         </View>
       </SafeAreaView>
+        </ScrollView>
   );
 }
 
@@ -89,9 +90,14 @@ const styles = StyleSheet.create({
   },
   clickableButton: {
     alignItems: "center",
-    backgroundColor: "#f2f2f4",
+    backgroundColor: "#003399",
     padding: 10,
     borderRadius: 20,
+    marginBottom:10,
+    height: 50,
+    width: 190,
+    justifyContent: "center"
+
   },
   nonClickableButton: {
     alignItems: "center",

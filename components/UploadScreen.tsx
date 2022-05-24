@@ -18,21 +18,8 @@ import userReducer from "../src/store/reducers/user.reducer";
 import { useDispatch, useSelector } from "react-redux";
 import { updateUser } from "../src/store/actions/user.actions";
 import { withTheme } from "@rneui/themed";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: "AIzaSyARVBYF9aJs_TJeEv7aXAvcn37PBVlN8tM",
-  authDomain: "youonlydicetwice.firebaseapp.com",
-  databaseURL: "https://youonlydicetwice-default-rtdb.europe-west1.firebasedatabase.app",
-  projectId: "youonlydicetwice",
-  storageBucket: "youonlydicetwice.appspot.com",
-  messagingSenderId: "617006067367",
-  appId: "1:617006067367:web:c70aeba0ee39963d60f582",
-  measurementId: "G-B9MW0YC1QQ"
-};
+import firebaseConfig from "../entities/firebaseConfig";
+import { User } from "../entities/User";
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
@@ -68,6 +55,7 @@ export default function UploadScreen(probs: any) {
     if (!result.cancelled) {
       const storage = getStorage(); //the storage itself
       const uri = result.uri; //full uri of the image
+
       const lastIndex = uri.lastIndexOf("/"); //getting the last / in the path of the uri
       const length = uri.length; //getting the last index of the uri so we can slice
       const fileName = uri.slice(lastIndex, length); //slicing, to recieve the image file name so we can store it in our firebase storage
@@ -76,11 +64,18 @@ export default function UploadScreen(probs: any) {
       //convert image to array of bytes
       const img = await fetch(result.uri);
       const bytes = await img.blob();
+      console.log("1kommer du her? ")
       await uploadBytes(reference, bytes); //upload images
-      getDownloadURL(ref(storage, reference.fullPath)).then((url)=> {
-        setphotoUrl(url)  
-        dispatch(updateUser(user, token))
-      })
+      // getDownloadURL(ref(storage, reference.fullPath)).then((url)=> {
+      //   console.log(url)
+      //   setphotoUrl(url)  
+      //   dispatch(updateUser(user, token))
+      // })
+      console.log("2kommer du her? ")
+      setphotoUrl(fileName) 
+      const newUser: User = new User(user.email, user.name, fileName)
+      dispatch(updateUser(newUser, token))
+      
     }
   };
 
@@ -97,7 +92,7 @@ const styles = StyleSheet.create({
         position:"absolute",
         right: Dimensions.get("window").width-160,
         bottom: Dimensions.get("window").height-290,
-        backgroundColor: 'blue', 
+        backgroundColor: '#003399', 
         alignItems: 'center', 
         justifyContent: 'center',
         width: 100,

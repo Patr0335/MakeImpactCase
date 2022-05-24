@@ -33,6 +33,18 @@ function HomePageStackNavigator() {
         component={HomePage}
         options={{ headerShown: false }}
       />
+      <Stack.Screen
+        name="Meyer"
+        component={Meyer}
+        options={{
+          title: "Meyer - Dice Game Rules",
+          headerTitleAlign: "center",
+          headerTitleStyle: {
+            color: "#003399",
+            fontWeight: "bold",
+          },
+        }}
+      />
     </Stack.Navigator>
   );
 }
@@ -134,7 +146,7 @@ function LoginSignupStackNavigator() {
 }
 
 export default function Navigation() {
-  const user = useSelector((state: any) => state.user.loggedInUser);
+  const user : User = useSelector((state: any) => state.user.loggedInUser);
   console.log("User: ", user)
   return (
     <NavigationContainer>
