@@ -65,11 +65,7 @@ export default function UploadScreen(probs: any) {
       const img = await fetch(result.uri);
       const bytes = await img.blob();
       await uploadBytes(reference, bytes); //upload images
-      // getDownloadURL(ref(storage, reference.fullPath)).then((url)=> {
-      //   console.log(url)
-      //   setphotoUrl(url)  
-      //   dispatch(updateUser(user, token))
-      // })
+      
       setphotoUrl(fileName) 
       const newUser: User = new User(user.email, user.name, fileName)
       dispatch(updateUser(newUser, token))
@@ -91,7 +87,7 @@ const styles = StyleSheet.create({
     uploadImageButton: {
         position:"absolute",
         right: Dimensions.get("window").width-160,
-        bottom: Dimensions.get("window").height-290,
+        bottom: Dimensions.get("window").height-220,
         backgroundColor: '#003399', 
         alignItems: 'center', 
         justifyContent: 'center',

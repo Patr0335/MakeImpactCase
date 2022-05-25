@@ -55,10 +55,7 @@ export default function EditProfile() {
             error={"Cannot be empty"}
           />
 
-          
-          {/* <Input title="Study programme"
-                inputValue=""
-                error="Study programme cannot be empty" /> */}
+      
 
           <Pressable
             style={styles.saveButton}
