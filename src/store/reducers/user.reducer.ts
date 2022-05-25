@@ -47,7 +47,7 @@ const userReducer = (state: ReduxState = initialState, action: any) => {
       };
 
     case UPDATE_USER:
-      console.log("display name updated", action.payload.user)
+      //console.log("display name updated", action.payload.user)
       return {
         ...state,
         loggedInUser: action.payload.user,

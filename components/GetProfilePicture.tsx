@@ -9,24 +9,27 @@ initializeApp(firebaseConfig)
 
 export default function GetProfilePicture() {
   const user = useSelector((state: any) => state.user.loggedInUser);
-  const [photoUrl, setphotoUrl] = React.useState(user.photoUrl)
-  
   const [url, setUrl] = useState();
 
   useEffect(() => {
-    const func = async () => {
+    const func = () => {
       const storage = getStorage();
-      const reference = ref(storage, '/' + photoUrl)
-      await getDownloadURL(reference).then((result) => {
-        return setUrl(result);
+      const reference = ref(storage, '/' + user.photoUrl)
+      getDownloadURL(reference).then((result:string) => {
+         //console.log("se her",result) 
+        setUrl(result);
       })
+      
     }
     if(url===undefined) {func()}
-  }, [])
+  })
+ 
   return(
     <Image source={{ uri: url }} style={styles.imageStyle} />
   )
 }
+
+
 const styles = StyleSheet.create({
 imageStyle:{
     height: 140, 

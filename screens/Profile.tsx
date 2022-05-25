@@ -1,7 +1,7 @@
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import Constants from "expo-constants";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Button,
   Dimensions,
@@ -33,6 +33,7 @@ export default function Profile() {
   const navigation = useNavigation<ScreenNavigationType>();
   const dispatch = useDispatch();
   // console.log("user:", user)
+  console.log("photourl in profile: ", user.photoUrl)
 
   if (user.displayName === "" || user.displayName === undefined) {
     user.displayName = "Voldemort";
@@ -40,7 +41,7 @@ export default function Profile() {
   if (user.photoUrl === "" || user.photoUrl === undefined) {
     user.photoUrl = "Ca3pture.JPG";
   }
-  //console.log(user);
+  console.log("profile: ", user.photoUrl);
   return (
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.container}>

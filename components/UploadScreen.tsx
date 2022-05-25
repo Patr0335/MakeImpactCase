@@ -64,17 +64,16 @@ export default function UploadScreen(probs: any) {
       //convert image to array of bytes
       const img = await fetch(result.uri);
       const bytes = await img.blob();
-      console.log("1kommer du her? ")
       await uploadBytes(reference, bytes); //upload images
       // getDownloadURL(ref(storage, reference.fullPath)).then((url)=> {
       //   console.log(url)
       //   setphotoUrl(url)  
       //   dispatch(updateUser(user, token))
       // })
-      console.log("2kommer du her? ")
       setphotoUrl(fileName) 
       const newUser: User = new User(user.email, user.name, fileName)
       dispatch(updateUser(newUser, token))
+      console.log("uploadscreen: ", newUser)
       
     }
   };
@@ -83,6 +82,7 @@ export default function UploadScreen(probs: any) {
     <View style={styles.uploadImageButton}>
       <TouchableHighlight onPress={pickImage}>
         <Text style={styles.textStyle}>Upload image</Text>
+        
       </TouchableHighlight>
     </View> 
   );
