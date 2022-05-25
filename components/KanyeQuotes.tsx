@@ -14,12 +14,11 @@ import {
   Dimensions,
   Pressable,
 } from "react-native";
-import { LinearGradient } from "expo-linear-gradient";
 
 
 const KanyeQuotes = () => {
   const { data, refetch, isLoading, isError } = useQuery(
-    "joke",
+    "quote",
     async () => {
       const { data } = await axios("https://api.kanye.rest");
       return data;
