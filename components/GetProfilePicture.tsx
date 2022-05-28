@@ -15,13 +15,13 @@ export default function GetProfilePicture() {
     const func = () => {
       const storage = getStorage();
       const reference = ref(storage, '/' + user.photoUrl)
-      getDownloadURL(reference).then((result:string) => {
+      getDownloadURL(reference).then((result:any) => {
          //console.log("se her",result) 
         setUrl(result);
       })
       
     }
-    if(url===undefined) {func()}
+    if(user) {func()}
   })
  
   return(

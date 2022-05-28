@@ -7,12 +7,8 @@ import {
   SafeAreaView,
   StyleSheet,
   Text,
-  Button,
   View,
-  ScrollView,
-  Image,
   Dimensions,
-  Pressable,
 } from "react-native";
 
 
