@@ -12,8 +12,9 @@ export const rehydrateUser = (user: User, idToken: string) => {
     return { type: REHYDRATE_USER, payload: { user, idToken } }
 }
 
-export const updateUser = (user: User, idToken: string) => {
-    const APIKEY = "AIzaSyARVBYF9aJs_TJeEv7aXAvcn37PBVlN8tM"
+const APIKEY = "AIzaSyARVBYF9aJs_TJeEv7aXAvcn37PBVlN8tM"
+
+export const updateUser = (user: User, idToken: string) => {  
     const url = "https://identitytoolkit.googleapis.com/v1/accounts:update?key=" + APIKEY
      return async (dispatch: any) => {
         const response = await fetch(url, {
@@ -50,7 +51,6 @@ export const logout = () => {
 }
 
 export const login = (email : string, password : string) => {
-    const APIKEY = "AIzaSyARVBYF9aJs_TJeEv7aXAvcn37PBVlN8tM"
     const url = "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=" + APIKEY
      // laver en const som jeg kalder i min fetch forneden
      return async (dispatch: any) => {
@@ -88,7 +88,6 @@ export const login = (email : string, password : string) => {
 
 
 export const signup = (email : string, password : string) => {
-    const APIKEY = "AIzaSyARVBYF9aJs_TJeEv7aXAvcn37PBVlN8tM"
     const url = "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=" + APIKEY // laver en const som jeg kalder i min fetch forneden
 
    return async (dispatch: any) => {

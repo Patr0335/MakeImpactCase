@@ -1,3 +1,5 @@
+//Firebase configuration. enables the connection to our firebase. 
+
 export default {
     apiKey: "AIzaSyARVBYF9aJs_TJeEv7aXAvcn37PBVlN8tM",
     authDomain: "youonlydicetwice.firebaseapp.com",

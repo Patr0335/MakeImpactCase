@@ -1,8 +1,14 @@
+//Import af react metoder samt vores user entity
+
 import React from "react";
-import { StyleSheet } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
+import { StackParamList } from "../typings/navigations";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { useSelector } from "react-redux";
+
+// Import Screens
+
 import HomePage from "../screens/HomePage";
 import DiceGames from "../screens/DiceGames";
 import ChatRoom from "../screens/ChatRoom";
@@ -10,17 +16,13 @@ import Profile from "../screens/Profile";
 import EditProfile from "../screens/EditProfile";
 import SignupScreen from "../screens/SignupScreen";
 import LoginScreen from "../screens/LoginScreen";
-import { StackParamList } from "../typings/navigations";
 import Meyer from "../screens/Meyer";
+
+// Import tabBar Icons
+
 import { Entypo } from "@expo/vector-icons";
 import { FontAwesome5 } from "@expo/vector-icons";
-import { MaterialIcons } from "@expo/vector-icons";
-import { Ionicons } from "@expo/vector-icons";
-import { FontAwesome } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
-import { useSelector } from "react-redux";
-import { RootState } from "../App";
-import { User } from "../entities/User";
 
 const Stack = createNativeStackNavigator<StackParamList>();
 const Tab = createBottomTabNavigator();
@@ -104,7 +106,7 @@ function DiceGamesStackNavigator() {
   );
 }
 
-function TournamentStackNavigator() {
+function ChatRoomStack() {
   return (
     <Stack.Navigator>
       <Stack.Screen name="ChatRoom" component={ChatRoom} />
@@ -112,19 +114,10 @@ function TournamentStackNavigator() {
   );
 }
 
-
-// function MeyerStackNavigator() {
-//   return (
-//     <Stack.Navigator>
-//       <Stack.Screen name="Meyer" component={Meyer}/>
-//     </Stack.Navigator>
-//   );
-// }
-
 function LoginSignupStackNavigator() {
   return (
     <Stack.Navigator>
-            <Stack.Screen
+      <Stack.Screen
         name="LoginScreen"
         component={LoginScreen}
         options={{
@@ -146,17 +139,17 @@ function LoginSignupStackNavigator() {
 }
 
 export default function Navigation() {
-  const user : User = useSelector((state: any) => state.user.loggedInUser);
+  const user = useSelector((state: any) => state.user.loggedInUser);
   return (
     <NavigationContainer>
-      {user !== null && user.email !== undefined ? ( // if user is logged in. (not null)
-        <Tab.Navigator screenOptions={{ 
+      {user !== null && user.email !== undefined ? ( // if user is not null. (logged in) &&(and) if email is not undefined (double check for login).
+        <Tab.Navigator screenOptions={{
           headerShown: false,
           tabBarHideOnKeyboard: true
-          }}>
+        }}>
           <Tab.Screen
             name="home"
-            component={HomePageStackNavigator}
+            component={HomePageStackNavigator} // Calling a StackNavigator Function with multiple stack screens in it.
             options={{
               tabBarLabel: "Home",
               tabBarIcon: ({ color, size }) => (
@@ -176,7 +169,7 @@ export default function Navigation() {
           />
           <Tab.Screen
             name="Chat Rooms"
-            component={TournamentStackNavigator}
+            component={ChatRoomStack}
             options={{
               tabBarLabel: "Chat",
               tabBarIcon: ({ color, size }) => (
@@ -196,9 +189,10 @@ export default function Navigation() {
           />
         </Tab.Navigator>
       ) : (
+        //if user is null (not logged in)
         <Stack.Navigator screenOptions={{ headerShown: false }}>
           <Stack.Screen
-            name="SignupScreen"
+            name="SignupLoginScreen"
             component={LoginSignupStackNavigator}
             options={{
               animationTypeForReplace: "push",
@@ -209,37 +203,3 @@ export default function Navigation() {
     </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
-
-// function ScreenStackNavigator() {
-//   return (
-//     <NavigationContainer>
-//     <Stack.Navigator>
-//       <Stack.Screen
-//         name="Screen1"
-//         component={Navigation}
-//         options={{
-//           title: `You Only Dice Twice`,
-//         }}
-//       />
-//       {/* <Stack.Screen options={{headerShown: false}}
-//       name="Screen2"
-//       component={Screen2}
-//       /> */}
-//       <Stack.Screen options={{headerShown: false}}
-//       name="DiceGames"
-//       component={DiceGames}
-
-//       />
-//     </Stack.Navigator>
-//     </NavigationContainer>
-//   );
-// }

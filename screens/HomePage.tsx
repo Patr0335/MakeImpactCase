@@ -32,8 +32,8 @@ export default function HomePage() {
   const navigation = useNavigation<ScreenNavigationType>();
   const dispatch = useDispatch();
   return (
-      <ScrollView showsVerticalScrollIndicator={false}>
-    <SafeAreaView style={styles.safeArea}>
+    <ScrollView showsVerticalScrollIndicator={false}>
+      <SafeAreaView style={styles.safeArea}>
         <View style={styles.container}>
           <Text style={styles.header}>Welcome to YouOnlyDiceTwice</Text>
           <View style={styles.buttonContainer}>
@@ -42,7 +42,7 @@ export default function HomePage() {
               style={styles.clickableButton}
               onPress={() => navigation.navigate("DiceGames")}
             >
-              <Text style={{color: "white"}}>See all Dice Games ➜</Text>
+              <Text style={{ color: "white" }}>See all Dice Games ➜</Text>
             </TouchableOpacity>
           </View>
 
@@ -52,10 +52,9 @@ export default function HomePage() {
           <KanyeQuotes />
         </View>
       </SafeAreaView>
-        </ScrollView>
+    </ScrollView>
   );
-}
-
+};
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -93,7 +92,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#003399",
     padding: 10,
     borderRadius: 20,
-    marginBottom:10,
+    marginBottom: 10,
     height: 50,
     width: 190,
     justifyContent: "center"

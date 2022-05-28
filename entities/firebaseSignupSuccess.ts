@@ -1,14 +1,21 @@
 export class firebaseSignupSuccess {
-    constructor(public idToken: string, public email: string, public refreshToken: string, public displayName: string, public profilePicture: string, 
-        public expiresIn: string, public localId: string) {
-            
+    constructor(
+        public idToken: string, 
+        public email: string, 
+        public refreshToken: string, 
+        public displayName: string, 
+        public profilePicture: string, 
+        public expiresIn: string, 
+        public localId: string) {       
     }
 }
 
-// NOTES
+    // NOTES
 
-    // idToken	string	A Firebase Auth ID token for the newly created user.
-    // email	string	The email for the newly created user.
-    // refreshToken	string	A Firebase Auth refresh token for the newly created user.
-    // expiresIn	string	The number of seconds in which the ID token expires.
-    // localId	string	The uid of the newly created user.
+    // idToken	      string	A Firebase Auth ID token for the newly created user.
+    // email	      string	The email for the newly created user.
+    // refreshToken	  string	A Firebase Auth refresh token for the newly created user.
+    // displayName    string    The DisplayName for the newly created user.
+    // profilePicture string    The profilePicture for the newly created user.
+    // expiresIn	  string	The number of seconds in which the ID token expires.
+    // localId	      string	The uid of the newly created user.

@@ -1,7 +1,7 @@
 
+import React, { useEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import React, { useEffect } from "react";
 import {
   Button,
   FlatList,
@@ -64,7 +64,7 @@ export default function Chat1() {
             <Button title="Create chatroom" onPress={handleAddChatroom} />
     </View>
   );
-}
+};
 const styles = StyleSheet.create({
   container: {
     flex: 1,

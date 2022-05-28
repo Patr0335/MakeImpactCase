@@ -7,15 +7,13 @@ import {
   SafeAreaView,
   StyleSheet,
   Text,
-  Button,
   View,
   ScrollView,
-  Image
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import Constants from 'expo-constants'
 import { useNavigation } from "@react-navigation/native";
-
+//example code
 type ScreenNavigationType = NativeStackNavigationProp<StackParamList, "BigBox">;
 
 export default function BigBox() {

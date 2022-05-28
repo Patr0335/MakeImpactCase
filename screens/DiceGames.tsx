@@ -7,14 +7,14 @@ import {
   Text,
   View,
 } from "react-native";
+
+import Box from "../components/DiceGameContainer"
+
 import { useNavigation } from "@react-navigation/native";
 import { StackParamList } from "../typings/navigations";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import SectorImage from "../components/SectorImage";
-import Box from "../components/DiceGameContainer"
-import { renderNode } from "@rneui/base";
-import Constants from "expo-constants";
 
+import Constants from "expo-constants";
 
 type ScreenNavigationType = NativeStackNavigationProp<
   StackParamList,
@@ -35,13 +35,13 @@ export default function DiceGames() {
           <SafeAreaView style={{ flex: 1 }}>
             <Text style={styles.header}>Dice Games</Text>
             <View style={styles.container}>
-              <Box title="Liar's Dice 🎲" img={require("../assets/Liar_dice.jpg")} onPress={() => console.log()} style={""}/>
-              <Box title="Meyer 🎲" img={require("../assets/meyer.jpg")} onPress={() => navigation.navigate("Meyer")} style={""}/>
-              <Box title="Yatzy 🎲" img={require("../assets/yatzy.jpg")} onPress={() => console.log()} style={""}/>
-              <Box title="10.000 🎲" img={require("../assets/10000.jpg")} onPress={() => console.log()} style={""}/>
-              <Box title="Bunco 🎲" img={require("../assets/bunco.jpg")} onPress={() => console.log()} style={""}/>
-              <Box title="Shut the Box 🎲" img={require("../assets/shutthebox.jpg")} onPress={() => console.log()} style={""}/>
-              <Box title="Beat That 🎲" img={require("../assets/beatthat.jpg")} onPress={() => console.log()} style={""}/>
+              <Box title="Liar's Dice 🎲" img={require("../assets/Liar_dice.jpg")} onPress={() => console.log()} style={""} />
+              <Box title="Meyer 🎲" img={require("../assets/meyer.jpg")} onPress={() => navigation.navigate("Meyer")} style={""} />
+              <Box title="Yatzy 🎲" img={require("../assets/yatzy.jpg")} onPress={() => console.log()} style={""} />
+              <Box title="10.000 🎲" img={require("../assets/10000.jpg")} onPress={() => console.log()} style={""} />
+              <Box title="Bunco 🎲" img={require("../assets/bunco.jpg")} onPress={() => console.log()} style={""} />
+              <Box title="Shut the Box 🎲" img={require("../assets/shutthebox.jpg")} onPress={() => console.log()} style={""} />
+              <Box title="Beat That 🎲" img={require("../assets/beatthat.jpg")} onPress={() => console.log()} style={""} />
               <Box title="Hygge terninger 18+⚠️" img={require("../assets/hyggeterninger.jpg")} onPress={() => console.log()} style={""} />
 
             </View>
@@ -51,8 +51,17 @@ export default function DiceGames() {
       {/* <SectorImage /> */}
     </View>
   );
-}
+};
 const styles = StyleSheet.create({
+  header: {
+    color: "#fff",
+    zIndex: 10,
+    marginTop: Constants.statusBarHeight + 20,
+    marginBottom: 0,
+    textAlign: "center",
+    fontSize: 35,
+    fontWeight: "600",
+  },
   container: {
     flex: 1,
     margin: 10,
@@ -62,19 +71,5 @@ const styles = StyleSheet.create({
     flexWrap: "wrap",
     justifyContent: "space-around",
     alignContent: "center",
-  },
-  header: {
-    color: "#fff",
-    zIndex: 10,
-    marginTop: Constants.statusBarHeight + 20,
-    marginBottom: 0,
-    textAlign: "center",
-    fontSize: 35,
-    fontWeight: "600",
-
-  },
-
-  appButtonContainer: {
-    color: "#0a0a14",
   },
 });
