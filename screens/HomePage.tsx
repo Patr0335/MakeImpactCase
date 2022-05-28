@@ -47,9 +47,9 @@ export default function HomePage() {
           </View>
 
           <Text style={styles.BigBoxHeadline}> Our Popular Games</Text>
-          <SlideBox />
+          <SlideBox/>
           <Text style={styles.BigBoxHeadline}> Kanye Quotes</Text>
-          <KanyeQuotes />
+          <KanyeQuotes/>
         </View>
       </SafeAreaView>
     </ScrollView>

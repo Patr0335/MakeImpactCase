@@ -11,9 +11,10 @@ import {
   Dimensions,
 } from "react-native";
 
+
 const KanyeQuotes = () => {
   const { data, refetch, isLoading, isError } = useQuery(
-    "quotes",
+    "quote",
     async () => {
       const { data } = await axios("https://api.kanye.rest");
       return data;

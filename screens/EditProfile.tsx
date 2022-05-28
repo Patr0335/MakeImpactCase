@@ -47,6 +47,7 @@ export default function EditProfile() {
             setText={setName}
             error={"Cannot be empty"}
           />
+
           <Pressable
             style={styles.saveButton}
             onPress={() => {
