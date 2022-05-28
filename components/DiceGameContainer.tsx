@@ -1,42 +1,36 @@
-import Constants from 'expo-constants';
-import { LinearGradient } from 'expo-linear-gradient';
 import React from 'react';
-import { Dimensions, ImageBackground, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
+import { ImageBackground, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 
-
+//defines the parameters for our Box component, and defines their types
 const Box = ({ title, img, onPress, style }:
     { title: string, img: any, onPress: any, style: any }) => {
 
-
-    const handleError = (e: { nativeEvent: { error: any; }; }) => { console.log(e.nativeEvent.error); };
-    return (
+        return (
         <View style={[styles.imageBox, style]}>
             <ImageBackground
-                //onError={handleError}
                 source={img}
                 style={styles.imageBG}
             >
-            <LinearGradient
-                colors={["rgba(0,0,0,1)", "transparent"]}
-                start={{ x: 1, y: 1 }}
-                end={{ x: 1, y: 0.5 }}
-            >
-                    <TouchableOpacity 
-                    style={styles.tOpacity}
-                    onPress={onPress}>
+                <LinearGradient
+                    colors={["rgba(0,0,0,1)", "transparent"]}
+                    start={{ x: 1, y: 1 }}
+                    end={{ x: 1, y: 0.5 }}
+                >
+                    <TouchableOpacity
+                        style={styles.tOpacity}
+                        onPress={onPress}>
                         <Text style={styles.buttonTextStyle}>{title}</Text>
                     </TouchableOpacity>
                 </LinearGradient>
             </ImageBackground>
         </View>
     );
-}
+};
 
 
 const styles = StyleSheet.create({
-
-
     imageBox: {
         borderRadius: 6,
         overflow: "hidden",
@@ -44,7 +38,6 @@ const styles = StyleSheet.create({
         height: 150,
         marginTop: 10,
         marginBottom: 10,
-        //shadow
         elevation: 20,
         shadowColor: '#171717',
     },
@@ -73,7 +66,6 @@ const styles = StyleSheet.create({
         paddingRight: 15,
         borderRadius: 5,
     },
-
 });
 
 export default Box;

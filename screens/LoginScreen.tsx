@@ -1,4 +1,3 @@
-import * as SecureStore from "expo-secure-store";
 import React, { useEffect, useState } from "react";
 import {
   StyleSheet,
@@ -9,11 +8,13 @@ import {
   ImageBackground,
   Dimensions
 } from "react-native";
-import { useDispatch } from "react-redux";
 import { login } from "../src/store/actions/user.actions";
+
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { StackParamList } from "../typings/navigations";
 import { useNavigation } from "@react-navigation/native";
+import { useDispatch } from "react-redux";
+import * as SecureStore from "expo-secure-store";
 
 type ScreenNavigationType = NativeStackNavigationProp<
   StackParamList,
@@ -42,7 +43,7 @@ export default function LoginScreen() {
 
   const handleLogin = () => {
     dispatch(login(email, passwordStr));
-}
+  }
 
   useEffect(() => {
     console.log("-----------------------------------")
@@ -55,41 +56,45 @@ export default function LoginScreen() {
       source={require("../assets/background.jpg")}
     >
       <View style={styles.container}>
-        
-        <TextInput 
-        value={email}
-        //value="test8@gmail.com" 
-        placeholder="email" 
-        onChangeText={setEmail}
-        style={styles.textInput} 
+
+        <TextInput
+          value={email}
+          placeholder="email"
+          onChangeText={setEmail}
+          style={styles.textInput}
         />
 
         <TextInput
-        secureTextEntry={true}
+          secureTextEntry={true}
           value={passwordStr}
-          //value="123456"
           placeholder="password"
           onChangeText={setPasswordStr}
           style={styles.textInput}
         />
 
-        <Button title="Login"  
-        onPress={() => dispatch(handleLogin)} /> 
+        <Button title="Login"
+          onPress={() => dispatch(handleLogin)} />
       </View>
       <View style={styles.signupText}>
-      <Text>Dont have a user? <Text style={{color: 'blue'}} onPress={() => navigation.navigate("SignupScreen")}>Click here to Sign up</Text></Text>
+        <Text>Dont have a user?
+          <Text style={{ color: 'blue' }} onPress={() => navigation.navigate("SignupScreen")}> Click here to Sign up</Text>
+        </Text>
       </View>
     </ImageBackground>
   );
-}
+};
 const styles = StyleSheet.create({
+  background: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    width: Dimensions.get('window').width,
+    height: Dimensions.get('window').height,
+  },
   container: {
     position: "absolute",
     top: 70,
     alignItems: "center",
-  },
-  text: {
-    fontSize: 42,
   },
   textInput: {
     fontSize: 16,
@@ -98,19 +103,12 @@ const styles = StyleSheet.create({
     margin: 12,
     borderWidth: 1,
     padding: 10,
-    
   },
-  background: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    width: Dimensions.get('window').width,
-    height: Dimensions.get('window').height,
-  },
+
   signupText: {
     margin: "10%",
     position: "absolute",
-    left: Dimensions.get('window').width-370,
-    top: Dimensions.get('window').height-460
+    left: Dimensions.get('window').width - 370,
+    top: Dimensions.get('window').height - 460
   },
 });

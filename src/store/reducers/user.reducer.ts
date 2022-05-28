@@ -20,17 +20,10 @@ const userReducer = (state: ReduxState = initialState, action: any) => {
   switch (action.type) {
     case LOGOUT:
       return { ...state, loggedInUser: null, idToken: undefined };
-    // case REHYDRATE_USER:
-    //   return {
-    //     ...state,
-    //     loggedInUser: action.payload.user,
-    //     idToken: action.payload.idToken,
-    //   };
+      
     case SIGNUP:
       const newUser = new User(action.payload.email, '', '');
-      // return {...state, loggedInUser: user}
 
-      //const user = {email: 'fakjsdflh', photoUrl: 'afdds' } as User
       return {
         ...state,
         loggedInUser: newUser,
@@ -38,8 +31,8 @@ const userReducer = (state: ReduxState = initialState, action: any) => {
       };
 
     case LOGIN:
-      const user = new User(action.payload.email, action.payload.displayName, action.payload.photoUrl)
-      
+      const user = new User(action.payload.email, action.payload.displayName, action.payload.photoUrl) 
+
       return {
         ...state,
         loggedInUser: user,
@@ -47,7 +40,6 @@ const userReducer = (state: ReduxState = initialState, action: any) => {
       };
 
     case UPDATE_USER:
-      //console.log("display name updated", action.payload.user)
       return {
         ...state,
         loggedInUser: action.payload.user,

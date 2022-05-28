@@ -1,44 +1,41 @@
-import {getStorage, ref, getDownloadURL} from 'firebase/storage';
+import React, { useEffect, useState } from 'react';
+import { getStorage, ref, getDownloadURL } from 'firebase/storage';
 import firebaseConfig from "../entities/firebaseConfig";
 import { initializeApp } from "firebase/app";
 import { useSelector } from 'react-redux';
-import React, { useEffect, useState } from 'react';
-import { Dimensions, Image, StyleSheet } from "react-native";
+import { Image, StyleSheet } from "react-native";
+
+// Initialize Firebase
 initializeApp(firebaseConfig)
 
-
 export default function GetProfilePicture() {
+  //get our currently logged on user
   const user = useSelector((state: any) => state.user.loggedInUser);
   const [url, setUrl] = useState();
 
   useEffect(() => {
-    const func = () => {
+    const showProfilePicture = () => {
+      //getting the connection to our storage in our firebase 
       const storage = getStorage();
+      //takes the storage connection with our photourl to get the image.
       const reference = ref(storage, '/' + user.photoUrl)
       getDownloadURL(reference).then((result:any) => {
          //console.log("se her",result) 
         setUrl(result);
       })
-      
     }
-    if(user) {func()}
+    if (user) { showProfilePicture() }
   })
- 
-  return(
+
+  return (
     <Image source={{ uri: url }} style={styles.imageStyle} />
   )
 }
 
-
 const styles = StyleSheet.create({
-imageStyle:{
-    height: 140, 
+  imageStyle: {
+    height: 140,
     width: 140,
-    // position: "absolute",
-    // top:20,
-    // right: Dimensions.get("window").width - 350,
     borderRadius: 80,
-    
-
   },
-})
+});

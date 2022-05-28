@@ -23,15 +23,14 @@ const KanyeQuotes = () => {
 
   if (isLoading) {
     return (
-
       <SafeAreaView style={{ flex: 1 }}>
         <View style={styles.container}>
-          <View style={styles.imageBox}>
+          <View style={styles.quoteBox}>
             <ImageBackground
               source={require("../assets/kanye.jpeg")}
               style={styles.imageBG}
             >
-              <Text style={styles.buttonTextStyle}>Loading...</Text>
+              <Text style={styles.textStyle}>Loading...</Text>
             </ImageBackground>
           </View>
         </View>
@@ -42,16 +41,14 @@ const KanyeQuotes = () => {
 
   if (isError) {
     return (
-
       <SafeAreaView style={{ flex: 1 }}>
         <View style={styles.container}>
-          <View style={styles.imageBox}>
+          <View style={styles.quoteBox}>
             <ImageBackground
               source={require("../assets/kanye.jpeg")}
               style={styles.imageBG}
             >
-
-              <Text style={styles.buttonTextStyle}>ERROR!</Text>
+              <Text style={styles.textStyle}>ERROR!</Text>
             </ImageBackground>
           </View>
         </View>
@@ -60,24 +57,20 @@ const KanyeQuotes = () => {
     )
   }
 
-
-
   return (
-
     <SafeAreaView style={{ flex: 1 }}>
       <View style={styles.container}>
-        <View style={styles.imageBox}>
+        <View style={styles.quoteBox}>
           <ImageBackground
             source={require("../assets/kanye.jpeg")}
             style={styles.imageBG}
           >
-            <View style={{justifyContent: "center", alignContent: "center" }}>
-            <Text style={styles.buttonTextStyle}>"{data.quote}"<Text style={{ fontSize: 10 }}> - Kanye West</Text></Text>
+            <View style={styles.textPlacement}>
+              <Text style={styles.textStyle}>"{data.quote}"<Text style={{ fontSize: 10 }}>{"\n"}- Kanye West</Text></Text>
             </View>
             <TouchableOpacity style={styles.anotherOne} onPress={() => { refetch() }}>
               <Text style={{ color: "white" }}>Another Quote</Text>
             </TouchableOpacity>
-
           </ImageBackground>
         </View>
       </View>
@@ -85,7 +78,6 @@ const KanyeQuotes = () => {
 
   )
 };
-
 
 export default KanyeQuotes;
 
@@ -98,28 +90,28 @@ const styles = StyleSheet.create({
     flexWrap: "wrap",
     alignContent: "center",
     width: Dimensions.get("window").scale,
-
-
   },
-  ImageText: {
-    textAlign: "left",
-    padding: 5,
+  quoteBox: {
+    borderRadius: 6,
+    overflow: "hidden",
+    width: Dimensions.get("window").width - 10,
+    height: 190,
+    marginTop: 10,
+    marginBottom: 10,
+    elevation: 20,
+    shadowColor: "#171717",
   },
-
   imageBG: {
     borderRadius: 10,
     overflow: "hidden",
     width: Dimensions.get("window").width - 10,
     height: 210,
-
   },
-  linearGradient: {
-    flex: 1,
-    paddingLeft: 15,
-    paddingRight: 15,
-    borderRadius: 5,
+  textPlacement: {
+    justifyContent: "center",
+    alignContent: "center"
   },
-  buttonTextStyle: {
+  textStyle: {
     color: "#fff",
     marginBottom: 4,
     maxWidth: Dimensions.get("window").width - 9,
@@ -129,22 +121,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignContent: "center",
     padding: 50
-    
-  },
-
-  imageBox: {
-    borderRadius: 6,
-    overflow: "hidden",
-    width: Dimensions.get("window").width - 10,
-    height: 190,
-    marginTop: 10,
-    marginBottom: 10,
-    //shadow
-    elevation: 20,
-    shadowColor: "#171717",
-  },
-  tOpacity: {
-    height: 150,
   },
   anotherOne: {
     position: "absolute",
@@ -154,8 +130,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#003399",
     borderRadius: 10,
     padding: 2,
+  },
 
-  }
 });
 
 

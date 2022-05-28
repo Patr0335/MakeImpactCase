@@ -1,5 +1,11 @@
 import React, { useState } from 'react';
-import { Dimensions, StyleSheet, Text, TextInput, View } from 'react-native';
+import { 
+    Dimensions, 
+    StyleSheet, 
+    Text, 
+    TextInput, 
+    View 
+} from 'react-native';
 
 
 
@@ -28,15 +34,13 @@ const styles = StyleSheet.create({
         position: "relative",
         backgroundColor: '#fff',
         justifyContent: 'center',
-        
-        minHeight:Dimensions.get('window').height-600,
-        width: Dimensions.get('window').height-400,
+        minHeight: Dimensions.get('window').height - 600,
+        width: Dimensions.get('window').height - 400,
         margin: 10,
-        borderRadius:10, 
-    
+        borderRadius: 10,
     },
     textTitle: {
-        position: "absolute", 
+        position: "absolute",
         top: 1,
         marginLeft: 5,
         fontWeight: "bold",
@@ -47,8 +51,7 @@ const styles = StyleSheet.create({
         position: "absolute",
         bottom: 20,
         fontSize: 20,
-        
     }
-})
+});
 
 export default Input;

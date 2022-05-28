@@ -1,9 +1,7 @@
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import Constants from "expo-constants";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
-  Button,
   Dimensions,
   Pressable,
   SafeAreaView,
@@ -11,13 +9,10 @@ import {
   Switch,
   Text,
   View,
-  Image,
 } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../src/store/actions/user.actions";
 import { StackParamList } from "../typings/navigations";
-import { RootState } from "../App";
-import { User } from "../entities/User";
 import GetProfilePicture from "../components/GetProfilePicture";
 
 type ScreenNavigationType = NativeStackNavigationProp<
@@ -27,50 +22,52 @@ type ScreenNavigationType = NativeStackNavigationProp<
 
 export default function Profile() {
   const user = useSelector((state: any) => state.user.loggedInUser);
+
   const [isEnabled, setIsEnabled] = useState(false);
-  const toggleSwitch = () =>
-    setIsEnabled((previousState: any) => !previousState);
+  const toggleSwitch = () => setIsEnabled((previousState: any) => !previousState);
+
   const navigation = useNavigation<ScreenNavigationType>();
   const dispatch = useDispatch();
-  // console.log("user:", user)
-  console.log("photourl in profile: ", user.photoUrl)
 
   if (user.displayName === "" || user.displayName === undefined) {
     user.displayName = "Voldemort";
   }
+
   if (user.photoUrl === "" || user.photoUrl === undefined) {
     user.photoUrl = "Ca3pture.JPG";
   }
-  console.log("profile: ", user.photoUrl);
+
   return (
     <SafeAreaView style={styles.safeArea}>
-      <View style={styles.container}>
+
+      <View style={styles.topContainer}>
+
         <View style={styles.row}>
-          <View>
+
           <GetProfilePicture />
-          </View>
           <Text>{user.displayName}</Text>
+
         </View>
+
         <Pressable
           style={styles.editButton}
           onPress={() => navigation.navigate("EditProfile")}
         >
           <Text style={styles.editText}>Edit Profile</Text>
         </Pressable>
+
       </View>
-      <View
-        style={{
-          flexDirection: "row",
-          alignItems: "center",
-          paddingTop: 1,
-          margin: 20,
-        }}
-      >
-        <View style={{ flex: 1, height: 1, backgroundColor: "black" }} />
+
+      <View style={styles.borderContainer}>
+        <View style={styles.borderLine} />
       </View>
-      <View style={styles.container1}>
+
+      <View style={styles.bottomContainer}>
+
         <Text style={styles.titleText}>NOTIFICATIONS</Text>
-        <View style={styles.container2}>
+
+        <View style={styles.notificationContainer}>
+
           <Text>Test</Text>
           <Switch
             style={styles.switch}
@@ -80,20 +77,28 @@ export default function Profile() {
             onValueChange={toggleSwitch}
             value={isEnabled}
           />
+
         </View>
+
         <Pressable
           style={styles.logoutButton}
           onPress={() => dispatch(logout())}
         >
           <Text style={styles.logoutText}>LOG OUT</Text>
         </Pressable>
+
       </View>
+
     </SafeAreaView>
   );
-}
+};
 
 const styles = StyleSheet.create({
-  container: {
+  safeArea: {
+    flex: 1,
+    alignItems: "center",
+  },
+  topContainer: {
     flex: 0.5,
     backgroundColor: "#F0F0F0",
     alignItems: "center",
@@ -102,28 +107,10 @@ const styles = StyleSheet.create({
     margin: 20,
     alignContent: "flex-start",
   },
-  container1: {
-    flex: 0.5,
-    backgroundColor: "#F0F0F0",
-    justifyContent: "space-between",
-    height: Dimensions.get("window").height,
-    margin: 20,
-  },
-  container2: {
-    // alignItems: "center",
-    // justifyContent: "center",
-    paddingVertical: 12,
-    paddingHorizontal: 130,
-    // borderRadius: 4,
-    elevation: 3,
-    backgroundColor: "white",
-  },
-  safeArea: {
+  row: {
     flex: 1,
-    alignItems: "center",
-  },
-  switch: {
-    alignContent: "flex-end",
+    flexDirection: "row",
+    alignContent: "flex-start",
   },
   editButton: {
     alignItems: "center",
@@ -134,15 +121,6 @@ const styles = StyleSheet.create({
     elevation: 3,
     backgroundColor: "#003399",
   },
-  logoutButton: {
-    alignItems: "center",
-    justifyContent: "center",
-    paddingVertical: 25,
-    paddingHorizontal: 130,
-    borderRadius: 4,
-    elevation: 3,
-    backgroundColor: "#F5B041",
-  },
   editText: {
     fontSize: 16,
     lineHeight: 21,
@@ -150,12 +128,23 @@ const styles = StyleSheet.create({
     letterSpacing: 0.25,
     color: "white",
   },
-  logoutText: {
-    fontSize: 20,
-    lineHeight: 21,
-    fontWeight: "bold",
-    letterSpacing: 0.25,
-    color: "red",
+  borderContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    paddingTop: 1,
+    margin: 20,
+  },
+  borderLine: {
+    flex: 1,
+    height: 1,
+    backgroundColor: "black"
+  },
+  bottomContainer: {
+    flex: 0.5,
+    backgroundColor: "#F0F0F0",
+    justifyContent: "space-between",
+    height: Dimensions.get("window").height,
+    margin: 20,
   },
   titleText: {
     fontSize: 16,
@@ -165,24 +154,29 @@ const styles = StyleSheet.create({
     color: "#003399",
     textAlign: "left",
   },
-  imageStyle: {
-    width: 100,
-    height: 100,
-    margin: 5,
-    //overflow: "hidden",
-    // resizeMode: "contain",
-    borderRadius: 80,
-    alignItems: 'flex-start',
-    
+  notificationContainer: {
+    paddingVertical: 12,
+    paddingHorizontal: 130,
+    elevation: 3,
+    backgroundColor: "white",
   },
-  row: {
-    flex: 1,
-    flexDirection: "row",
-    alignContent: "flex-start",
+  switch: {
+    alignContent: "flex-end",
   },
-  // column: {
-  //   flexDirection: 'column',
-  //   alignItems: 'center',
-  //   width: '50%',
-  // }
+  logoutButton: {
+    alignItems: "center",
+    justifyContent: "center",
+    paddingVertical: 25,
+    paddingHorizontal: 130,
+    borderRadius: 4,
+    elevation: 3,
+    backgroundColor: "#F5B041",
+  },
+  logoutText: {
+    fontSize: 20,
+    lineHeight: 21,
+    fontWeight: "bold",
+    letterSpacing: 0.25,
+    color: "red",
+  },
 });
