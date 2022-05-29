@@ -16,7 +16,7 @@ const KanyeQuotes = () => {
   const { data, refetch, isLoading, isError } = useQuery(
     "quote",
     async () => {
-      const { data } = await axios("https://api.kanye.rest");
+      const { data } = await axios("https://api.kanye.rest"); // Promise based HTTP client for the browser and node.js
       return data;
     }
   );

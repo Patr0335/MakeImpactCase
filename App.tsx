@@ -10,11 +10,12 @@ import { QueryClient, QueryClientProvider } from "react-query";
 const rootReducer = combineReducers({
   chat: chatReducer,
   user: userReducer,
-  // posts: PostReducer
 });
 
 export type RootState = ReturnType<typeof rootReducer>
 
+
+// Creating the redux store
 const store = createStore(rootReducer, applyMiddleware(ReduxThunk));
 
 // Thunk: if you want to call async call actions without messing with redux
@@ -24,6 +25,11 @@ const queryClient = new QueryClient()
 
 export default function App(probs: any) {
   return (
+
+    // Provider makes data accessible to the entire component tree / app
+
+    // QueryProvider makes reactQuery data accessible to the entire component tree / app
+
     <Provider store={store}>
       <QueryClientProvider client={queryClient}>
       <Navigation/>

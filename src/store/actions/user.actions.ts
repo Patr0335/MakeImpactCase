@@ -1,4 +1,7 @@
+
+// provides a way to encrypt and securely store key–value pairs locally on the device.
 import * as SecureStore from 'expo-secure-store';
+
 import { firebaseSignupSuccess } from "../../../entities/firebaseSignupSuccess";
 import { User } from "../../../entities/User";
 
