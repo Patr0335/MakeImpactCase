@@ -2,6 +2,7 @@ import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import React, { useState } from "react";
 import {
+  Alert,
   Dimensions,
   Pressable,
   SafeAreaView,
@@ -30,11 +31,21 @@ export default function Profile() {
   const dispatch = useDispatch();
 
   if (user.displayName === "" || user.displayName === undefined) {
-    user.displayName = "Voldemort";
+    user.displayName = "Change me!";
   }
 
   if (user.photoUrl === "" || user.photoUrl === undefined) {
     user.photoUrl = "Ca3pture.JPG";
+  }
+
+  if(isEnabled === true){
+    Alert.alert(
+      "Notifications",
+      "Notifications are turned on!",
+      [
+        { text: "OK" }
+      ]
+    );
   }
 
   return (
@@ -42,12 +53,12 @@ export default function Profile() {
 
       <View style={styles.topContainer}>
 
-        <View style={styles.row}>
 
-          <GetProfilePicture />
-          <Text>{user.displayName}</Text>
 
-        </View>
+        <GetProfilePicture />
+        <Text style={styles.displayNameText}>{user.displayName}</Text>
+
+
 
         <Pressable
           style={styles.editButton}
@@ -68,7 +79,7 @@ export default function Profile() {
 
         <View style={styles.notificationContainer}>
 
-          <Text>Test</Text>
+          <Text>Turn on notifications</Text>
           <Switch
             style={styles.switch}
             trackColor={{ false: "#B8B8B8", true: "#B8B8B8" }}
@@ -107,10 +118,8 @@ const styles = StyleSheet.create({
     margin: 20,
     alignContent: "flex-start",
   },
-  row: {
-    flex: 1,
-    flexDirection: "row",
-    alignContent: "flex-start",
+  displayNameText: {
+    fontSize: 20
   },
   editButton: {
     alignItems: "center",
@@ -156,7 +165,7 @@ const styles = StyleSheet.create({
   },
   notificationContainer: {
     paddingVertical: 12,
-    paddingHorizontal: 130,
+    alignItems: "center",
     elevation: 3,
     backgroundColor: "white",
   },

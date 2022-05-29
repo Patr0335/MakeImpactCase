@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     margin: 20,
     position: "absolute",
-    top: 150
+    top: 190
   },
   saveButton: {
     alignItems: "center",

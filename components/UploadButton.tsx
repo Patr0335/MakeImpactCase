@@ -104,8 +104,8 @@ export default function UploadScreen() {
 const styles = StyleSheet.create({
   uploadImageButton: {
     position: "absolute",
-    right: Dimensions.get("window").width - 160,
-    bottom: Dimensions.get("window").height - 290,
+    right: Dimensions.get("window").width - 380,
+    bottom: Dimensions.get("window").height - 250,
     backgroundColor: '#003399',
     alignItems: 'center',
     justifyContent: 'center',

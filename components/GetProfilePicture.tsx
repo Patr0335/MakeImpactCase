@@ -36,8 +36,8 @@ export default function GetProfilePicture() {
 
 const styles = StyleSheet.create({
   imageStyle: {
-    height: 140,
-    width: 140,
-    borderRadius: 80,
+    height: 180,
+    width: 180,
+    borderRadius: 100,
   },
 });

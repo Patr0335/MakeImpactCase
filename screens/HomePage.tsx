@@ -45,7 +45,7 @@ export default function HomePage() {
           <View style={styles.buttonContainer}>
             <TouchableOpacity
               style={styles.clickableButton}
-              onPress={() => navigation.navigate("DiceGames")}
+              onPress={() => navigation.navigate("Dice Games")}
             >
               <Text style={{ color: "white" }}>See all Dice Games ➜</Text>
             </TouchableOpacity>
