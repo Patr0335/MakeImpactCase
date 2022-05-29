@@ -12,7 +12,6 @@ import {
 import { CheckBox } from "@rneui/themed";
 import { useDispatch } from "react-redux";
 import { signup } from "../src/store/actions/user.actions";
-import * as SecureStore from "expo-secure-store";
 
 
 export default function SignupScreen() {
@@ -20,17 +19,6 @@ export default function SignupScreen() {
   const [passwordStr, setPasswordStr] = useState("");
   const [check1, setCheck1] = useState(false);
   const dispatch = useDispatch(); // hook to get
-
-
-  // async function readPersistedUserInfo() {
-  //   const token = await SecureStore.getItemAsync("idToken");
-  //   const userJson = await SecureStore.getItemAsync("user");
-  // }
-
-
-  // useEffect(() => {
-  //   readPersistedUserInfo();
-  // }, []);
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
