@@ -16,7 +16,7 @@ const KanyeQuotes = () => {
 
   //React Query is a library to fetch. It also helps if you want to refetch more than once and is is generally faster.
   const { data, refetch, isLoading, isError } = useQuery(
-    "quote",
+    "quotes",
     async () => {
       // Promise based HTTP client for the browser and node.js which helps us getting a quote from this api
       const { data } = await axios("https://api.kanye.rest"); 
