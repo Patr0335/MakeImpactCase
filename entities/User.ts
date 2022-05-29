@@ -8,4 +8,5 @@ export class User {
         this.displayName = displayName;
         this.photoUrl = photoUrl;
     }
+    
 }

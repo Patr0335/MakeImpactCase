@@ -2,7 +2,6 @@ import React from 'react';
 import { LinearGradient } from 'expo-linear-gradient';
 import { ImageBackground, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
-
 //defines the parameters for our Box component, and defines their types
 const Box = ({ title, img, onPress, style }:
     { title: string, img: any, onPress: any, style: any }) => {

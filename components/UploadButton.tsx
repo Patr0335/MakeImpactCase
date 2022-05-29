@@ -25,7 +25,9 @@ export default function UploadScreen() {
   const dispatch = useDispatch(); // hook to get
   const user = useSelector((state: any) => state.user.loggedInUser);
   const token = useSelector((state: any) => state.user.idToken);
+  //Here we use the usestate which is another hook. 
   const [photoUrl, setphotoUrl] = React.useState(user.photoUrl)
+  
   useEffect(() => {
     (async () => {
 
