@@ -66,7 +66,7 @@ export const addChatroom = (chatroom: Chatroom) => {
             // let chatrooms = []
             // for (const key in data) {
             // }
-
+            console.log(data)
             chatroom.id = data.name;
 
             dispatch({ type: ADD_CHATROOM, payload: chatroom })

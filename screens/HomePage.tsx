@@ -3,25 +3,19 @@ import {
   StyleSheet,
   Text,
   View,
-  TextInput,
-  Button,
-  Alert,
-  FlatList,
   ScrollView,
   TouchableOpacity,
-  useWindowDimensions,
   SafeAreaView,
-  ImageBackground,
   Dimensions,
+  Alert,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { StackParamList } from "../typings/navigations";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import SlideBox from "../components/SlideBox";
 import KanyeQuotes from "../components/KanyeQuotes";
-import { useDispatch } from "react-redux";
-import { logout } from "../src/store/actions/user.actions";
 import Constants from "expo-constants";
+import { useSelector } from "react-redux";
 
 type ScreenNavigationType = NativeStackNavigationProp<
   StackParamList,
@@ -30,13 +24,25 @@ type ScreenNavigationType = NativeStackNavigationProp<
 
 export default function HomePage() {
   const navigation = useNavigation<ScreenNavigationType>();
+  const user = useSelector((state: any) => state.user.loggedInUser);
+
+  if(user.displayName === ""){
+    Alert.alert(
+      "Attention!",
+      "All users have a predefined profile picture and username. Go to Profile to change it!",
+      [
+        { text: "OK", onPress: () => console.log("OK Pressed") }
+      ]
+    );
+  }
+  
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       <SafeAreaView style={styles.safeArea}>
         <View style={styles.container}>
+          
           <Text style={styles.header}>Welcome to YouOnlyDiceTwice</Text>
           <View style={styles.buttonContainer}>
-            {/* <Button title="Logout" onPress={() => dispatch(logout())} /> */}
             <TouchableOpacity
               style={styles.clickableButton}
               onPress={() => navigation.navigate("DiceGames")}
@@ -44,7 +50,6 @@ export default function HomePage() {
               <Text style={{ color: "white" }}>See all Dice Games ➜</Text>
             </TouchableOpacity>
           </View>
-
           <Text style={styles.BigBoxHeadline}> Our Popular Games</Text>
           <SlideBox/>
           <Text style={styles.BigBoxHeadline}> Kanye Quotes</Text>
