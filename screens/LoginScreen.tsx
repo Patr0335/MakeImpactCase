@@ -14,7 +14,6 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { StackParamList } from "../typings/navigations";
 import { useNavigation } from "@react-navigation/native";
 import { useDispatch } from "react-redux";
-import * as SecureStore from "expo-secure-store";
 
 type ScreenNavigationType = NativeStackNavigationProp<
   StackParamList,
@@ -26,29 +25,11 @@ export default function LoginScreen() {
   const dispatch = useDispatch(); // hook to get
   const navigation = useNavigation<ScreenNavigationType>();
 
-  async function readPersistedUserInfo() {
-    const token = await SecureStore.getItemAsync("idToken");
-    const userJson = await SecureStore.getItemAsync("user");
-  }
-  //   let user = null;
-  //   if (userJson) {
-  //     user = JSON.parse(userJson);
-  //   }
-  //   if (user) {
-  //     // then we have a priv. login
-  //     // restore the signup by updating the redux store based on usre and token.
-  //     dispatch(rehydrateUser(user, token!));
-  //   }
-  // }
+
 
   const handleLogin = () => {
     dispatch(login(email, passwordStr));
   }
-
-  useEffect(() => {
-    console.log("-----------------------------------")
-    readPersistedUserInfo();
-  }, []);
 
   return (
     <ImageBackground

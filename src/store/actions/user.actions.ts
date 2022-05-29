@@ -1,4 +1,3 @@
-import * as SecureStore from 'expo-secure-store';
 import { firebaseSignupSuccess } from "../../../entities/firebaseSignupSuccess";
 import { User } from "../../../entities/User";
 
@@ -6,11 +5,7 @@ export const SIGNUP = "SIGNUP";
 export const LOGOUT = 'LOGOUT';
 export const LOGIN = "LOGIN";
 export const UPDATE_USER = 'UPDATE_USER';
-export const REHYDRATE_USER = 'REHYDRATE_USER';
 
-export const rehydrateUser = (user: User, idToken: string) => {
-    return { type: REHYDRATE_USER, payload: { user, idToken } }
-}
 
 const APIKEY = "AIzaSyARVBYF9aJs_TJeEv7aXAvcn37PBVlN8tM"
 
@@ -36,16 +31,12 @@ export const updateUser = (user: User, idToken: string) => {
             //There was a problem..
             console.log("Something went wrong in updating the displayName")
         } else {
-            const data = await response.json(); // json to javascript
-            // SecureStore.setItemAsync("displayName", data.displayName);
             dispatch({type: UPDATE_USER, payload: { user, idToken}})
         }
     };
 }
 
 export const logout = () => {
-    SecureStore.deleteItemAsync('idToken'); 
-    SecureStore.deleteItemAsync('user');
 
     return { type: LOGOUT }
 }
@@ -71,20 +62,11 @@ export const login = (email : string, password : string) => {
             //There was a problem..
         } else {
             const data: firebaseSignupSuccess = await response.json(); // json to javascript
-            console.log(data)
-            console.log(data.profilePicture)
-            
- 
- 
+             
             dispatch({type: LOGIN, payload: { email: data.email, displayName: data.displayName, idToken: data.idToken, photoUrl: data.profilePicture }})
         }
     };
  };
-
-
-
-
-
 
 
 export const signup = (email : string, password : string) => {
@@ -114,9 +96,6 @@ export const signup = (email : string, password : string) => {
            const data: firebaseSignupSuccess = await response.json(); // json to javascript
 
            const user = new User(data.email, '', '');
-
-            // await SecureStore.setItemAsync('idToken', data.idToken);
-            // await SecureStore.setItemAsync('user', JSON.stringify(user)); // convert user js-obj. to json
 
            dispatch({type: SIGNUP, payload: {email: data.email, idToken: data.idToken}})
        }
