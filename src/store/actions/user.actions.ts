@@ -95,8 +95,6 @@ export const signup = (email : string, password : string) => {
        } else {
            const data: firebaseSignupSuccess = await response.json(); // json to javascript
 
-           const user = new User(data.email, '', '');
-
            dispatch({type: SIGNUP, payload: {email: data.email, idToken: data.idToken}})
        }
    };

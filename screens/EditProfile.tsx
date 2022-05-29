@@ -21,7 +21,8 @@ import { useDispatch, useSelector } from "react-redux";
 export default function EditProfile() {
   const user = useSelector((state: any) => state.user.loggedInUser);
   const token = useSelector((state: any) => state.user.idToken);
-  const dispatch = useDispatch(); // hook to get
+  // hook to get
+  const dispatch = useDispatch(); 
   const [name, setName] = React.useState(user.displayName);
   const [photoUrl, setphotoUrl] = React.useState(user.photoUrl)
 
