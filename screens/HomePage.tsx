@@ -30,7 +30,6 @@ type ScreenNavigationType = NativeStackNavigationProp<
 
 export default function HomePage() {
   const navigation = useNavigation<ScreenNavigationType>();
-  const dispatch = useDispatch();
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       <SafeAreaView style={styles.safeArea}>
