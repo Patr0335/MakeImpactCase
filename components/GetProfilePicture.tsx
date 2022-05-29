@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import { getStorage, ref, getDownloadURL } from 'firebase/storage';
+import React, { useEffect, useState } from "react";
+import { getStorage, ref, getDownloadURL } from "firebase/storage";
 import firebaseConfig from "../entities/firebaseConfig";
 import { initializeApp } from "firebase/app";
-import { useSelector } from 'react-redux';
+import { useSelector } from "react-redux";
 import { Image, StyleSheet } from "react-native";
 
 // Initialize Firebase
-initializeApp(firebaseConfig)
+initializeApp(firebaseConfig);
 
 export default function GetProfilePicture() {
   //get our currently logged on user
@@ -15,22 +15,21 @@ export default function GetProfilePicture() {
 
   useEffect(() => {
     const showProfilePicture = () => {
-      //getting the connection to our storage in our firebase 
+      //getting the connection to our storage in our firebase
       const storage = getStorage();
       //takes the storage connection with our photourl to get the image.
-      const reference = ref(storage, '/' + user.photoUrl)
+      const reference = ref(storage, "/" + user.photoUrl);
       getDownloadURL(reference).then((result: any) => {
-
-        //then we set the url, so we can pass the constant url to our image component which this function returns. 
+        //then we set the url, so we can pass the constant url to our image component which this function returns.
         setUrl(result);
-      })
+      });
+    };
+    if (user) {
+      showProfilePicture();
     }
-    if (user) { showProfilePicture() }
-  })
+  });
 
-  return (
-    <Image source={{ uri: url }} style={styles.imageStyle} />
-  )
+  return <Image source={{ uri: url }} style={styles.imageStyle} />;
 }
 
 const styles = StyleSheet.create({

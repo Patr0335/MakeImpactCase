@@ -18,8 +18,8 @@ const KanyeQuotes = () => {
   const { data, refetch, isLoading, isError } = useQuery(
     "quote",
     async () => {
-      //axios is a http promise, which helps us getting a quote from this api
-      const { data } = await axios("https://api.kanye.rest");
+      // Promise based HTTP client for the browser and node.js which helps us getting a quote from this api
+      const { data } = await axios("https://api.kanye.rest"); 
       return data;
     }
   );
