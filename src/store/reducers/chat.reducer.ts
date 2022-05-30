@@ -2,14 +2,12 @@ import { Chatroom } from "../../../entities/Chatroom";
 import { ADD_CHATROOM, FETCH_CHATROOMS } from "../actions/chat.actions";
 
 interface ReduxState {
-    chatrooms: Chatroom[]
-    counter: number
+    chatrooms: Chatroom[],
     name: string
 }
 
 const initialState: ReduxState = {
     chatrooms: [],
-    counter: 0,
     name: "Patrick"
 }
 

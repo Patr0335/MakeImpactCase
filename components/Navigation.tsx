@@ -47,6 +47,7 @@ function HomePageStackNavigator() {
           },
         }}
       />
+
     </Stack.Navigator>
   );
 }

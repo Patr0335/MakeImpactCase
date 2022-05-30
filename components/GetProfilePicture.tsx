@@ -5,7 +5,7 @@ import { initializeApp } from "firebase/app";
 import { useSelector } from "react-redux";
 import { Image, StyleSheet } from "react-native";
 
-// Initialize Firebase
+// Initialize Firebase to connect to firebase Storage
 initializeApp(firebaseConfig);
 
 export default function GetProfilePicture() {
@@ -13,6 +13,8 @@ export default function GetProfilePicture() {
   const user = useSelector((state: any) => state.user.loggedInUser);
   const [url, setUrl] = useState();
 
+
+  //When you call useEffect, you’re telling React to run your “effect” function after flushing changes to the DOM
   useEffect(() => {
     const showProfilePicture = () => {
       //getting the connection to our storage in our firebase
@@ -34,8 +36,8 @@ export default function GetProfilePicture() {
 
 const styles = StyleSheet.create({
   imageStyle: {
-    height: 140,
-    width: 140,
-    borderRadius: 80,
+    height: 180,
+    width: 180,
+    borderRadius: 100,
   },
 });

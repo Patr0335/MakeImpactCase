@@ -1,5 +1,6 @@
 import React from "react";
 import {
+  Alert,
   Dimensions,
   KeyboardAvoidingView,
   Pressable,
@@ -31,7 +32,10 @@ export default function EditProfile() {
       const newUser: User = new User(user.email, name, user.photoUrl)
       dispatch(updateUser(newUser, token))
     } else {
-      alert("Username or Picture")
+      Alert.alert("Username or Picture"),
+      [
+        { text: "OK", onPress: () => console.log("OK Pressed") }
+      ]
     }
   }
 
@@ -74,7 +78,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     margin: 20,
     position: "absolute",
-    top: 150
+    top: 190
   },
   saveButton: {
     alignItems: "center",

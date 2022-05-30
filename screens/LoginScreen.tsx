@@ -6,7 +6,9 @@ import {
   TextInput,
   Button,
   ImageBackground,
-  Dimensions
+  Dimensions,
+  TouchableOpacityBase,
+  TouchableOpacity
 } from "react-native";
 import { login } from "../src/store/actions/user.actions";
 
@@ -52,9 +54,11 @@ export default function LoginScreen() {
           onChangeText={setPasswordStr}
           style={styles.textInput}
         />
+        <TouchableOpacity onPress={() => dispatch(handleLogin)} style={styles.loginButton}>
+        <Text>Login</Text>
 
-        <Button title="Login"
-          onPress={() => dispatch(handleLogin)} />
+        </TouchableOpacity>
+
       </View>
       <View style={styles.signupText}>
         <Text>Dont have a user?
@@ -78,18 +82,28 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   textInput: {
-    fontSize: 16,
-    width: Dimensions.get('window').width - 150,
-    height: 40,
+    fontSize: 25,
+    width: Dimensions.get('window').width - 100,
+    height: 75,
     margin: 12,
     borderWidth: 1,
     padding: 10,
+    backgroundColor: "#CFD5EA"
+  
   },
-
+  loginButton: {
+    alignItems: "center",
+    justifyContent: "center",
+    paddingVertical: 12,
+    width: Dimensions.get('window').width - 100,
+    borderRadius: 4,
+    elevation: 3,
+    backgroundColor: "#003399",
+  },
   signupText: {
     margin: "10%",
     position: "absolute",
     left: Dimensions.get('window').width - 370,
-    top: Dimensions.get('window').height - 460
+    top: 290
   },
 });

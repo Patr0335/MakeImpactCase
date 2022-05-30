@@ -10,7 +10,7 @@ import {
 
 
 const Input = ({ title, inputValue, error, setText }:
-    { title: string, inputValue: string, error: string, setText: (i: string) => void }) => {
+    { title: string, inputValue: string, error: string, setText: (i : string) => void }) => {
 
     const [entered, setEntered] = useState(false)
 
