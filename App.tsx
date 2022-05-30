@@ -15,7 +15,7 @@ const rootReducer = combineReducers({
 export type RootState = ReturnType<typeof rootReducer>
 
 
-// Creating the redux store
+// Creating the redux store.
 const store = createStore(rootReducer, applyMiddleware(ReduxThunk));
 
 // Thunk: if you want to call async call actions without messing with redux
